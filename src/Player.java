@@ -5,6 +5,8 @@ public class Player {
     protected String player_name;
     protected int player_score;
 
+    //A5 - Allows access to a players frame (tiles)
+    protected Frame frame = new Frame();
 
     //A1 - Allows the player data to be reset
     public void data_reset()
@@ -27,6 +29,19 @@ public class Player {
         return player_name;
     }
 
+
+    //A3 - Allows a player�s score to be increased
+    public int increase_score(ArrayList<Tile.letter> score_list)
+    {
+        Pool find_tile_value = new Pool();
+        int score = 0;
+
+        for (Tile.letter x : score_list )
+        {
+            score += find_tile_value.queried_tile(x);
+        }
+        return score;
+    }
 
 
     //A4 - Allows access to their score
