@@ -6,8 +6,6 @@ public class Player {
     protected int player_score;
 
 
-
-
     //A1 - Allows the player data to be reset
     public void data_reset()
     {
