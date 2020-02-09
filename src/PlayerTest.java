@@ -165,6 +165,90 @@ class PlayerTest {
             System.out.println("\nFAIL \n");
         }
 
+        System.out.println("-------------  POOL CLASS TESTING -----------");
+
+        //Test to see if the pool initially stores 100 letters and displays the number
+        Pool.game_pool.pool_reset();
+
+        System.out.println("**Test to see if the pool initially stores 100 tiles and displays the number**");
+        System.out.println("EXPECTED: Pool size is: 100");
+        int expected10 = 100;
+        int actual10 = Pool.game_pool.display_num();
+        System.out.println("ACTUAL: Pool size is: " + actual10);
+
+        if(actual10 == expected10){
+            System.out.println("PASS \n");
+        } else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Test to see if the pool is empty
+        System.out.println("**Test to see if the pool is empty**");
+        System.out.println("EXPECTED: false (the pool is initially not empty");
+        boolean expected11 = false;
+        boolean actual11 = Pool.game_pool.isEmpty();
+        System.out.println("ACTUAL: " + actual11);
+
+        if(actual11 == expected11){
+            System.out.println("PASS \n");
+        }
+        else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Test to see if the pool can be reset
+        System.out.println("**Test to see if the pool can be reset**");
+        System.out.println("EXPECTED: Pool size is: 100");
+        int expected12 = 100;
+        Pool.game_pool.pool_reset();
+        int actual12 = Pool.game_pool.display_num();
+        System.out.println("ACTUAL: Pool size is: " + actual10);
+
+        if(actual12 == expected12){
+            System.out.println("PASS \n");
+        }
+        else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Test that a letter can be removed from the pool
+        System.out.println("**Testing that a letter can be removed from the pool**");
+        System.out.println("EXPECTED: The pool size is: 99");
+        int expected13 = 99;
+        Pool.game_pool.remove_from_pool(Tile.letter.a);
+        int actual13 = Pool.game_pool.display_num();
+        System.out.println("ACTUAL: The pool size is: "+ actual13);
+
+        if(actual13 == expected13)
+        {
+            System.out.println("PASS \n");
+        }
+        else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Test that a letter can be queried
+        System.out.println("**Testing that a letter's value can be queried**");
+        System.out.println("EXPECTED: The tile 'a' has a value of: 1");
+        int expected14 =1;
+        int actual14 = Pool.game_pool.queried_tile(Tile.letter.a);
+        System.out.println("ACTUAL: The tile 'a' has a value of: "+ actual14);
+
+        if(actual14 == expected14)
+        {
+            System.out.println("PASS \n");
+        }
+        else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        System.out.println("-------------END OF TESTING----------");
+
     }
 
 
@@ -235,4 +319,6 @@ class PlayerTest {
         //Check to see if there is one less letter in frame
         assertEquals(Aman.player_frame.size(), 6);
     }
+
+
 }
