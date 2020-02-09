@@ -1,5 +1,3 @@
-package Pool;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,7 +5,7 @@ public class Pool
 {
     //A1 - Stores the values of each tile
     public static int[] score = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10,0};
-    public static Tile.letter[] tile_array = new Tile.letter[] {Tile.letter.a, Tile.letter.b,
+    public static Pool.Tile.letter[] tile_array = new Pool.Tile.letter[] {Tile.letter.a, Tile.letter.b,
             Tile.letter.c, Tile.letter.d, Tile.letter.e, Tile.letter.f, Tile.letter.g, Tile.letter.h,
             Tile.letter.i, Tile.letter.j, Tile.letter.k, Tile.letter.l, Tile.letter.m, Tile.letter.m,
             Tile.letter.o, Tile.letter.p, Tile.letter.q, Tile.letter.r, Tile.letter.s, Tile.letter.t,
@@ -16,7 +14,7 @@ public class Pool
 
 
     //A2 - Stores the tile currently in the pool
-    private ArrayList<Tile.letter> pool = new ArrayList<Tile.letter>();
+    private ArrayList<Pool.Tile.letter> pool = new ArrayList<Pool.Tile.letter>();
 
     //A3 - Allows the pool to be reset
     public void pool_reset() {
@@ -108,7 +106,7 @@ public class Pool
 
 
     //A6 - Allows tiles to be drawn at random from the pool
-    public Tile.letter draw(){
+    public Pool.Tile.letter draw(){
         if (pool.size() < 1) {
             throw new IllegalArgumentException("No tiles to be drawn");
         }
@@ -116,19 +114,19 @@ public class Pool
             Random random = new Random();
             int randomIndex = random.nextInt(pool.size());
 
-            Tile.letter x = pool.get(randomIndex);
+            Pool.Tile.letter x = pool.get(randomIndex);
             pool.remove(randomIndex);
             return x;
         }
     }
 
-    public void remove_from_pool(Tile.letter x)
+    public void remove_from_pool(Pool.Tile.letter x)
     {
         //Create a variable to store whether or not the letter is found in the array
         Boolean flag = false;
 
         //Iterate through player_frame
-        for (Tile.letter y : pool )
+        for (Pool.Tile.letter y : pool )
         {
             //If the current letter is the letter being removed
             if(y == x)
@@ -150,13 +148,13 @@ public class Pool
     }
 
     //A7 - Allows the value of a tile to be queried
-    public int queried_tile(Tile.letter x)
+    public int queried_tile(Pool.Tile.letter x)
     {
         //Integer variable to store index
         int index = 0;
 
         //Iterate through letter array until the tile is found
-        for (Tile.letter y : tile_array )
+        for (Pool.Tile.letter y : tile_array )
         {
             //If the tile is found, exit for loop
             if(y ==  x) {
@@ -173,7 +171,7 @@ public class Pool
 
 
     //A8 - Random letter function
-    public Tile.letter random_letter() {
+    public Pool.Tile.letter random_letter() {
         int randomIndex = (int) (Math.random() * pool.size());
         return pool.get(randomIndex);
     }
