@@ -58,7 +58,113 @@ class PlayerTest {
             System.out.println("FAIL \n");
         }
 
-        //Test
+        System.out.println("-------------  FRAME CLASS TESTING -----------");
+
+        //Test that player object has a frame of 7 random letters from the pool
+        System.out.println("**Testing that player object has a frame, and the frame has 7 random letters from the pool**");
+        System.out.print("EXPECTED: ");
+        String expected4 = "7 letters in pool 93 remaining in pool";
+        System.out.println(expected4);
+        System.out.print("ACTUAL: ");
+        String actual4 = Jennifer.frame.player_frame.size() + " letters in pool " + Pool.game_pool.pool.size() + " remaining in pool";
+        System.out.println(actual4);
+
+        if (Jennifer.frame.player_frame.size() == 7 && Pool.game_pool.pool.size() == 93) {
+            System.out.println("PASS \n");
+        } else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Tests that a frame can be displayed
+        System.out.println("**Testing that a frame can be displayed**");
+        System.out.println("EXPECTED: x x x x x x x (where x is a random letter");
+        int expected5 = 7;
+        System.out.println("ACTUAL: ");
+        Jennifer.frame.display_frame();
+        int actual5 = 7;
+
+        if(actual5 == expected5){
+            System.out.println("\nPASS \n");
+        } else
+        {
+            System.out.println("\nFAIL \n");
+        }
+
+        //Test that a letter can be checked to see if it is in the frame
+        System.out.println("**Testing that a letter can be checked to see if it is in the frame**");
+        System.out.println("--Current letters in frame: ");
+        Jennifer.frame.display_frame();
+
+        System.out.println("\n--Testing to see if 'a' is in the frame");
+        System.out.println("EXPECTED: true/false depending if 'a' is in the frame");
+        boolean actual6 = Jennifer.frame.letter_in_frame(Tile.letter.a);
+        System.out.println("ACTUAL: " + actual6 + "\n");
+
+
+        //Test that a letter can be removed from the frame
+        System.out.println("**Testing that a letter can be removed from the frame**");
+        System.out.println("--Current letters in frame: ");
+        Jennifer.frame.display_frame();
+        System.out.println("\nEXPECTED: if letter is in frame, the frame should be one letter less and not include that letter, otherwise, do nothing");
+        int expected7;
+        int actual7;
+        if(Jennifer.frame.letter_in_frame(Tile.letter.a))
+        {
+            expected7 = 6;
+            Jennifer.frame.remove_letter(Tile.letter.a);
+            actual7 = Jennifer.frame.player_frame.size();
+        }
+        else
+        {
+            expected7 = 7;
+            Jennifer.frame.remove_letter(Tile.letter.a);
+            actual7 = Jennifer.frame.player_frame.size();
+        }
+
+        System.out.println("--New letters in frame: ");
+        Jennifer.frame.display_frame();
+
+        if(actual7 == expected7){
+            System.out.println("\nPASS \n");
+        } else
+        {
+            System.out.println("\nFAIL \n");
+        }
+
+
+        //Test to see if the frame is empty or not
+        System.out.println("**Testing to see if the frame is empty or not**");
+        System.out.println("EXPECTED: false (initially the frame will never be empty)");
+        boolean expected8 = false;
+        boolean actual8 = Jennifer.frame.is_frame_empty();
+        System.out.println("ACTUAL: " + actual8);
+
+        if(actual8 == expected8){
+            System.out.println("PASS \n");
+        } else
+        {
+            System.out.println("FAIL \n");
+        }
+
+        //Test to see if the frame can be refilled
+        System.out.println("**Testing to see if the frame can be refilled**");
+        System.out.println("--Current letters in frame: ");
+        Jennifer.frame.display_frame();
+        System.out.println("\nEXPECTED: a frame full of seven letters, if frame was already full, a notification should appear");
+        int expected9 = 7;
+        Jennifer.frame.refill_frame();
+        int actual9 = Jennifer.frame.player_frame.size();
+        System.out.println("--New letters in frame: ");
+        Jennifer.frame.display_frame();
+
+        if(actual9 == expected9){
+            System.out.println("\nPASS \n");
+        } else
+        {
+            System.out.println("\nFAIL \n");
+        }
+
     }
 
 
@@ -104,5 +210,29 @@ class PlayerTest {
         //Create new player obkect
         Player kier = new Player("kier");
         assertEquals("kier 0", kier.getName() + " " + kier.getScore());
+    }
+
+    //Frame class testing
+    //A1 - Stores the letters that each player has in their frame
+    @Test
+    void player_frame_test() {
+        //Create player object
+        Player Aman = new Player("Aman");
+
+        //Check to see if Player Aman has seven letters in his frame
+        assertEquals(Aman.frame.player_frame.size(), 7);
+    }
+
+    //A2 - Allows letters to be removed from the frame
+    @Test
+    void remove_letter() {
+        //Create frame object
+        Frame Aman = new Frame();
+
+        //Remove letter 'a' from frame
+        Aman.remove_letter(Tile.letter.a);
+
+        //Check to see if there is one less letter in frame
+        assertEquals(Aman.player_frame.size(), 6);
     }
 }
