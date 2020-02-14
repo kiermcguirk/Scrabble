@@ -20,7 +20,8 @@ public class Board {
     }
 
 
-    public void display_board() {
+    //A3 Stores the square values (e.g. triple word score)
+    public void board_init() {
         for (int i = 0; i <= 15; i++) {
             for (int j = 0; j <= 15; j++) {
                 if ((i == 0 && j == 0) || (i == 0 && j == 7) || (i == 0 && j == 14) || (i == 7 && j == 0) || (i == 14 && j == 0) || (i == 14 && j == 7) || (i == 14 && j == 14) || (i == 7 && j == 14)){
@@ -40,6 +41,6 @@ public class Board {
 
             }
         }
-
     }
+
 }
