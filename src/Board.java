@@ -4,14 +4,55 @@ public class Board {
 
     public static Square[][] game_board = new Square[15][15];
 
+
     boolean valid_move; //Variable which stores whether not a given move is valid or not
     boolean first_word = false; //Variable which stores whether or not the first move had a tile placed on the middle square.
     boolean letter_in_rack;
 
     public Board() {
         board_init(); //Call function to initialize state of board
+
+    }
+    // board display
+    public void display_board(){
+            for(int i =0; i < 15; i++){
+                //prints an horizontal line
+                printLine();
+                //prints the row number
+                System.out.print(i);
+                char c = '\0' ;
+                //if the square (i,j) is occupied,
+                //c is assigned the initial of the colour of the token that occupies the square
+                for (int j = 0; j <15; j++){
+
+                    System.out.print("| " + game_board[i][j].toString() + " ");
+                }
+                System.out.println("|");
+            }
+            printLine();
+            //prints the number of the columns at the end of the board
+            System.out.println("    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14          \n");
+        }
+
+
+
+
+    public void printLine(){
+        System.out.println(" -----------------------------------------------------------------------------");
+
     }
 
+
+
+    public static void main(String[] args) {
+        Board x = new Board();
+        x.display_board();
+    }
+
+
+
+
+    //Board reset
     public void board_reset() {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -30,19 +71,19 @@ public class Board {
     public void board_init() {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
-                if ((i == 0 && j == 0) || (i == 0 && j == 7) || (i == 0 && j == 14) || (i == 7 && j == 0) || (i == 14 && j == 0) || (i == 14 && j == 7) || (i == 14 && j == 14) || (i == 7 && j == 14)){
+                game_board[i][j] = new Square();
+                if ((i == 0 && j == 0) || (i == 0 && j == 7) || (i == 0 && j == 14) || (i == 7 && j == 0) || (i == 14 && j == 0) || (i == 14 && j == 7) || (i == 14 && j == 14) || (i == 7 && j == 14))
                     game_board[i][j].type = Square.square_type.trip_w; //create triple word score at positions
-                }
                 else if ((i == 0 && j == 3) || (i == 0 && j == 11) || (i == 2 && j == 6) || (i == 2 && j == 8) || (i == 3 && j == 0) || (i == 3 && j == 7) || (i == 3 && j == 14) || (i == 6 && j == 2) || (i == 6 && j == 6) || (i == 6 && j == 8) || (i == 6 && j == 12) || (i == 7 && j == 3) || (i == 7 && j == 11) || (i == 8 && j == 2) || (i == 8 && j == 6) || (i == 8 && j == 8) || (i == 8 && j == 12) || (i == 11 && j == 0) || (i == 11 && j == 7) || (i == 11 && j == 14) || (i == 12 && j == 6) || (i == 12 && j == 8) || (i == 14 && j == 3) || (i == 14 && j == 11)){
                     game_board[i][j].type = Square.square_type.dub_l; //create double letter score at positions
                 }
                 else if ((i == 1 && j == 5) || (i == 1 && j == 9) || (i == 5 && j == 1) || (i == 5 && j == 5) || (i == 5 && j == 9) || (i == 5 && j == 13) || (i == 9 && j == 1) || (i == 9 && j == 5) || (i == 9 && j == 9) || (i == 9 && j == 13) || (i == 13 && j == 5) || (i == 13 && j == 9)){
                     game_board[i][j].type = Square.square_type.trip_l; //create triple letter score at positions
                 }
-                else if ((i == 1 && j == 1) || (i == 1 && j == 13) || (i == 2 && j == 2) || (i == 2 && j == 12) || (i == 3 && j == 3) || (i == 3 && j == 11) || (i == 4 && j == 4) || (i == 4 && j == 10) || (i == 7 && j == 7) || (i == 10 && j == 4) || (i == 10 && j == 10) || (i == 11 && j == 3) || (i == 11 && j == 11) || (i == 12 && j == 2) || (i == 12 && j == 12) || (i == 13 && j == 1) || (i == 13 && j == 13)){
+                else if ((i == 1 && j == 1) || (i == 1 && j == 13) || (i == 2 && j == 2) || (i == 2 && j == 12) || (i == 3 && j == 3) || (i == 3 && j == 11) || (i == 4 && j == 4) || (i == 4 && j == 10) ||  (i == 10 && j == 4) || (i == 10 && j == 10) || (i == 11 && j == 3) || (i == 11 && j == 11) || (i == 12 && j == 2) || (i == 12 && j == 12) || (i == 13 && j == 1) || (i == 13 && j == 13)){
                     game_board[i][j].type = Square.square_type.dub_w; //create double word score at positions
                 }
-                else if((i== 8 && j== 8))
+                else if((i== 7 && j== 7))
                 {
                     game_board[i][j].type = Square.square_type.middle; //set the middle square to middle type
                 }
@@ -52,6 +93,8 @@ public class Board {
             }
         }
     }
+
+    //Listen here you little shit, you're getting choke slammed through a glass table tomorrow and there's NOTHING you can do about it!!!
 
     //Function that checks if the first move has a tile placed on the middle square or not
     public boolean first_word(Square fw)
@@ -68,7 +111,7 @@ public class Board {
         }
     }
 
-    //Function that checks if the word is out of bounds
+    //Function that checks to see whether or not im a loser (return true)
     public boolean out_of_bounds(int i, int j)
     {
         if(i > 14 || i<0 || j>14 || j<0)
