@@ -20,9 +20,9 @@ public class Board {
                 printLine();
                 //prints the row number
                 System.out.print(i);
-                char c = '\0' ;
-                //if the square (i,j) is occupied,
-                //c is assigned the initial of the colour of the token that occupies the square
+
+
+
                 for (int j = 0; j <15; j++){
 
                     System.out.print("| " + game_board[i][j].toString() + " ");
