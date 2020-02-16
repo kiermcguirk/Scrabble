@@ -94,7 +94,7 @@ public class Board {
         }
     }
 
-    //Listen here you little shit, you're getting choke slammed through a glass table tomorrow and there's NOTHING you can do about it!!!
+
 
     //Function that checks if the first move has a tile placed on the middle square or not
     public boolean first_word(Square fw)
