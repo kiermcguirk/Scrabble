@@ -24,7 +24,8 @@ public class Board {
                 //prints the row number
                 System.out.print(i);
                 for (int j = 0; j <15; j++){
-                    System.out.print("| " + game_board[i][j].toString() + " ");
+                    if(game_board[i][j].tile == Tile.letter.blank){System.out.print("| " + game_board[i][j].toString() + " ");}
+                    else System.out.print("| " + game_board[i][j].tile + "  ");
                 }
                 System.out.println("|");
             }
@@ -145,7 +146,9 @@ public class Board {
             letter_in_rack = true;
             return true;
         }
-        else return false;
+        else
+            System.out.println("Invalid Move: you do not possess the tile to place it here");
+            return false;
 
     }
 

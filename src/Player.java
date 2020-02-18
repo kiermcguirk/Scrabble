@@ -2,10 +2,6 @@ import java.util.ArrayList;
 
 public class Player {
 
-
-
-
-
     //Instance variables
     protected String player_name;
     protected int player_score;
