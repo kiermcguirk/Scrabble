@@ -4,15 +4,18 @@ public class Board {
 
     public static Square[][] game_board = new Square[15][15];
 
-
+    protected Player player_one = new Player("");
+    protected Player player_two = new Player("");
+    protected boolean player_one_turn = true;
     boolean valid_move; //Variable which stores whether not a given move is valid or not
     boolean first_word = false; //Variable which stores whether or not the first move had a tile placed on the middle square.
     boolean letter_in_rack;
 
-    public Board() {
+    public Board()
+    {
         board_init(); //Call function to initialize state of board
-
     }
+
     // board display
     public void display_board(){
             for(int i =0; i < 15; i++){
@@ -20,11 +23,7 @@ public class Board {
                 printLine();
                 //prints the row number
                 System.out.print(i);
-
-
-
                 for (int j = 0; j <15; j++){
-
                     System.out.print("| " + game_board[i][j].toString() + " ");
                 }
                 System.out.println("|");
@@ -35,22 +34,15 @@ public class Board {
         }
 
 
-
-
     public void printLine(){
         System.out.println(" -----------------------------------------------------------------------------");
 
     }
 
-
-
     public static void main(String[] args) {
         Board x = new Board();
         x.display_board();
     }
-
-
-
 
     //Board reset
     public void board_reset() {
@@ -93,8 +85,6 @@ public class Board {
             }
         }
     }
-
-
 
     //Function that checks if the first move has a tile placed on the middle square or not
     public boolean first_word(Square fw)
@@ -148,16 +138,36 @@ public class Board {
     }
 
     //Function that checks if the player's word is can be made up from the tiles in their rack
-    public boolean in_rack(Frame pf, Square q)
+    public boolean in_rack(Frame pf, Tile.letter q)
     {
-        if(pf.letter_in_frame(q.tile))
+        if(pf.letter_in_frame(q))
         {
             letter_in_rack = true;
             return true;
         }
+        else return false;
+
+    }
+
+    public void add_tile(Tile.letter x, int i, int j)
+    {
+        if(player_one_turn){
+            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
+            {
+                game_board[i][j].tile = x;
+            }
+            else
+            {
+                System.out.println("Please ensure that your move is valid. Try again.");
+            }
+        }
         else
         {
-            return false;
+            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
+            {
+                game_board[i][j].tile = x;
+            }
         }
+
     }
 }
