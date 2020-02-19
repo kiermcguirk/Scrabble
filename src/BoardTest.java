@@ -8,7 +8,10 @@ class BoardTest {
         System.out.println("-------------  BOARD CLASS TESTING -----------");
         Board x = new Board();
         Square sq = new Square();
+
         x.display_board();
+
+        //Test to see if the player is forced to place a tile on the middle square for their opening move
         x.player_one.frame.display_frame();
         x.add_tile(Tile.letter.a,7,7);
         x.display_board();

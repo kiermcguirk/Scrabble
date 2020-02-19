@@ -24,7 +24,7 @@ public class Board {
                 //prints the row number
                 System.out.print(i);
                 for (int j = 0; j <15; j++){
-                    if(game_board[i][j].tile == Tile.letter.blank){System.out.print("| " + game_board[i][j].toString() + " ");}
+                    if(game_board[i][j].tile == Tile.letter.empty){System.out.print("| " + game_board[i][j].toString() + " ");}
                     else System.out.print("| " + game_board[i][j].tile + "  ");
                 }
                 System.out.println("|");
@@ -95,6 +95,10 @@ public class Board {
             first_word = true; //Set first word to true
             return true; //Return true
         }
+        else if(first_word == true)
+        {
+            return true;
+        }
         else
         {
             System.out.println("Invalid Move: For the first word, you must begin on the middle square");
@@ -154,7 +158,7 @@ public class Board {
     public void add_tile(Tile.letter x, int i, int j)
     {
         if(player_one_turn){
-            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
+            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(i,j))
             {
                 game_board[i][j].tile = x;
             }
@@ -170,6 +174,59 @@ public class Board {
                 game_board[i][j].tile = x;
             }
         }
+    }
+
+    public boolean conflicting_word(int i, int j)
+    {
+        if(game_board[i][j].tile != Tile.letter.empty)
+        {
+            System.out.println("Invalid move: You cannot place a tile on top of an existing tile.");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+
+    public void place_word(Tile.letter[] word) {
+        boolean invalid_move = false;
+        PlacedTile[] array;
+
+        while(!invalid_move)
+        {
+
+        }
+    }
+
+    public void get_word()
+    {
 
     }
+
+
+
+    public boolean valid_move(Tile.letter x, int i, int j)
+    {
+        if(player_one_turn){
+            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(i,j))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
 }

@@ -7,7 +7,7 @@ public class Square {
     public Square()
     {
         this.type = square_type.normal;
-        this.tile = Tile.letter.blank;
+        this.tile = Tile.letter.empty;
     }
     @Override
     public String toString()
