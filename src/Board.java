@@ -102,13 +102,12 @@ public class Board {
         }
     }
 
-    //Function that checks to see whether or not im a loser (return true)
+    //Function that checks to see whether index is in range (return true)
     public boolean out_of_bounds(int i, int j)
     {
         if(i > 14 || i<0 || j>14 || j<0)
         {
-            System.out.println("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
-            return false;
+            throw new IndexOutOfBoundsException("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
         }
         else
         {
