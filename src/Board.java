@@ -107,7 +107,7 @@ public class Board {
     {
         if(i > 14 || i<0 || j>14 || j<0)
         {
-            System.out.println("Invalid Move: That placement is outwith the bounds of the board. \nPlease choose a position between 1 and 15");
+            System.out.println("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
             return false;
         }
         else
