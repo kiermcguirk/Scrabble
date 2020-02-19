@@ -3,16 +3,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-
     public static void main(String[] args)
     {
         System.out.println("-------------  BOARD CLASS TESTING -----------");
         Board x = new Board();
+        Square sq = new Square();
         x.display_board();
         x.player_one.frame.display_frame();
         x.add_tile(Tile.letter.a,7,7);
         x.display_board();
 
+        //Test to see if the first move has a tile placed on the middle square or not
+        System.out.println("**Testing to see if the first move has a tile placed on the middle square or not**");
+        System.out.println("EXPECTED: True");
+        boolean expected1 = true;
+        boolean actual1 = x.first_word(x.game_board[7][7]);
+        System.out.println("ACTUAL: " + actual1);
+
+        if(actual1 == expected1){
+            System.out.println("PASS \n");
+        } else
+        {
+            System.out.println("FAIL \n");
+        }
     }
 
     //Board class testing
@@ -40,6 +53,7 @@ class BoardTest {
         board.add_tile(Tile.letter.a, 10, 7);
         assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
     }
+
 
 
 }
