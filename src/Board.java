@@ -169,7 +169,7 @@ public class Board {
     {
         if(game_board[i][j].tile != Tile.letter.empty)
         {
-            System.out.println("Invalid move: You cannot place a tile on top of an existing tile.");
+            System.out.println("Invalid move: You cannot place a tile on top of an existing tile!!!!! >:(");
             return false;
         }
         else{return true;}

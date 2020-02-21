@@ -18,7 +18,7 @@ class BoardTest {
 
         //Test to see if the first move has a tile placed on the middle square or not
         System.out.println("**Testing to see if the first move has a tile placed on the middle square or not**");
-        System.out.println("EXPECTED: True");
+        System.out.println("EXPECTED: true");
         boolean expected1 = true;
         boolean actual1 = x.first_word(x.game_board[7][7]);
         System.out.println("ACTUAL: " + actual1);
@@ -29,8 +29,46 @@ class BoardTest {
         {
             System.out.println("FAIL \n");
         }
+
+
+    //Testing board initialization
+    System.out.println("**Testing board initialization**");
+    System.out.println("EXPECTED: The board with special squares (such as: tw, dw, tl and dl) and middle square is starred");
+    System.out.println("ACTUAL: ");
+    x.display_board();
+
+
+    //Testing to make sure the letter is within the player's rack
+        Frame frameOb = new Frame();
+    System.out.println("**Testing to ensure a letter is within the rack**");
+    System.out.println("Expected: true/false depending on whether the letter is actually in the rack");
+
+    boolean actual2 = x.in_rack(x.player_one.frame, Tile.letter.i);
+    System.out.println("ACTUAL: " + actual2);
+
+    if(actual2 == true || actual2 == false){
+        System.out.println("PASS :)\n");
+    }
+    else{
+        System.out.println("FAIL :(\n");
     }
 
+
+    //Testing the conflicting_words function
+    System.out.println("**Testing for conflicting words when placing a tile");
+    System.out.println("EXPECTED: true");
+    boolean expected3 = true;
+    boolean actual3 = x.conflicting_word(2,3);
+    System.out.println("ACTUAL: " + actual3);
+
+    if(expected3 == actual3){
+        System.out.println("PASS :)\n");
+    }
+    else{
+        System.out.println("FAIL :( \n");
+    }
+
+    }
     //Board class testing
     @Test
     void board_reset() {
