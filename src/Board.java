@@ -190,21 +190,79 @@ public class Board {
     }
 
 
-    public void place_word(Tile.letter[] word) {
+    public void place_word(Tile.letter[] word, int i, int j, int direction) {
+        //1 is vertical 0 is horizontal
         boolean invalid_move = false;
-        PlacedTile[] array;
+        int counter = 0;
 
-        while(!invalid_move)
+        if(direction == 1)
         {
+            for(counter = 0; counter < word.length; counter++)
+            {
 
+                while(game_board[i][j].tile != Tile.letter.empty)
+                {
+                    if(in_word(word, game_board[i][j].tile)){i++;}
+                }
+                if(valid_move(word[counter],i + counter, j)){continue;}
+                else{invalid_move = true;
+                    break;}
+            }
+
+            if(invalid_move)
+            {
+                System.out.println("Please try another move");
+            }
+            else
+            {
+                for(counter = 0; counter < word.length; counter++)
+                {
+                    while(game_board[i][j].tile != Tile.letter.empty)
+                    {
+                        i++;
+                    }
+                    game_board[i][j].tile = word[counter];
+                }
+            }
+        }
+        else
+        {
+            for(counter = 0; counter < word.length; counter++)
+            {
+                while(game_board[i][j].tile != Tile.letter.empty)
+                {
+                    if(in_word(word, game_board[i][j].tile)){j++;}
+                }
+                if(valid_move(word[counter], i,  j+counter)){continue;}
+                else{invalid_move = true;
+                    break;}
+            }
+            if(invalid_move)
+            {
+                System.out.println("Please try another move");
+            }
+            else
+            {
+                for(counter = 0; counter < word.length; counter++)
+                {
+                    while(game_board[i][j].tile != Tile.letter.empty)
+                    {
+                        j++;
+                    }
+                    game_board[i][j].tile = word[counter];
+                }
+            }
         }
     }
 
-    public void get_word()
+    public boolean in_word(Tile.letter[] word, Tile.letter x)
     {
-
+        for (Tile.letter q : word )
+        {
+            if(q == x){return true;}
+        }
+        return false;
     }
-
 
 
     public boolean valid_move(Tile.letter x, int i, int j)
@@ -228,5 +286,4 @@ public class Board {
         }
         return false;
     }
-
 }
