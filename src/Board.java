@@ -95,10 +95,7 @@ public class Board {
             first_word = true; //Set first word to true
             return true; //Return true
         }
-        else if(first_word == true)
-        {
-            return true;
-        }
+        else if(first_word == true) {return true;}
         else
         {
             System.out.println("Invalid Move: For the first word, you must begin on the middle square");
@@ -113,10 +110,8 @@ public class Board {
         {
             throw new IndexOutOfBoundsException("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
         }
-        else
-        {
-            return true;
-        }
+        else return true;
+
     }
 
     //Function that checks if a word connects with any other letters on the board (if the first move is passed)
@@ -149,26 +144,20 @@ public class Board {
             letter_in_rack = true;
             return true;
         }
-        else
+        else{
             System.out.println("Invalid Move: you do not possess the tile to place it here");
-            return false;
-
+            return false;}
     }
 
     public void add_tile(Tile.letter x, int i, int j)
     {
         if(player_one_turn){
-            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(i,j))
-            {
+            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(i,j)) {
                 game_board[i][j].tile = x;
             }
-            else
-            {
-                System.out.println("Please ensure that your move is valid. Try again.");
-            }
+            else{System.out.println("Please ensure that your move is valid. Try again.");}
         }
-        else
-        {
+        else{
             if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
             {
                 game_board[i][j].tile = x;
@@ -180,13 +169,10 @@ public class Board {
     {
         if(game_board[i][j].tile != Tile.letter.empty)
         {
-            System.out.println("Invalid move: You cannot place a tile on top of an existing tile.");
+            System.out.println("Invalid move: You cannot place a tile on top of an existing tile!!!!! >:(");
             return false;
         }
-        else
-        {
-            return true;
-        }
+        else{return true;}
     }
 
 
@@ -199,29 +185,26 @@ public class Board {
         {
             for(counter = 0; counter < word.length; counter++)
             {
-
-                while(game_board[i][j].tile != Tile.letter.empty)
-                {
+                while(game_board[i][j].tile != Tile.letter.empty) {
                     if(in_word(word, game_board[i][j].tile)){i++;}
                 }
                 if(valid_move(word[counter],i + counter, j)){continue;}
                 else{invalid_move = true;
                     break;}
             }
-
-            if(invalid_move)
-            {
-                System.out.println("Please try another move");
-            }
+            if(invalid_move) {System.out.println("Please try another move");}
             else
             {
                 for(counter = 0; counter < word.length; counter++)
                 {
-                    while(game_board[i][j].tile != Tile.letter.empty)
-                    {
-                        i++;
-                    }
+                    while(game_board[i][j].tile != Tile.letter.empty){i++;}
                     game_board[i][j].tile = word[counter];
+                    if(player_one_turn)
+                    {
+                        this.player_one.frame.remove_letter(word[counter]);
+                        player_one_turn = false;}
+                    else{ this.player_two.frame.remove_letter(word[counter]);
+                        player_one_turn = true;}
                 }
             }
         }
@@ -245,11 +228,13 @@ public class Board {
             {
                 for(counter = 0; counter < word.length; counter++)
                 {
-                    while(game_board[i][j].tile != Tile.letter.empty)
+                    while(game_board[i][j].tile != Tile.letter.empty) {j++;}
+                    if(player_one_turn)
                     {
-                        j++;
-                    }
-                    game_board[i][j].tile = word[counter];
+                        this.player_one.frame.remove_letter(word[counter]);
+                        player_one_turn = false;}
+                    else{ this.player_two.frame.remove_letter(word[counter]);
+                        player_one_turn = true;}
                 }
             }
         }
