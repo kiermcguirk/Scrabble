@@ -38,6 +38,7 @@ class BoardTest {
         System.out.println("**Test to check if player places a tile on the middle square for their opening move**");
         System.out.println("EXPECTED: Pass (Starting player must start on the middle square)");
         x.player_one.frame.display_frame();
+        System.out.println(" ");
         x.player_one.frame.test_values();
         x.place_word(test,7,7,0);
         x.display_board();
@@ -53,6 +54,7 @@ class BoardTest {
         x.board_reset();
         x.player_one.frame.display_frame();
         x.player_one.frame.test_values();
+        System.out.println(" ");
         x.place_word(test,5,5,1);
         x.display_board();
 
@@ -85,10 +87,10 @@ class BoardTest {
         System.out.println("ACTUAL: " + actual2);
 
         if(actual2 == true || actual2 == false){
-            System.out.println("PASS :)\n");
+            System.out.println("PASS \n");
         }
         else{
-            System.out.println("FAIL :(\n");
+            System.out.println("FAIL \n");
         }
 
         System.out.println("**Testing to see if the player move is valid**");
@@ -111,10 +113,10 @@ class BoardTest {
         System.out.println("ACTUAL: " + actual3);
 
         if(expected4 == actual4){
-            System.out.println("PASS :)\n");
+            System.out.println("PASS \n");
         }
         else{
-            System.out.println("FAIL :( \n");
+            System.out.println("FAIL \n");
         }
 
         //Test to check if a word connects with any other letters on the board
@@ -256,7 +258,6 @@ class BoardTest {
         }
         catch(IndexOutOfBoundsException e){
             System.out.println("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
-
         }
 
         System.out.println("\nPlayer Frame(after): ");
