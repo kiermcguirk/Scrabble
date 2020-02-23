@@ -174,17 +174,16 @@ class BoardTest {
         System.out.println("-Test 3 Word placement over existing letters");
         System.out.println("EXPECTED: Apple placed from 4-10 to 8-10, l shouldn't be removed from the player frame because it is already on the board");
         System.out.println("ACTUAL: ");
+        x.player_one.frame.test_values();
         System.out.println("Player Frame(before): ");
         x.player_one.frame.display_frame();
 
 
-        x.player_one.frame.test_values();
         x.place_word(test,4,10,1);
         System.out.println("\nPlayer Frame(after): ");
         x.player_one.frame.display_frame();
         System.out.println();
         x.display_board();
-
 
         if (x.game_board[4][10].tile == Tile.letter.a && x.game_board[5][10].tile == Tile.letter.p && x.game_board[6][10].tile == Tile.letter.p &&
                 x.game_board[7][10].tile == Tile.letter.l && x.game_board[8][10].tile == Tile.letter.e) {
@@ -192,6 +191,26 @@ class BoardTest {
         } else {
             System.out.println("FAIL \n");
         }
+
+        //Test 4 - Placing a word that you don't have letters for
+        System.out.println("-Test 4 Word placement when ");
+        System.out.println("EXPECTED: An error message stating that you do not possess the required words and an empty board, and the player's frame remaining the same");
+        System.out.println("ACTUAL: ");
+        System.out.println("Player Frame(before): ");
+        x.player_one.frame.test_values();
+        x.player_one.frame.display_frame();
+        System.out.println();
+        test.add(Tile.letter.x);
+        x.board_reset();
+        x.place_word(test,7,7,1);
+        System.out.println("\nPlayer Frame(after): ");
+        x.player_one.frame.display_frame();
+        System.out.println();
+        x.display_board();
+
+        System.out.println("PASS");
+
+
 
 
 
