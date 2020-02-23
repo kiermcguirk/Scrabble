@@ -10,6 +10,7 @@ class BoardTest {
     public static void main(String[] args)
     {
         System.out.println("-------------  BOARD CLASS TESTING -----------");
+        System.out.println("--For testing purposes, we have changed the frame class so that each player is initialised with 'apple' in their opening frame");
         Board x = new Board();
         Square sq = new Square();
         ArrayList<Tile.letter> test = new ArrayList<Tile.letter>();
@@ -18,8 +19,6 @@ class BoardTest {
         test.add(Tile.letter.p);
         test.add(Tile.letter.l);
         test.add(Tile.letter.e);
-        x.display_board();
-
 
         //Testing the display_board function
         System.out.println("**Testing the display_board function**");
@@ -178,12 +177,32 @@ class BoardTest {
             System.out.println("FAIL \n");
         }
 
-        //Test 3 - Placement Over Existing Letters Test
-        System.out.println("-Test 3 Word placement over existing letters");
-        System.out.println("EXPECTED: Apple placed from 4-10 to 8-10, l shouldn't be removed from the player frame because it is already on the board");
+        //Test 3 - Placement When Player Doesn't Possess At Least One Tile Of the word
+        System.out.println("-Test 3 Placement When Player Doesn't Have At Least One Tile");
+        System.out.println("EXPECTED: Error message conveying that they do not have any tiles for the word, and an empty board with the player's frame being left unchanged");
         System.out.println("ACTUAL: ");
         x.player_one.frame.test_values();
         System.out.println("Player Frame(before): ");
+        x.player_one.frame.display_frame();
+
+        ArrayList<Tile.letter> test2 = new ArrayList<Tile.letter>();
+        test.add(Tile.letter.n);
+        test.add(Tile.letter.o);
+        x.place_word(test2,7,7,1);
+        System.out.println("\nPlayer Frame(after): ");
+        x.player_one.frame.display_frame();
+        System.out.println();
+        x.display_board();
+
+        System.out.println("Pass");
+
+
+        //Test 4 - Placement Over Existing Letters Test
+        System.out.println("-Test 4 Word placement over existing letters");
+        System.out.println("EXPECTED: Apple placed from 4-10 to 8-10, l shouldn't be removed from the player frame because it is already on the board");
+        x.player_one.frame.test_values();
+        System.out.println("Player Frame(before): ");
+        System.out.println("ACTUAL: ");
         x.player_one.frame.display_frame();
 
 
@@ -200,8 +219,8 @@ class BoardTest {
             System.out.println("FAIL \n");
         }
 
-        //Test 4 - Placing a word that you don't have letters for
-        System.out.println("-Test 4 Word placement when ");
+        //Test 5 - Placing a word that you don't have letters for
+        System.out.println("-Test 5 Word placement for when you don't have the required tiles in your frame");
         System.out.println("EXPECTED: An error message stating that you do not possess the required words and an empty board, and the player's frame remaining the same");
         System.out.println("ACTUAL: ");
         System.out.println("Player Frame(before): ");
@@ -221,7 +240,6 @@ class BoardTest {
 
 
         //Testing to see what happens when a tile is placed off the board
-
         System.out.println("**Testing to see what happens when a tile is placed off the board**");
         System.out.println("EXPECTED: You expect the board to be empty and the letters to still be within the players rack after \n the player attempted to place a tile off the board (that tile is returned to the rack)");
         System.out.println("ACTUAL:  ");

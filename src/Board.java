@@ -148,8 +148,8 @@ public class Board {
     }
 
     public void add_tile(Tile.letter x, int i, int j)
-    {
-        if(player_one_turn){
+        {
+            if(player_one_turn){
             if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(x, i,j)) {
                 game_board[i][j].tile = x;
             }
@@ -175,9 +175,14 @@ public class Board {
 
 
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
-
         //1 is vertical 0 is horizontal
         boolean invalid_move = false;
+
+        if(player_one_turn) {
+            if (!at_least_one(word, player_one)) {invalid_move = true;}
+        }
+        else if(!at_least_one(word, player_two)) {invalid_move = true;}
+
         int counter = 0;
         boolean skip_letter = false;
         boolean wait = false;
@@ -188,7 +193,6 @@ public class Board {
                 while(game_board[i][j].tile != Tile.letter.empty) {
                     if(first_word){break;}
                     else if(in_word(word.get(counter), game_board[i][j].tile)){
-
                         i++;}
                 }
                 if(valid_move(word.get(counter),i + counter, j)){continue;}
@@ -248,15 +252,24 @@ public class Board {
                             player_one_turn = true;}
                     }
                     else{j++; }
-
                 }
-
-
             }
         }
     }
 
     public boolean in_word(Tile.letter from_word, Tile.letter from_board){return from_board == from_word;}
+
+    public boolean at_least_one(ArrayList<Tile.letter> word, Player p)
+    {
+        for ( Tile.letter x : word )
+        {
+            if(p.frame.letter_in_frame(x))     return true;
+        }
+        System.out.println("Invalid move: you cannot place a word when you don't have at least one tile ");
+        return false;
+    }
+
+
 
     public boolean valid_move(Tile.letter x, int i, int j) {
         //If it's player one's turn and their move is valid (check each move function)
