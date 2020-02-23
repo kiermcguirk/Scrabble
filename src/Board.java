@@ -19,21 +19,21 @@ public class Board {
 
     // board display
     public void display_board(){
-            for(int i =0; i < 15; i++){
-                //prints an horizontal line
-                printLine();
-                //prints the row number
-                System.out.print(i);
-                for (int j = 0; j <15; j++){
-                    if(game_board[i][j].tile == Tile.letter.empty){System.out.print("| " + game_board[i][j].toString() + " ");}
-                    else System.out.print("| " + game_board[i][j].tile + "  ");
-                }
-                System.out.println("|");
-            }
+        for(int i =0; i < 15; i++){
+            //prints an horizontal line
             printLine();
-            //prints the number of the columns at the end of the board
-            System.out.println("    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14          \n");
+            //prints the row number
+            System.out.print(i);
+            for (int j = 0; j <15; j++){
+                if(game_board[i][j].tile == Tile.letter.empty){System.out.print("| " + game_board[i][j].toString() + " ");}
+                else System.out.print("| " + game_board[i][j].tile + "  ");
+            }
+            System.out.println("|");
         }
+        printLine();
+        //prints the number of the columns at the end of the board
+        System.out.println("    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14          \n");
+    }
 
 
     public void printLine(){
@@ -147,7 +147,21 @@ public class Board {
             return false;}
     }
 
-
+    public void add_tile(Tile.letter x, int i, int j)
+    {
+        if(player_one_turn){
+            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(x, i,j)) {
+                game_board[i][j].tile = x;
+            }
+            else{System.out.println("Please ensure that your move is valid. Try again.");}
+        }
+        else{
+            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
+            {
+                game_board[i][j].tile = x;
+            }
+        }
+    }
 
     public boolean conflicting_word(Tile.letter a, int i, int j)
     {

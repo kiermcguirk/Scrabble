@@ -1,14 +1,16 @@
 public class Square {
 
     protected Tile.letter tile;
-    protected enum square_type{normal, dub_w, dub_l, trip_w, trip_l, middle}
-    protected square_type type;
+    protected enum square_type{normal, dub_w, dub_l, trip_w, trip_l, middle} //Square values
+    protected square_type type; //Square value type
 
     public Square()
     {
         this.type = square_type.normal;
         this.tile = Tile.letter.empty;
     }
+
+    //toString method to display square values on board
     @Override
     public String toString()
     {
@@ -22,19 +24,19 @@ public class Square {
         }
         else if(this.type == square_type.dub_l)
         {
-            return "dl";
+            return "DL";
         }
         else if(this.type == square_type.trip_l)
         {
-            return "tl";
+            return "TL";
         }
         else if(this.type == square_type.dub_w)
         {
-            return "dw";
+            return "DW";
         }
         else
         {
-            return "tw";
+            return "TW";
         }
     }
 }
