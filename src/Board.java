@@ -199,8 +199,7 @@ public class Board {
                 {
                     while(game_board[i][j].tile != Tile.letter.empty){i++;}
                     game_board[i][j].tile = word[counter];
-                    if(player_one_turn)
-                    {
+                    if(player_one_turn){
                         this.player_one.frame.remove_letter(word[counter]);
                         player_one_turn = false;}
                     else{ this.player_two.frame.remove_letter(word[counter]);
@@ -220,10 +219,7 @@ public class Board {
                 else{invalid_move = true;
                     break;}
             }
-            if(invalid_move)
-            {
-                System.out.println("Please try another move");
-            }
+            if(invalid_move){System.out.println("Please try another move");}
             else
             {
                 for(counter = 0; counter < word.length; counter++)
@@ -242,32 +238,25 @@ public class Board {
 
     public boolean in_word(Tile.letter[] word, Tile.letter x)
     {
+        //For each letter in the word
         for (Tile.letter q : word )
         {
+            //If the checked letter is in the word, return true
             if(q == x){return true;}
         }
+        //otherwise return false
         return false;
     }
 
 
-    public boolean valid_move(Tile.letter x, int i, int j)
-    {
-        if(player_one_turn){
-            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(i,j))
-            {
-                return true;
+    public boolean valid_move(Tile.letter x, int i, int j) {
+        //If it's player one's turn and their move is valid (check each move function)
+        if (player_one_turn) {
+            if (in_rack(player_one.frame, x) && connected_word(i, j) && first_word(game_board[i][j]) && out_of_bounds(i, j) && conflicting_word(i, j)) {
+                return true; //Return true
             }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
-            {
-                return false;
-            }
+        } else if (in_rack(player_two.frame, x) && connected_word(i, j) && first_word(game_board[i][j]) && out_of_bounds(i, j) && conflicting_word(i, j)) {
+            return true;
         }
         return false;
     }
