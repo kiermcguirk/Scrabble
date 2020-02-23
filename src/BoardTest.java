@@ -20,6 +20,14 @@ class BoardTest {
         test.add(Tile.letter.e);
         x.display_board();
 
+
+        //Testing the display_board function
+        System.out.println("**Testing the display_board function**");
+        System.out.println("EXPECTED: The Scrabble board, 15 squares by 15 squares, (225 squares in total)\n It should have numbered tiles along the sides with the special tiles labelled (eg. dw, dl, tw, tl)");
+        System.out.println("ACTUAL: " );
+        x.display_board();
+
+
         //Testing board initialization
         System.out.println("**Testing board initialization**");
         System.out.println("EXPECTED: The board with special squares (such as: tw, dw, tl and dl) and middle square is starred");
@@ -212,6 +220,19 @@ class BoardTest {
 
 
 
+        //Testing to see what happens when a tile is placed off the board
+
+        System.out.println("**Testing to see what happens when a tile is placed off the board**");
+        System.out.println("EXPECTED: Invalid Move: That placement is out with the bounds of the board. \\nPlease choose a position between 1 and 15");
+
+
+        try{
+            x.out_of_bounds(16,17);
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("ACTUAL: Invalid Move: That placement is out with the bounds of the board. \\nPlease choose a position between 1 and 15");
+            System.out.println("PASS \n");
+        }
 
 
 
@@ -219,13 +240,7 @@ class BoardTest {
 
     }
     //Board class testing
-    @Test
-    void board_reset() {
-        Board board = new Board();
-        board.add_tile(Tile.letter.a, 7, 7);
-        board.board_reset();
-        assertEquals(null, Board.game_board[7][7].tile);
-    }
+
 
     @Test
     void out_of_bounds_fail(){
