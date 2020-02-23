@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class Board {
-
+    //Store square for the board
     public static Square[][] game_board = new Square[15][15];
 
     protected Player player_one = new Player("");
@@ -47,8 +47,8 @@ public class Board {
 
     //Board reset
     public void board_reset() {
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+        for (int i = 0; i < 15; i++) {//Row
+            for (int j = 0; j < 15; j++) {//Column
                 if (game_board[i][j].tile == Tile.letter.empty) {
                     continue;
                 } else {
@@ -137,6 +137,7 @@ public class Board {
     //Function that checks if the player's word is can be made up from the tiles in their rack
     public boolean in_rack(Frame pf, Tile.letter q)
     {
+        //Check if player contains certain letter in frame
         if(pf.letter_in_frame(q))
         {
             letter_in_rack = true;
@@ -147,22 +148,7 @@ public class Board {
             return false;}
     }
 
-    public void add_tile(Tile.letter x, int i, int j)
-        {
-            if(player_one_turn){
-            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(x, i,j)) {
-                game_board[i][j].tile = x;
-            }
-            else{System.out.println("Please ensure that your move is valid. Try again.");}
-        }
-        else{
-            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
-            {
-                game_board[i][j].tile = x;
-            }
-        }
-    }
-
+    //Check if new tile is not placed on an existing tile
     public boolean conflicting_word(Tile.letter a, int i, int j)
     {
         if(game_board[i][j].tile != Tile.letter.empty && game_board[i][j].tile != a)
@@ -173,16 +159,9 @@ public class Board {
         else return true;
     }
 
-
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
         //1 is vertical 0 is horizontal
         boolean invalid_move = false;
-
-        if(player_one_turn) {
-            if (!at_least_one(word, player_one)) {invalid_move = true;}
-        }
-        else if(!at_least_one(word, player_two)) {invalid_move = true;}
-
         int counter = 0;
         boolean skip_letter = false;
         boolean wait = false;
@@ -190,10 +169,12 @@ public class Board {
         {
             if(direction == 1)
             {
+                //Loop through the type of square is not an empty tile
                 while(game_board[i][j].tile != Tile.letter.empty) {
                     if(first_word){break;}
                     else if(in_word(word.get(counter), game_board[i][j].tile)){
-                        i++;}
+                        i++;
+                    }
                 }
                 if(valid_move(word.get(counter),i + counter, j)){continue;}
                 else{invalid_move = true;
@@ -252,23 +233,19 @@ public class Board {
                             player_one_turn = true;}
                     }
                     else{j++; }
+
                 }
+
+
             }
         }
     }
 
-    public boolean in_word(Tile.letter from_word, Tile.letter from_board){return from_board == from_word;}
-
-    public boolean at_least_one(ArrayList<Tile.letter> word, Player p)
+    //Check if 2 words have common letter
+    public boolean in_word(Tile.letter from_word, Tile.letter from_board)
     {
-        for ( Tile.letter x : word )
-        {
-            if(p.frame.letter_in_frame(x))     return true;
-        }
-        System.out.println("Invalid move: you cannot place a word when you don't have at least one tile ");
-        return false;
+        return from_board == from_word;
     }
-
 
 
     public boolean valid_move(Tile.letter x, int i, int j) {
