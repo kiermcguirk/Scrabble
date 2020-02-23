@@ -223,17 +223,33 @@ class BoardTest {
         //Testing to see what happens when a tile is placed off the board
 
         System.out.println("**Testing to see what happens when a tile is placed off the board**");
-        System.out.println("EXPECTED: Invalid Move: That placement is out with the bounds of the board. \\nPlease choose a position between 1 and 15");
-
+        System.out.println("EXPECTED: You expect the board to be empty and the letters to still be within the players rack after \n the player attempted to place a tile off the board (that tile is returned to the rack)");
+        System.out.println("ACTUAL:  ");
+        System.out.println("Player Frame(before): ");
+        x.player_one.frame.test_values();
+        x.player_one.frame.display_frame();
+        System.out.println();
+        test.add(Tile.letter.x);
+        x.board_reset();
+        System.out.println(" ");
 
         try{
             x.out_of_bounds(16,17);
         }
         catch(IndexOutOfBoundsException e){
-            System.out.println("ACTUAL: Invalid Move: That placement is out with the bounds of the board. \\nPlease choose a position between 1 and 15");
-            System.out.println("PASS \n");
+            System.out.println("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
+
         }
 
+        System.out.println("\nPlayer Frame(after): ");
+        x.player_one.frame.display_frame();
+        System.out.println(" ");
+
+
+
+        x.display_board();
+
+        System.out.println("PASS \n");
 
 
 
