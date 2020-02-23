@@ -20,7 +20,8 @@ class BoardTest {
         test.add(Tile.letter.e);
         x.display_board();
 
-        //Testing board initialization
+
+        //Testing board initialization     [
         System.out.println("**Testing board initialization**");
         System.out.println("EXPECTED: The board with special squares (such as: tw, dw, tl and dl) and middle square is starred");
         System.out.println("ACTUAL: ");
