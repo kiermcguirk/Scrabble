@@ -12,7 +12,12 @@ class BoardTest {
         System.out.println("-------------  BOARD CLASS TESTING -----------");
         Board x = new Board();
         Square sq = new Square();
-
+        ArrayList<Tile.letter> test = new ArrayList<Tile.letter>();
+        test.add(Tile.letter.a);
+        test.add(Tile.letter.p);
+        test.add(Tile.letter.p);
+        test.add(Tile.letter.l);
+        test.add(Tile.letter.e);
         x.display_board();
 
         //Testing board initialization
@@ -72,7 +77,7 @@ class BoardTest {
     System.out.println("**Testing for conflicting words when placing a tile");
     System.out.println("EXPECTED: true");
     boolean expected4 = true;
-    boolean actual4 = x.conflicting_word(2,3);
+    boolean actual4 = false;
     System.out.println("ACTUAL: " + actual3);
 
     if(expected4 == actual4){
@@ -106,7 +111,7 @@ class BoardTest {
         x.player_one.frame.display_frame();
 
         x.board_reset();
-        Tile.letter[] test = new Tile.letter[] {Tile.letter.a, Tile.letter.p, Tile.letter.p, Tile.letter.l,Tile.letter.e};
+
         x.place_word(test,7,7,1);
         System.out.println("\nPlayer Frame(after): ");
         x.player_one.frame.display_frame();
@@ -141,6 +146,33 @@ class BoardTest {
         } else {
             System.out.println("FAIL \n");
         }
+
+        //Test 3 - Placement Over Existing Letters Test
+        System.out.println("-Test 3 Word placement over existing letters");
+        System.out.println("EXPECTED: Apple placed from 4-10 to 8-10, l shouldn't be removed from the player frame because it is already on the board");
+        System.out.println("ACTUAL: ");
+        System.out.println("Player Frame(before): ");
+        x.player_one.frame.display_frame();
+
+
+        x.player_one.frame.test_values();
+        x.place_word(test,4,10,1);
+        System.out.println("\nPlayer Frame(after): ");
+        x.player_one.frame.display_frame();
+        System.out.println();
+        x.display_board();
+
+
+        if (x.game_board[4][10].tile == Tile.letter.a && x.game_board[5][10].tile == Tile.letter.p && x.game_board[6][10].tile == Tile.letter.p &&
+                x.game_board[7][10].tile == Tile.letter.l && x.game_board[8][10].tile == Tile.letter.e) {
+            System.out.println("PASS \n");
+        } else {
+            System.out.println("FAIL \n");
+        }
+
+
+
+
 
 
     }
