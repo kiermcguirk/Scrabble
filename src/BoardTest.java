@@ -11,6 +11,13 @@ class BoardTest {
 
         x.display_board();
 
+        //Testing board initialization
+        System.out.println("**Testing board initialization**");
+        System.out.println("EXPECTED: The board with special squares (such as: tw, dw, tl and dl) and middle square is starred");
+        System.out.println("ACTUAL: ");
+        x.display_board();
+
+
         //Test to see if the player is forced to place a tile on the middle square for their opening move
         x.player_one.frame.display_frame();
         x.add_tile(Tile.letter.a,7,7);
@@ -30,14 +37,6 @@ class BoardTest {
             System.out.println("FAIL \n");
         }
 
-
-    //Testing board initialization
-    System.out.println("**Testing board initialization**");
-    System.out.println("EXPECTED: The board with special squares (such as: tw, dw, tl and dl) and middle square is starred");
-    System.out.println("ACTUAL: ");
-    x.display_board();
-
-
     //Testing to make sure the letter is within the player's rack
         Frame frameOb = new Frame();
     System.out.println("**Testing to ensure a letter is within the rack**");
@@ -53,20 +52,44 @@ class BoardTest {
         System.out.println("FAIL :(\n");
     }
 
+        System.out.println("**Testing to see if the player move is valid**");
+        System.out.println("EXPECTED: True/False: Check whether letter is in the frame");
+        boolean actual3 = x.valid_move(Tile.letter.a, 7, 7);
+        System.out.println("ACTUAL: " + actual2);
+
+        if (actual3 == true || actual3 == false) {
+            System.out.println("PASS \n");
+        } else {
+            System.out.println("FAIL \n");
+        }
+
 
     //Testing the conflicting_words function
     System.out.println("**Testing for conflicting words when placing a tile");
     System.out.println("EXPECTED: true");
-    boolean expected3 = true;
-    boolean actual3 = x.conflicting_word(2,3);
+    boolean expected4 = true;
+    boolean actual4 = x.conflicting_word(2,3);
     System.out.println("ACTUAL: " + actual3);
 
-    if(expected3 == actual3){
+    if(expected4 == actual4){
         System.out.println("PASS :)\n");
     }
     else{
         System.out.println("FAIL :( \n");
     }
+
+        //Test to check if a word connects with any other letters on the board
+        System.out.println("**Testing to see if word connects with any other letters on the board**");
+        System.out.println("EXPECTED: True");
+        boolean expected5 = true;
+        boolean actual5 = x.connected_word(6,7);
+        System.out.println("ACTUAL: " + actual4);
+
+        if (actual5 == expected5) {
+            System.out.println("PASS \n");
+        } else {
+            System.out.println("FAIL \n");
+        }
 
     }
     //Board class testing
