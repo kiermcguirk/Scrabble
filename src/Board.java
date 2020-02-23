@@ -50,10 +50,10 @@ public class Board {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
 
-                if (game_board[i][j].tile == null) {
+                if (game_board[i][j].tile == Tile.letter.empty) {
                     continue;
                 } else {
-                    game_board[i][j].tile = null;
+                    game_board[i][j].tile = Tile.letter.empty;
                 }
             }
         }
@@ -181,57 +181,50 @@ public class Board {
         boolean invalid_move = false;
         int counter = 0;
 
-        if(direction == 1)
+        for(counter = 0; counter < word.length; counter++)
         {
-            for(counter = 0; counter < word.length; counter++)
+            if(direction == 1)
             {
                 while(game_board[i][j].tile != Tile.letter.empty) {
-                    if(in_word(word, game_board[i][j].tile)){i++;}
+                    if(first_word){break;}
+                    else if(in_word(word, game_board[i][j].tile)){i++;}
                 }
                 if(valid_move(word[counter],i + counter, j)){continue;}
                 else{invalid_move = true;
                     break;}
             }
-            if(invalid_move) {System.out.println("Please try another move");}
-            else
-            {
-                for(counter = 0; counter < word.length; counter++)
-                {
-                    while(game_board[i][j].tile != Tile.letter.empty){i++;}
-                    game_board[i][j].tile = word[counter];
-                    if(player_one_turn){
-                        this.player_one.frame.remove_letter(word[counter]);
-                        player_one_turn = false;}
-                    else{ this.player_two.frame.remove_letter(word[counter]);
-                        player_one_turn = true;}
-                }
-            }
-        }
-        else
-        {
-            for(counter = 0; counter < word.length; counter++)
+            else if(direction == 0)
             {
                 while(game_board[i][j].tile != Tile.letter.empty)
                 {
-                    if(in_word(word, game_board[i][j].tile)){j++;}
+                    if(first_word){break;}
+                    else if(in_word(word, game_board[i][j].tile)){j++;}
                 }
                 if(valid_move(word[counter], i,  j+counter)){continue;}
                 else{invalid_move = true;
                     break;}
             }
-            if(invalid_move){System.out.println("Please try another move");}
-            else
+        }
+        if(invalid_move) {System.out.println("Please try another move");}
+        else
+        {
+            for(counter = 0; counter < word.length; counter++)
             {
-                for(counter = 0; counter < word.length; counter++)
+                if(direction == 1)
                 {
-                    while(game_board[i][j].tile != Tile.letter.empty) {j++;}
-                    if(player_one_turn)
-                    {
-                        this.player_one.frame.remove_letter(word[counter]);
-                        player_one_turn = false;}
-                    else{ this.player_two.frame.remove_letter(word[counter]);
-                        player_one_turn = true;}
+                    while(game_board[i][j].tile != Tile.letter.empty){i++;}
                 }
+                else
+                {
+                    while(game_board[i][j].tile != Tile.letter.empty){j++;}
+                }
+                game_board[i][j].tile = word[counter];
+                if(player_one_turn){
+                    this.player_one.frame.remove_letter(word[counter]);
+                    //player_one_turn = false; for testing purposes will be returned next assignment
+                }
+                else{ this.player_two.frame.remove_letter(word[counter]);
+                    player_one_turn = true;}
             }
         }
     }

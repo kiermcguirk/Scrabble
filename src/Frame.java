@@ -37,11 +37,6 @@ public class Frame {
 
 
     //A6 - Allows a frame to be refilled from the pool
-    public Frame()
-    {
-        refill_frame();
-    }
-
     public void refill_frame()
     {
         //If frame is full already, notify the user that they cannot refill the pool
@@ -54,6 +49,24 @@ public class Frame {
         {
             player_frame.add(Pool.game_pool.draw());
         }
+    }
+
+    public Frame()
+    {
+        //refill_frame();
+        //For testing purposes we are hardcoding the letters in the frame for this assignment
+        test_values();
+    }
+    public void test_values()
+    {
+        player_frame.clear();
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.p);
+        player_frame.add(Tile.letter.p);
+        player_frame.add(Tile.letter.l);
+        player_frame.add(Tile.letter.e);
+        player_frame.add(Tile.letter.blank);
+        player_frame.add(Tile.letter.blank);
     }
 
 
