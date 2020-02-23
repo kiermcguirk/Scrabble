@@ -275,20 +275,19 @@ class BoardTest {
     }
     //Board class testing
 
-
-    @Test
-    void out_of_bounds_fail(){
-        try {
-            Board board = new Board();
-            board.add_tile(Tile.letter.a, 15, 10);
-            fail("Invalid Move");
-        }catch (IndexOutOfBoundsException e){}
-    }
-
-    @Test
-    void out_of_bounds_pass() {
-        Board board = new Board();
-        board.add_tile(Tile.letter.a, 10, 7);
-        assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
-    }
+//    @Test
+//    void out_of_bounds_fail(){
+//        try {
+//            Board board = new Board();
+//            board.add_tile(Tile.letter.a, 15, 10);
+//            fail("Invalid Move");
+//        }catch (IndexOutOfBoundsException e){}
+//    }
+//
+//    @Test
+//    void out_of_bounds_pass() {
+//        Board board = new Board();
+//        board.add_tile(Tile.letter.a, 10, 7);
+//        assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
+//    }
 }
