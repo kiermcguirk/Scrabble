@@ -29,7 +29,7 @@ class BoardTest {
 
         //Test to see if the player is forced to place a tile on the middle square for their opening move
         x.player_one.frame.display_frame();
-        x.add_tile(Tile.letter.a,7,7);
+        //x.add_tile(Tile.letter.a,7,7);
         x.display_board();
 
         //Test to see if the first move has a tile placed on the middle square or not
@@ -180,7 +180,7 @@ class BoardTest {
     @Test
     void board_reset() {
         Board board = new Board();
-        board.add_tile(Tile.letter.a, 7, 7);
+        //board.add_tile(Tile.letter.a, 7, 7);
         board.board_reset();
         assertEquals(null, Board.game_board[7][7].tile);
     }
@@ -189,7 +189,7 @@ class BoardTest {
     void out_of_bounds_fail(){
         try {
             Board board = new Board();
-            board.add_tile(Tile.letter.a, 15, 10);
+            //board.add_tile(Tile.letter.a, 15, 10);
             fail("Invalid Move");
         }catch (IndexOutOfBoundsException e){}
 
@@ -198,7 +198,7 @@ class BoardTest {
     @Test
     void out_of_bounds_pass(){
         Board board = new Board();
-        board.add_tile(Tile.letter.a, 10, 7);
+        //board.add_tile(Tile.letter.a, 10, 7);
         assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
     }
 

@@ -147,21 +147,7 @@ public class Board {
             return false;}
     }
 
-    public void add_tile(Tile.letter x, int i, int j)
-    {
-        if(player_one_turn){
-            if(in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j) && conflicting_word(x, i,j)) {
-                game_board[i][j].tile = x;
-            }
-            else{System.out.println("Please ensure that your move is valid. Try again.");}
-        }
-        else{
-            if(in_rack(player_two.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i,j))
-            {
-                game_board[i][j].tile = x;
-            }
-        }
-    }
+
 
     public boolean conflicting_word(Tile.letter a, int i, int j)
     {
