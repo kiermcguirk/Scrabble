@@ -1,4 +1,8 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -91,6 +95,13 @@ class BoardTest {
             System.out.println("FAIL \n");
         }
 
+        //Test to check if word is placed correctly
+        System.out.println("**Testing to check if word is placed correctly**");
+        x.player_one.frame.display_frame();
+        Tile.letter[] test = new Tile.letter[] {Tile.letter.e, Tile.letter.p};
+        x.place_word(test,7,7,1);
+        x.player_one.frame.display_frame();
+        x.display_board();
     }
     //Board class testing
     @Test
@@ -116,6 +127,13 @@ class BoardTest {
         Board board = new Board();
         board.add_tile(Tile.letter.a, 10, 7);
         assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
+    }
+
+    @Test
+    void place_tile(){
+        Board board = new Board();
+        Pool pool = new Pool();
+
     }
 
 
