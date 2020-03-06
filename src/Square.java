@@ -1,4 +1,6 @@
-public class Square {
+import java.awt.*;
+
+public class Square extends Rectangle {
 
     protected Tile.letter tile;
     protected enum square_type{normal, dub_w, dub_l, trip_w, trip_l, middle} //Square values
@@ -8,6 +10,7 @@ public class Square {
     {
         this.type = square_type.normal;
         this.tile = Tile.letter.empty;
+
     }
 
     //toString method to display square values on board
