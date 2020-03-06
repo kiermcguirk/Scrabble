@@ -6,7 +6,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
-
+/*
     public static void main(String[] args)
     {
         System.out.println("-------------  BOARD CLASS TESTING -----------");
@@ -291,4 +291,6 @@ class BoardTest {
 //        board.add_tile(Tile.letter.a, 10, 7);
 //        assertTrue(0 <= 10 && 10 <= 14 || 0 <= 7 && 7 <= 14);
 //    }
+
+ */
 }
