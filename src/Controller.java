@@ -28,7 +28,7 @@ public class Controller implements Initializable {
         Parent gameMode = FXMLLoader.load(getClass().getResource("getContents.fxml"));
         Scene gameScene = new Scene(gameMode);
 
-        //Get stage information
+        //Get stage info
         Stage window = (Stage) startGame.getScene().getWindow();
         window.setScene(gameScene);
         window.show();
