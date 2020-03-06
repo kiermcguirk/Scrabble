@@ -22,13 +22,15 @@ public class main extends Application {
         Pane root = new Pane();
         root.setPrefSize(800,800);
 
-        board.board_init();
+
+         board.display_board();
 
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
             {
-                root.getChildren().add(Board.game_board[i][j]);
+                 System.out.println(Board.game_board[i][j].type);
+                 root.getChildren().add(Board.game_board[i][j]);
             }
         }
         return root;
