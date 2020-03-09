@@ -11,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class main extends Application {
@@ -58,19 +59,21 @@ public class main extends Application {
             else if(type == Square.square_type.dub_l)
             {
                 border.setFill(Color.LIGHTBLUE);
-                text.setText("Double Letter Score");
+                text.setText("Double\nLetter\nScore");
             }
             else if(type == Square.square_type.trip_l)
             {
                 border.setFill(Color.TURQUOISE);
-                text.setText("Triple Letter Score");
+                text.setText("Triple\nLetter\nScore");
             }
             else if(type == Square.square_type.dub_w){
                 border.setFill(Color.SALMON);
-                text.setText("Double Word Score");
+                text.setText("Double\nWord\nScore");
             }
             else if(type == Square.square_type.trip_w){
                 border.setFill(Color.DARKORANGE);
+                text.setText("Triple \nWord\nScore");
+
             }
             else
             {
@@ -79,6 +82,7 @@ public class main extends Application {
             }
 
             border.setStroke(Color.LIGHTGREY);
+            text.setStyle("-fx-font: 10 arial;");
 
             getChildren().addAll(border,text);
             setTranslateX(x * SQUARE_SIZE);
