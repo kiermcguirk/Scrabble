@@ -11,19 +11,17 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-
-
+import java.util.ArrayList;
 
 public class main extends Application {
     private static int X_SQUARE_NUM = 15;
     private static int Y_SQUARE_NUM = 15;
-
+    public Board board = new Board();
 
     private Parent createContent()
     {
         Pane root = new Pane();
-        root.setPrefSize(800,800);
+        root.setPrefSize(600,600);
 
         BoardOfTiles board = new BoardOfTiles();
 
@@ -31,7 +29,7 @@ public class main extends Application {
         {
             for(int j=0; j<15; j++)
             {
-                 root.getChildren().add(board.board.game_board[i][j]);
+                 root.getChildren().add(board.squareTilesBoard[i][j]);
             }
         }
         return root;
@@ -39,7 +37,6 @@ public class main extends Application {
 
     public static void main(String[] args)
     {
-
         launch(args);
     }
 
@@ -91,7 +88,41 @@ public class main extends Application {
 
     private class BoardOfTiles extends StackPane
     {
-        private Board board = new Board();
+        private SquareTile[][] squareTilesBoard = new SquareTile[15][15];
+
+        public BoardOfTiles()
+        {
+            for(int i=0; i<15; i++)
+            {
+                for(int j =0; j<15; j++)
+                {
+                    if(board.game_board[i][j].type == Square.square_type.dub_w)
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.dub_w);
+                    }
+                    else if(board.game_board[i][j].type == Square.square_type.dub_l)
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.dub_l);
+                    }
+                    else if(board.game_board[i][j].type == Square.square_type.trip_l)
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.trip_l);
+                    }
+                    else if(board.game_board[i][j].type == Square.square_type.trip_w)
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.trip_w);
+                    }
+                    else if(board.game_board[i][j].type == Square.square_type.normal)
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.normal);
+                    }
+                    else
+                    {
+                        squareTilesBoard[i][j] = new SquareTile(i,j, Square.square_type.middle);
+                    }
+                }
+            }
+        }
     }
 
     @Override

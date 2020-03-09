@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Board {
     //Store square for the board
-    public static Square[][] game_board = new Square[15][15];
+    public  Square[][] game_board = new Square[15][15];
 
     protected Player player_one = new Player("");
     protected Player player_two = new Player("");
@@ -78,8 +78,7 @@ public class Board {
                 else if ((i == 1 && j == 1) || (i == 1 && j == 13) || (i == 2 && j == 2) || (i == 2 && j == 12) || (i == 3 && j == 3) || (i == 3 && j == 11) || (i == 4 && j == 4) || (i == 4 && j == 10) ||  (i == 10 && j == 4) || (i == 10 && j == 10) || (i == 11 && j == 3) || (i == 11 && j == 11) || (i == 12 && j == 2) || (i == 12 && j == 12) || (i == 13 && j == 1) || (i == 13 && j == 13)){
                     game_board[i][j].type = Square.square_type.dub_w; //create double word score at positions
                 }
-                else if((i== 7 && j== 7))
-                {
+                else if((i== 7 && j== 7)) {
                     game_board[i][j].type = Square.square_type.middle; //set the middle square to middle type
                 }
                 else{
@@ -205,9 +204,7 @@ public class Board {
                 int temp =0;
                 if(direction == 1)
                 {
-
                     if (game_board[i][j].tile == Tile.letter.empty){
-
                         if (player_one_turn) {
                             game_board[i][j].tile = word.get(counter);
                             this.player_one.frame.remove_letter(word.get(counter));
@@ -234,11 +231,8 @@ public class Board {
                             game_board[i][j].tile = word.get(counter);
                             player_one_turn = true;}
                     }
-                    else{j++; }
-
+                    else{j++;}
                 }
-
-
             }
         }
     }
