@@ -1,4 +1,3 @@
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,13 +17,17 @@ public class main extends Application {
     private static int X_SQUARE_NUM = 15;
     private static int Y_SQUARE_NUM = 15;
     public Board board = new Board();
+    public layoutManager lm = new layoutManager();
 
+    /*
     private Parent createContent()
     {
         Pane root = new Pane();
         root.setPrefSize(600,600);
 
         BoardOfTiles board = new BoardOfTiles();
+        lm.createButton("Quit");
+        lm.createButton("Home");
 
         for(int i=0; i<15; i++)
         {
@@ -35,6 +38,10 @@ public class main extends Application {
         }
         return root;
     }
+
+     */
+
+
 
     public static void main(String[] args)
     {
@@ -132,9 +139,11 @@ public class main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));; //create icon
-        Scene scene = new Scene(createContent());
+
+        stage = lm.getStage();
+        //Scene scene = new Scene(createContent());
         stage.setTitle(" Scrabble Board");
-        stage.setScene(scene);
+        //stage.setScene(scene);
         stage.show();
     }
 }
