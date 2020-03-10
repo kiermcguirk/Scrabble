@@ -10,7 +10,8 @@ public class ScrabbleButton extends Button {
     private final String STYLE_BUTTON_HOVER = "-fx-background-color: blue;";
     private final String STYLE_BUTTON_NORMAL = "-fx-background-color: pink; -fx-font: 15 arial; -fx-font-color: white ";
 
-    public ScrabbleButton(String text) {
+    public ScrabbleButton(String text)
+    {
         setText(text);
         setFontStyle();
         setPrefHeight(49);
@@ -77,16 +78,12 @@ public class ScrabbleButton extends Button {
         });
 
 
-
-        setOnMouseExited(new EventHandler<MouseEvent>(){
+        setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event){
                 setEffect(null);
             }
         });
-
     }
-
-
 }
 
