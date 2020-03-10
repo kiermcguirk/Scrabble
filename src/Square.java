@@ -11,6 +11,7 @@ public class Square extends StackPane {
 
     protected Tile.letter tile;
     protected enum square_type{normal, dub_w, dub_l, trip_w, trip_l, middle} //Square values
+
     protected square_type type; //Square value type
 
     public Square(Square.square_type type)
