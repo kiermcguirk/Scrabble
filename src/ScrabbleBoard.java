@@ -1,3 +1,8 @@
+import javafx.scene.Parent;
+import javafx.scene.SubScene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,43 +17,39 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.ArrayList;
+public class ScrabbleBoard extends SubScene {
 
-public class main extends Application {
-    private static int X_SQUARE_NUM = 15;
-    private static int Y_SQUARE_NUM = 15;
-    //public Board board = new Board();
-    public layoutManager lm = new layoutManager();
+    private final static String BACKGROUND = "Images/borderbackground2.png";
+    public Board board = new Board();
 
-    /*
-    private Parent createContent()
-    {
-        Pane root = new Pane();
-        root.setPrefSize(600,600);
+    public ScrabbleBoard() {
+        super(new AnchorPane(), 600, 600);
+        prefHeight(600);
+        prefWidth(600);
+
+        BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,565,565,false,true),BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+
+        AnchorPane boardroot = (AnchorPane) this.getRoot();
+        boardroot.setBackground(new Background(background));
 
         BoardOfTiles board = new BoardOfTiles();
-
+        int num = 19;
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
             {
-                 root.getChildren().add(board.squareTilesBoard[i][j]);
+                board.squareTilesBoard[i][j].setLayoutY(num);
+                board.squareTilesBoard[i][j].setLayoutX(num);
+                num += .7;
+                boardroot.getChildren().add(board.squareTilesBoard[i][j]);
+
             }
         }
-        return root;
     }
 
-     */
-
-
-
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
-
-    /*
     private class SquareTile extends StackPane {
-        private static final int SQUARE_SIZE = 40;
+        private static final int SQUARE_SIZE = 35;
         private Rectangle border = new Rectangle(SQUARE_SIZE - 2, SQUARE_SIZE - 2);
         private Text text = new Text();
         private Square square;
@@ -58,7 +59,7 @@ public class main extends Application {
 
             if(type == Square.square_type.normal)
             {
-                border.setFill(Color.BEIGE);
+                border.setFill(Color.rgb(220,216,170));
                 text.setText("");
             }
             else if(type == Square.square_type.dub_l)
@@ -87,7 +88,7 @@ public class main extends Application {
             }
 
             border.setStroke(Color.LIGHTGREY);
-            text.setStyle("-fx-font: 10 arial;");
+            text.setStyle("-fx-font: 9 arial;");
 
             getChildren().addAll(border,text);
             setTranslateX(x * SQUARE_SIZE);
@@ -134,16 +135,4 @@ public class main extends Application {
         }
     }
 
-     */
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));; //create icon
-
-        stage = lm.getStage();
-        //Scene scene = new Scene(createContent());
-        stage.setTitle(" Scrabble Board");
-        //stage.setScene(scene);
-        stage.show();
-    }
 }
