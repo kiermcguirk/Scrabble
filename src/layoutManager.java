@@ -17,7 +17,7 @@ public class layoutManager {
         mainScene = new Scene(mainPane,800,800);
         mainStage = new Stage();
         mainStage.setScene(mainScene);
-        createButton("Jennifer is big sucky");
+        createButton("Kier is the big sad  :(");
     }
 
     public void createButton(String text)
