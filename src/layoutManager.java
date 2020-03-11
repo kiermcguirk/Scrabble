@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.util.Duration;
@@ -18,7 +19,6 @@ public class layoutManager {
     private AnchorPane mainPane;
     private Scene mainScene;
     private Stage mainStage;
-
     private final static int GAME_BUTTON_X = 800;
     private final static int GAME_BUTTON_Y = 100;
     private static final String LOGO = "Images/Scrabble-logo.png";
@@ -38,6 +38,7 @@ public class layoutManager {
         setScrabbleBackground();
         addScrabbleLogo();
         setButtons();
+        addPlayerTurnLabel();
 
 
 
@@ -159,8 +160,18 @@ public class layoutManager {
         mainPane.getChildren().add(helpScene);
 
     }
-    private void addPlayerTurnLabel()
-    {
-        Label player_turn = new Label();
+    private void addPlayerTurnLabel() {
+
+        Label player1_turn = new Label("Player 1 turn");
+
+        player1_turn.setFont(new Font("Verdana", 24));
+        StackPane shadowPane = new StackPane(player1_turn);
+        shadowPane.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
+        shadowPane.setPrefSize(200,50);
+        shadowPane.setLayoutX(420);
+        shadowPane.setLayoutY(20);
+
+        mainPane.getChildren().add(shadowPane);
+
     }
 }
