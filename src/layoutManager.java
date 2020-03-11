@@ -1,13 +1,16 @@
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-import java.awt.*;
-import java.net.SecureCacheResponse;
+import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 public class layoutManager {
@@ -18,8 +21,9 @@ public class layoutManager {
 
     private final static int GAME_BUTTON_X = 800;
     private final static int GAME_BUTTON_Y = 100;
-    private static final String BACKGROUND = "Images/Scrabble-logo.png";
-
+    private static final String LOGO = "Images/Scrabble-logo.png";
+    private ScrabbleHelp helpScene;
+    private ImageView ScrabbleLogo = new ImageView(LOGO);
 
     ArrayList<ScrabbleButton> gameButtons = new ArrayList<>();
 
@@ -32,13 +36,17 @@ public class layoutManager {
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         setScrabbleBackground();
-        setButtons();
         addScrabbleLogo();
+        setButtons();
+
+
 
         ScrabbleBoard fxBoard = new ScrabbleBoard();
         fxBoard.setLayoutX(200);
         fxBoard.setLayoutY(75);
         mainPane.getChildren().add(fxBoard);
+
+        addHelpScene();
         //createButton("Kier is the big sad  :(");
     }
 
@@ -52,7 +60,24 @@ public class layoutManager {
 
     private void addPlayButton(){
         ScrabbleButton playButton = new ScrabbleButton("Play");
+
+        playButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                TranslateTransition transition = new TranslateTransition();
+                transition.setDuration(Duration.seconds(2));
+                transition.setNode(ScrabbleLogo);
+                RotateTransition rotateTransition = new RotateTransition(Duration.seconds(2));
+                rotateTransition.setNode(ScrabbleLogo);
+                rotateTransition.setByAngle(90);
+                transition.setToY(250);
+                transition.setToX(250);
+                transition.play();
+                rotateTransition.play();
+            }
+        });
         addButtons(playButton);
+
     }
 
     private void addQuitButton()
@@ -67,11 +92,27 @@ public class layoutManager {
         addButtons(swapButton);
     }
 
+    private void addHelpButton()
+    {
+        ScrabbleButton helpButton = new ScrabbleButton("Help");
+
+        helpButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                helpScene.Transition();
+            }
+        });
+
+
+        addButtons(helpButton);
+    }
+
     private void setButtons()
     {
         addPlayButton();
         addQuitButton();
         addPassButton();
+        addHelpButton();
     }
 
 
@@ -102,10 +143,24 @@ public class layoutManager {
 
     private void addScrabbleLogo()
     {
-        ImageView ScrabbleLogo = new ImageView(BACKGROUND);
+
         ScrabbleLogo.setLayoutX(0);
         ScrabbleLogo.setLayoutY(100);
+        ScrabbleLogo.setEffect(new DropShadow());
+
+
         mainPane.getChildren().add(ScrabbleLogo);
     }
 
+
+    private void addHelpScene()
+    {
+        helpScene = new ScrabbleHelp();
+        mainPane.getChildren().add(helpScene);
+
+    }
+    private void addPlayerTurnLabel()
+    {
+        Label player_turn = new Label();
+    }
 }

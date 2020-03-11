@@ -1,5 +1,7 @@
+import javafx.animation.TranslateTransition;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -14,12 +16,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.util.ArrayList;
 public class ScrabbleBoard extends SubScene {
 
-    private final static String BACKGROUND = "Images/borderbackground2.png";
+    private final static String BACKGROUND = "Images/borderbackground4.png";
     public Board board = new Board();
 
     public ScrabbleBoard() {
@@ -27,14 +30,14 @@ public class ScrabbleBoard extends SubScene {
         prefHeight(600);
         prefWidth(600);
 
-        BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,565,565,false,true),BackgroundRepeat.NO_REPEAT,
+        BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,590,590,false,true),BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
 
         AnchorPane boardroot = (AnchorPane) this.getRoot();
         boardroot.setBackground(new Background(background));
-
+        boardroot.setEffect(new DropShadow());
         BoardOfTiles board = new BoardOfTiles();
-        int num = 19;
+        int num = 35;
         for(int i=0; i<15; i++)
         {
             for(int j=0; j<15; j++)
@@ -89,11 +92,12 @@ public class ScrabbleBoard extends SubScene {
 
             border.setStroke(Color.LIGHTGREY);
             text.setStyle("-fx-font: 9 arial;");
-
+            this.setEffect(new DropShadow());
             getChildren().addAll(border,text);
             setTranslateX(x * SQUARE_SIZE);
             setTranslateY(y * SQUARE_SIZE);
         }
+
     }
 
     private class BoardOfTiles extends StackPane
@@ -135,4 +139,14 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
+
+
+    public void Transition()
+    {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.seconds(0.4));
+
+        transition.setNode(this);
+
+    }
 }
