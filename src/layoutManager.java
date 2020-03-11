@@ -24,6 +24,7 @@ public class layoutManager {
     private static final String LOGO = "Images/Scrabble-logo.png";
     private ScrabbleHelp helpScene;
     private ImageView ScrabbleLogo = new ImageView(LOGO);
+    ScrabbleBoard fxBoard = new ScrabbleBoard();
 
     ArrayList<ScrabbleButton> gameButtons = new ArrayList<>();
 
@@ -36,17 +37,14 @@ public class layoutManager {
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         setScrabbleBackground();
-        addScrabbleLogo();
+
         setButtons();
         addPlayerTurnLabel();
 
-
-
-        ScrabbleBoard fxBoard = new ScrabbleBoard();
         fxBoard.setLayoutX(200);
         fxBoard.setLayoutY(75);
         mainPane.getChildren().add(fxBoard);
-
+        addScrabbleLogo();
         addHelpScene();
         //createButton("Kier is the big sad  :(");
     }
@@ -66,15 +64,22 @@ public class layoutManager {
             @Override
             public void handle(ActionEvent actionEvent) {
                 TranslateTransition transition = new TranslateTransition();
+                TranslateTransition transitionboard = new TranslateTransition();
+                TranslateTransition transitionTurnLabel = new TranslateTransition();
+                transitionboard.setDuration(Duration.seconds(2));
+                transitionboard.setNode(fxBoard);
+                transitionboard.setToY(-30);
+                transitionboard.setToX(-150);
                 transition.setDuration(Duration.seconds(2));
                 transition.setNode(ScrabbleLogo);
                 RotateTransition rotateTransition = new RotateTransition(Duration.seconds(2));
                 rotateTransition.setNode(ScrabbleLogo);
                 rotateTransition.setByAngle(90);
-                transition.setToY(250);
-                transition.setToX(250);
+                transition.setToY(350);
+                transition.setToX(230);
                 transition.play();
                 rotateTransition.play();
+                transitionboard.play();
             }
         });
         addButtons(playButton);
@@ -169,7 +174,7 @@ public class layoutManager {
         shadowPane.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
         shadowPane.setPrefSize(200,50);
         shadowPane.setLayoutX(420);
-        shadowPane.setLayoutY(20);
+        shadowPane.setLayoutY(0);
 
         mainPane.getChildren().add(shadowPane);
 

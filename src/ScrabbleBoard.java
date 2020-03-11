@@ -37,6 +37,7 @@ public class ScrabbleBoard extends SubScene {
         boardroot.setBackground(new Background(background));
         boardroot.setEffect(new DropShadow());
         BoardOfTiles board = new BoardOfTiles();
+
         int num = 35;
         for(int i=0; i<15; i++)
         {
