@@ -6,6 +6,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+
 public class ScrabbleHelp extends SubScene {
     private final static String BACKGROUND = "Images/borderbackground.png";
     public Board board = new Board();
@@ -30,9 +31,15 @@ public class ScrabbleHelp extends SubScene {
         setLayoutX(300);
         setLayoutY(-600);
 
+
+
     }
 
-
+/*    private void AddText(String Text){
+      ScrabbleHelp add_text = new ScrabbleHelp();
+      add_text.AddText("Hi");
+    }
+*/
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));
