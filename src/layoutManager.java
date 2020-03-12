@@ -174,7 +174,6 @@ public class layoutManager {
         mainPane.getChildren().add(ScrabbleLogo);
     }
 
-
     private void addHelpScene()
     {
         helpScene = new ScrabbleHelp();

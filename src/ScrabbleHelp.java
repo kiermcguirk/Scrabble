@@ -3,6 +3,7 @@ import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class ScrabbleHelp extends SubScene {
@@ -16,6 +17,9 @@ public class ScrabbleHelp extends SubScene {
 
         BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,400,550,false,true), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
+
+        setFill(Color.WHITE);
+
 
         AnchorPane helproot = (AnchorPane) this.getRoot();
 
