@@ -7,12 +7,14 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class ScrabbleHelp extends SubScene {
-    private final static String BACKGROUND = "Images/borderbackground2.png";
+    private final static String BACKGROUND = "Images/borderbackground.png";
     public Board board = new Board();
+
+    private boolean hidden = true;
 
     public ScrabbleHelp() {
         super(new AnchorPane(), 400, 550);
-        prefHeight(300);
+        prefHeight(400);
         prefWidth(550);
 
         BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,400,550,false,true), BackgroundRepeat.NO_REPEAT,
@@ -31,15 +33,21 @@ public class ScrabbleHelp extends SubScene {
     }
 
 
-    public void Transition()
-    {
+    public void Transition() {
         TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(0.4));
+        transition.setDuration(Duration.seconds(1));
 
         transition.setNode(this);
 
         //transition.setToX(-600);
-        transition.setToY(600);
+
+        if (hidden) {
+            transition.setToY(600);
+            hidden = false;
+        } else {
+            transition.setToY(-600);
+            hidden = true;
+        }
 
 
         transition.play();
