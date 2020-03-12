@@ -4,6 +4,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 
@@ -35,11 +36,15 @@ public class ScrabbleHelp extends SubScene {
 
     }
 
-/*    private void AddText(String Text){
+    private void setFontStyle() {
+        setFont(Font.font("Verdana", 12));
+    }
+
+   private void AddText(String Text){
       ScrabbleHelp add_text = new ScrabbleHelp();
       add_text.AddText("Hi");
     }
-*/
+
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));
