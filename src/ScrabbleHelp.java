@@ -20,7 +20,6 @@ public class ScrabbleHelp extends SubScene {
 
         setFill(Color.WHITE);
 
-
         AnchorPane helproot = (AnchorPane) this.getRoot();
 
         helproot.setBackground(new Background(background));
