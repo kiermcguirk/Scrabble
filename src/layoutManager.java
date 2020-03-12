@@ -36,10 +36,15 @@ public class layoutManager {
     StackPane playerOneLabel = new StackPane(player_one);
     Label score1 = new Label();
     Label score2 = new Label();
+    private static final String RACK_BACKGROUND = "Images/Rack_Background.jpg";
+
+    private final static int RackSquare_X = 925;
+    private final static int RackSquare_Y = 100;
 
     Label player_two = new Label("Player Two:");
     StackPane playerTwoLabel = new StackPane(player_two);
 
+    ArrayList<ScrabbleRack> gameRack = new ArrayList<>();
     ArrayList<ScrabbleButton> gameButtons = new ArrayList<>();
     private int P1_Score = 10;
     private int P2_Score = 20;
@@ -65,6 +70,15 @@ public class layoutManager {
         addScrabbleLogo();
         addHelpScene();
         //createButton("Kier is the big sad  :(");
+        setRackBackground1();
+        setRackBackground2();
+        createRackSquare(" ");
+        createRackSquare2(" ");
+        createRackSquare3(" ");
+        createRackSquare4(" ");
+        createRackSquare5(" ");
+        createRackSquare6(" ");
+        createRackSquare7(" ");
     }
 
     private void addButtons(ScrabbleButton button)
@@ -199,6 +213,94 @@ public class layoutManager {
         mainPane.getChildren().add(button);
 
     }
+
+
+    public void setRackBackground1(){
+        ImageView RackBackground = new ImageView(RACK_BACKGROUND);
+        RackBackground.setLayoutX(915);
+        RackBackground.setLayoutY(95);
+        mainPane.getChildren().add(RackBackground);
+    }
+
+    public void setRackBackground2(){
+        ImageView RackBackground = new ImageView(RACK_BACKGROUND);
+        RackBackground.setLayoutX(915);
+        RackBackground.setLayoutY(277);
+        mainPane.getChildren().add(RackBackground);
+    }
+
+
+
+    private void addRackSquares(ScrabbleRack rack)
+    {
+        rack.setLayoutX(RackSquare_X);
+        rack.setLayoutY(RackSquare_Y + gameRack.size() * 51);
+        gameRack.add(rack);
+        mainPane.getChildren().add(rack);
+    }
+
+    public void createRackSquare(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare2(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare3(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare4(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare5(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare6(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+    public void createRackSquare7(String text){
+
+        ScrabbleRack Rack = new ScrabbleRack(text);
+        addRackSquares(Rack);
+
+
+    }
+
+
+
+
+
+
+
 
     public Stage getStage(){
         return mainStage;
