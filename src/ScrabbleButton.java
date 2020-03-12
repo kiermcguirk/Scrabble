@@ -4,11 +4,14 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class ScrabbleButton extends Button {
 
-    private final String STYLE_BUTTON_HOVER = "-fx-cursor: hand;-fx-background-color: \n" + "#77d42a,\n" + "linear-gradient(#5cb811 0%, #268a16 20%, #268a16 100%),\n" + "linear-gradient(#5cb811, #268a16)," + "radial-gradient(center 50% 0%, radius 100%, rgba(189, 230, 181, 1), rgba(255,255,255,0));\n" + "-fx-background-radius:6px;\n" + "-fx-background-insets: 0,1,2,0;\n" + "-fx-text-fill: black;\n" + "-fx-effect: dropshadow( three-pass-box , rgba(170, 222, 124, 1) , 5, 0.0 , 0 , 1 );\n" + "-fx-font-family: \"Arial\";\n" + "-fx-text-fill: linear-gradient(black, #303108);\n" + "-fx-font-size: 12px;\n" + "-fx-padding: 6px 9px;";
+
+
+    private final String STYLE_BUTTON_HOVER = "-fx-cursor: hand;-fx-background-color: \n" + "#77d42a,\n" + "linear-gradient(#5cb811 0%, #268a16 20%, #268a16 100%),\n" + "linear-gradient(#5cb811, #268a16)," + "radial-gradient(center 50% 0%, radius 100%, rgba(189, 230, 181, 1), rgba(255,255,255,0));\n" + "-fx-background-radius:6px;\n" + "-fx-background-insets: 0,1,2,0;\n" + "-fx-text-fill: black;\n" + "-fx-effect: dropshadow( three-pass-box , rgba(170, 222, 124, 1) , 5, 0.0 , 0 , 1 );\n" + "-fx-font-family: \"Arial\";\n" + "-fx-text-fill: linear-gradient(black, #303108);\n" + "-fx-font-size: 12px;\n" + "-fx-padding: 6px 9px";
     private final String STYLE_BUTTON_NORMAL = "-fx-cursor: pointer; -fx-background-color: \n" + "#77d42a,\n" + "linear-gradient(#5cb811 0%, #268a16 20%, #268a16 100%),\n" + "linear-gradient(#5cb811, #268a16)," + "radial-gradient(center 50% 0%, radius 100%, rgba(189, 230, 181, 1), rgba(255,255,255,0));\n" + "-fx-background-radius:6px;\n" + "-fx-background-insets: 0,1,2,0;\n" + "-fx-text-fill: black;\n" + "-fx-effect: dropshadow( three-pass-box , rgba(170, 222, 124, 1) , 5, 0.0 , 0 , 1 );\n" + "-fx-font-family: \"Arial\";\n" + "-fx-text-fill: linear-gradient(black, #303108);\n" + "-fx-font-size: 12px;\n" + "-fx-padding: 6px 9px;";
 
     public ScrabbleButton(String text)
@@ -26,17 +29,18 @@ public class ScrabbleButton extends Button {
     }
 
     private void setHoverStyle() {
-        //setStyle(STYLE_BUTTON_HOVER);
+        setStyle(STYLE_BUTTON_HOVER);
+        setCursor(Cursor.HAND);
         setPrefHeight(45);
-        setLayoutY(getLayoutY() + 5);
-        setLayoutX(getLayoutX() - 5);
-        //setEffect(new DropShadow());
+        //setLayoutY(getLayoutY() + 5);
+        //setLayoutX(getLayoutX() - 5);
+        setEffect(new DropShadow());
     }
 
     private void setButtonPressedStyle(){
         setStyle(STYLE_BUTTON_HOVER);
         setPrefHeight(45);
-        setLayoutY(getLayoutY() + 4);
+        //setLayoutY(getLayoutY() + 4);
     }
 
 
@@ -44,14 +48,17 @@ public class ScrabbleButton extends Button {
     {
         setStyle(STYLE_BUTTON_NORMAL);
         setPrefHeight(45);
-        setLayoutY(getLayoutY() - 5);
-        setLayoutX(getLayoutX() - 5);
+        //setLayoutY(getLayoutY() - 5);
+        //setLayoutX(getLayoutX() - 5);
         setEffect(null);
     }
 
     private void ButtonListenersInit(){
 
-        DropShadow shadow = new DropShadow();
+        DropShadow rollOverColor = new DropShadow();
+        rollOverColor.setColor(Color.ORANGERED);
+        DropShadow clickColor = new DropShadow();
+        clickColor.setColor(Color.DARKBLUE);
 
         setOnMousePressed(new EventHandler<MouseEvent>(){
     @Override
@@ -76,9 +83,9 @@ public class ScrabbleButton extends Button {
         setOnMouseEntered(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event){
-                setEffect(new DropShadow());
-                setCursor(Cursor.HAND);
-
+                setHoverStyle();
+                setEffect(rollOverColor);
+                //setEffect(new DropShadow());
             }
         });
 
@@ -87,9 +94,10 @@ public class ScrabbleButton extends Button {
             @Override
             public void handle(MouseEvent event){
                 setEffect(null);
-                setCursor(Cursor.CROSSHAIR);
             }
         });
+
+
     }
 }
 
