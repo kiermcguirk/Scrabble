@@ -1,3 +1,4 @@
+import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -25,6 +26,8 @@ public class layoutManager {
     private ScrabbleHelp helpScene;
     private ImageView ScrabbleLogo = new ImageView(LOGO);
     ScrabbleBoard fxBoard = new ScrabbleBoard();
+    Label player_turn = new Label("Welcome!");
+    StackPane playerTurnlabel = new StackPane(player_turn);
 
     ArrayList<ScrabbleButton> gameButtons = new ArrayList<>();
 
@@ -66,18 +69,31 @@ public class layoutManager {
                 TranslateTransition transition = new TranslateTransition();
                 TranslateTransition transitionboard = new TranslateTransition();
                 TranslateTransition transitionTurnLabel = new TranslateTransition();
+
+                player_turn.setText("Player 1's Turn");
+
+                transitionTurnLabel.setDuration(Duration.seconds(2));
                 transitionboard.setDuration(Duration.seconds(2));
                 transitionboard.setNode(fxBoard);
-                transitionboard.setToY(-30);
+
+                transitionTurnLabel.setNode(playerTurnlabel);
+                transitionTurnLabel.setToX(330);
+
+                transitionboard.setToY(-60);
                 transitionboard.setToX(-150);
+
                 transition.setDuration(Duration.seconds(2));
                 transition.setNode(ScrabbleLogo);
+
                 RotateTransition rotateTransition = new RotateTransition(Duration.seconds(2));
                 rotateTransition.setNode(ScrabbleLogo);
                 rotateTransition.setByAngle(90);
-                transition.setToY(350);
+
+                transition.setToY(300);
                 transition.setToX(230);
                 transition.play();
+
+                transitionTurnLabel.play();
                 rotateTransition.play();
                 transitionboard.play();
             }
@@ -167,16 +183,16 @@ public class layoutManager {
     }
     private void addPlayerTurnLabel() {
 
-        Label player1_turn = new Label("Player 1 turn");
 
-        player1_turn.setFont(new Font("Verdana", 24));
-        StackPane shadowPane = new StackPane(player1_turn);
-        shadowPane.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
-        shadowPane.setPrefSize(200,50);
-        shadowPane.setLayoutX(420);
-        shadowPane.setLayoutY(0);
 
-        mainPane.getChildren().add(shadowPane);
+        player_turn.setFont(new Font("Verdana", 24));
+
+        playerTurnlabel.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
+        playerTurnlabel.setPrefSize(200,50);
+        playerTurnlabel.setLayoutX(420);
+        playerTurnlabel.setLayoutY(0);
+
+        mainPane.getChildren().add(playerTurnlabel);
 
     }
 }

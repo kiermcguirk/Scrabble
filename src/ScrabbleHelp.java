@@ -10,18 +10,19 @@ public class ScrabbleHelp extends SubScene {
     public Board board = new Board();
 
     public ScrabbleHelp() {
-        super(new AnchorPane(), 600, 400);
-        prefHeight(600);
-        prefWidth(400);
+        super(new AnchorPane(), 400, 550);
+        prefHeight(300);
+        prefWidth(550);
 
-        BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,590,400,false,true), BackgroundRepeat.NO_REPEAT,
+        BackgroundImage background = new BackgroundImage(new Image(BACKGROUND,400,550,false,true), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,null);
 
         AnchorPane helproot = (AnchorPane) this.getRoot();
+
         helproot.setBackground(new Background(background));
         helproot.setEffect(new DropShadow());
 
-        setLayoutX(100);
+        setLayoutX(300);
         setLayoutY(-600);
 
     }
