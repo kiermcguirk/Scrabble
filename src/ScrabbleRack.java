@@ -38,7 +38,6 @@ public class ScrabbleRack extends SubScene {
       rackroot.setBackground(new Background(background));
 
 
-
         for(int i = 0; i<playerframe.player_frame.size(); i++)
         {
             createRackSquare(playerframe.player_frame.get(i));
@@ -58,15 +57,12 @@ public class ScrabbleRack extends SubScene {
         gameRack.add(rack);
     }
 
+
     public void createRackSquare(Tile.letter text){
         RackTile Rack = new RackTile(text);
         addRackSquares(Rack);
 
     }
-    // Jennifer is an !!elephant (doudble negation) = elephant  :( you mad bro ?NO 8=D~~     o:
-
-
-
 
 
     private class RackTile extends StackPane{

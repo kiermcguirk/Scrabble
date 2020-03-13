@@ -68,7 +68,7 @@ public class layoutManager {
         addHelpScene();
         addScrabbleRack();
 
-        //createButton("Kier is the big sad  :(");
+
     }
 
     private void addButtons(ScrabbleButton button) {
