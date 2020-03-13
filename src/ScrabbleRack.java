@@ -1,19 +1,23 @@
+import javafx.animation.*;
+import javafx.event.EventHandler;
 import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
+import javafx.util.Duration;
+import javafx.scene.transform.Rotate;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class ScrabbleRack extends SubScene {
 
-
+    final Rotate rotateRack = new Rotate();
     final int RACK_X = 925;
     final int RACK_Y = 100;
     private final String STYLE_BUTTON_NORMAL = "-fx-background-color: linear-gradient(#CDC6B0, #CDC6B0); " +
@@ -38,12 +42,12 @@ public class ScrabbleRack extends SubScene {
       rackroot.setBackground(new Background(background));
 
 
-        for(int i = 0; i<playerframe.player_frame.size(); i++)
+        for(int i = 0; i< playerframe.player_frame.size(); i++)
         {
             createRackSquare(playerframe.player_frame.get(i));
             rackroot.getChildren().add(gameRack.get(i));
         }
-
+        rackroot.getTransforms().add(rotateRack);
         setLayoutX(100);
         setLayoutY(580);
         setEffect(new DropShadow());
@@ -60,22 +64,22 @@ public class ScrabbleRack extends SubScene {
 
     public void createRackSquare(Tile.letter text){
         RackTile Rack = new RackTile(text);
+        Rack.EventListenersInit();
         addRackSquares(Rack);
 
     }
 
 
     private class RackTile extends StackPane{
-
         private static final int RACK_TILE_SIZE = 50;
-
-
+        Rectangle border = new Rectangle(RACK_TILE_SIZE,RACK_TILE_SIZE);
         private Tile.letter tileval;
         private ImageView background;
 
         public RackTile(Tile.letter tile){
-
+           //System.out.println(getScaleX() + " " +getHeight());
             setEffect(new DropShadow());
+            EventListenersInit();
             switch (tile){
                 case a: background = new ImageView(new Image("Images/Alphabet/A.png",50,50,false,true));
                     break;
@@ -132,7 +136,70 @@ public class ScrabbleRack extends SubScene {
                 case blank: background = new ImageView(new Image("Images/Alphabet/blank.png",50,50,false,true));
                     break;
                   }
-        getChildren().addAll(background);
+        getChildren().add(background);
         }
+
+        private void EventListenersInit() {
+            setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    ScaleTransition enlarge = new ScaleTransition(Duration.seconds(.15));
+                    enlarge.setNode(background);
+                    enlarge.setToX(1.5);
+                    enlarge.setToY(1.5);
+                    enlarge.play();
+                }
+            });
+
+
+            setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    ScaleTransition enlarge = new ScaleTransition(Duration.seconds(.15));
+                    enlarge.setNode(background);
+                    enlarge.setToX(1);
+                    enlarge.setToY(1);
+                    enlarge.play();
+                }
+            });
+
+
+        }
+    }
+
+    public FadeTransition fadeIn()
+    {
+        FadeTransition ft = new FadeTransition(Duration.seconds(5), this);
+
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+
+        return ft;
+    }
+
+    public void offBoardTransition()
+    {
+
+        rotateRack.setPivotX(this.getLayoutX());
+        rotateRack.setPivotY(this.getLayoutY());
+        rotateRack.setAngle(rotateRack.getAngle() - 180);
+
+        /*
+        rotateRack.setAxis(Rotate.Y_AXIS);
+        rotateRack.setFromAngle(0);
+        rotateRack.setToAngle(360);
+        rotateRack.setInterpolator(Interpolator.LINEAR);
+         */
+        TranslateTransition moveRack = new TranslateTransition();
+        moveRack.setNode(this);
+        moveRack.setDuration(Duration.seconds(5));
+
+
+        //return new ParallelTransition(moveRack,rotateRack);
+    }
+
+    public ParallelTransition onBoardTransition()
+    {
+        return null;
     }
 }

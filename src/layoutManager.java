@@ -1,6 +1,4 @@
-import javafx.animation.FadeTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -145,8 +143,9 @@ public class layoutManager {
 
                 transition.setToY(300);
                 transition.setToX(230);
-                transition.play();
 
+                /*
+                transition.play();
                 transitionTurnLabel.play();
                 transitionTurnLabel2.play();
                 transitionTurnScore.play();
@@ -154,6 +153,23 @@ public class layoutManager {
                 transitionTurnScore1.play();
                 rotateTransition.play();
                 transitionboard.play();
+                */
+
+
+                FadeTransition fadelogo = new FadeTransition();
+                fadelogo.setNode(ScrabbleLogo);
+                fadelogo.setFromValue(1.0);
+                fadelogo.setToValue(0.1);
+                fadelogo.setDuration(Duration.seconds(5));
+                FadeTransition fadeinrack = playerOneRack.fadeIn();
+
+                ParallelTransition movelayout = new ParallelTransition(transition,transitionboard,rotateTransition,transitionTurnLabel
+                ,transitionTurnLabel2,transitionTurnLabel3,transitionTurnScore,transitionTurnScore1);
+                ParallelTransition fadeinandout = new ParallelTransition(fadeinrack,fadelogo);
+                playerOneRack.setOpacity(0.0);
+                playerOneRack.setVisible(true);
+                SequentialTransition sequence = new SequentialTransition(movelayout,fadeinandout);
+                sequence.play();
             }
         });
         addButtons(playButton);
@@ -185,11 +201,31 @@ public class layoutManager {
         addButtons(helpButton);
     }
 
+    private void addEndTurnButton()
+    {
+        ScrabbleButton endTurnButton = new ScrabbleButton("End Turn");
+        endTurnButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(fxBoard.board.player_one_turn) {
+                    //SequentialTransition swapracks = new SequentialTransition(playerOneRack.offBoardTransition() /*playerTwoRack.offBoardTransition()*/);
+                    //swapracks.play();
+                    playerOneRack.offBoardTransition();
+                }
+                else{
+                    //SequentialTransition swapracks = new SequentialTransition(playerTwoRack.offBoardTransition(),playerTwoRack.onBoardTransition());
+                }
+            }
+        });
+        addButtons(endTurnButton);
+    }
+
     private void setButtons() {
         addPlayButton();
         addQuitButton();
         addPassButton();
         addHelpButton();
+        addEndTurnButton();
     }
 
     public void createButton(String text){
@@ -233,21 +269,21 @@ public class layoutManager {
     private void addScrabbleRack()
     {
         playerOneRack = new ScrabbleRack(fxBoard.board.player_one.frame);
-        //playerTwoRack = new ScrabbleRack(fxBoard.board.player_two.frame);
-        mainPane.getChildren().add(playerOneRack);
+        playerTwoRack = new ScrabbleRack(fxBoard.board.player_two.frame);
+        playerOneRack.setVisible(false);
+        playerTwoRack.setVisible(false);
+        mainPane.getChildren().addAll(playerOneRack,playerTwoRack);
         //mainPane.getChildren().add(playerTwoRack);
     }
     private void addPlayerTurnLabel() {
 
         player_turn.setFont(new Font("Verdana", 24));
-
         playerTurnlabel.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
         playerTurnlabel.setPrefSize(200,50);
         playerTurnlabel.setLayoutX(420);
         playerTurnlabel.setLayoutY(0);
 
         mainPane.getChildren().add(playerTurnlabel);
-
     }
 
     public void player1ScoreLabel(){
