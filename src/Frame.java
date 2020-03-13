@@ -53,9 +53,9 @@ public class Frame {
 
     public Frame()
     {
-        //refill_frame();
+        refill_frame();
         //For testing purposes we are hardcoding the letters in the frame for this assignment
-        test_values();
+        //test_values();
     }
     public void test_values()
     {
@@ -68,6 +68,8 @@ public class Frame {
         player_frame.add(Tile.letter.blank);
         player_frame.add(Tile.letter.blank);
     }
+
+
 
 
     //A3 - Allows a check to be made if letters are in the frame

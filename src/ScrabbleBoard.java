@@ -85,8 +85,7 @@ public class ScrabbleBoard extends SubScene {
                 text.setText("Triple \nWord\nScore");
 
             }
-            else
-            {
+            else {
                 border.setFill(Color.SALMON);
                 text.setText("*");
             }
