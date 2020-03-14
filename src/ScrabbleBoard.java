@@ -14,6 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 public class ScrabbleBoard extends SubScene {
 
     private final static String BACKGROUND = "Images/borderbackground4.png";
+    private final static String BLACK_STAR = "Images/Black Star.jpg";
     public Board board = new Board();
 
     public ScrabbleBoard() {
@@ -65,33 +69,37 @@ public class ScrabbleBoard extends SubScene {
             {
                 border.setFill(Color.rgb(220,216,170));
                 text.setText("");
+                text.setStyle("-fx-font: 9 arial;");
             }
             else if(type == Square.square_type.dub_l)
             {
                 border.setFill(Color.LIGHTBLUE);
                 text.setText("Double\nLetter\nScore");
+                text.setStyle("-fx-font: 9 arial;");
             }
             else if(type == Square.square_type.trip_l)
             {
                 border.setFill(Color.TURQUOISE);
                 text.setText("Triple\nLetter\nScore");
+                text.setStyle("-fx-font: 9 arial;");
             }
             else if(type == Square.square_type.dub_w){
                 border.setFill(Color.SALMON);
                 text.setText("Double\nWord\nScore");
+                text.setStyle("-fx-font: 9 arial;");
             }
             else if(type == Square.square_type.trip_w){
                 border.setFill(Color.DARKORANGE);
                 text.setText("Triple \nWord\nScore");
-
+                text.setStyle("-fx-font: 9 arial;");
             }
             else {
                 border.setFill(Color.SALMON);
                 text.setText("✭");
+                text.setStyle("-fx-font: 30 arial;");
             }
 
             border.setStroke(Color.LIGHTGREY);
-            text.setStyle("-fx-font: 9 arial;");
             this.setEffect(new DropShadow());
             getChildren().addAll(border,text);
             setTranslateX(x * SQUARE_SIZE);
