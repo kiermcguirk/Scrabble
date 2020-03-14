@@ -1,19 +1,20 @@
-import javafx.animation.*;
+import javafx.animation.FadeTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
-import javafx.scene.transform.Rotate;
-import java.awt.*;
+
 import java.util.ArrayList;
-import java.util.Stack;
 
 public class ScrabbleRack extends SubScene {
 
@@ -168,6 +169,8 @@ public class ScrabbleRack extends SubScene {
             }
             getChildren().add(background);
         }
+
+
 
         private void EventListenersInit() {
             setOnMouseEntered(new EventHandler<MouseEvent>() {
