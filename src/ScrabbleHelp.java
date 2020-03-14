@@ -34,6 +34,7 @@ public class ScrabbleHelp extends SubScene {
         setFill(Color.WHITE);
         //Rectangle rec = new Rectangle(50,50);
         StackPane helproot = (StackPane) this.getRoot();
+       
 
         helproot.setBackground(new Background(background));
         helproot.setEffect(new DropShadow());
