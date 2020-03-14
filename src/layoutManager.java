@@ -210,12 +210,15 @@ public class layoutManager {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(fxBoard.board.player_one_turn) {
-                    //SequentialTransition swapracks = new SequentialTransition(playerOneRack.offBoardTransition() /*playerTwoRack.offBoardTransition()*/);
-                    //swapracks.play();
-                    playerOneRack.offBoardTransition();
+                    SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition(true),playerTwoRack.RacKTransition(false));
+                    fxBoard.board.player_one_turn = false;
+                    swapracks.play();
+
                 }
                 else{
-                    //SequentialTransition swapracks = new SequentialTransition(playerTwoRack.offBoardTransition(),playerTwoRack.onBoardTransition());
+                    SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(true),playerTwoRack.RacKTransition(false));
+                    fxBoard.board.player_one_turn = true;
+                    swapracks.play();
                 }
             }
         });
@@ -272,8 +275,9 @@ public class layoutManager {
     {
         playerOneRack = new ScrabbleRack(fxBoard.board.player_one.frame);
         playerTwoRack = new ScrabbleRack(fxBoard.board.player_two.frame);
+        playerTwoRack.setLayoutX(-600);
         playerOneRack.setVisible(false);
-        playerTwoRack.setVisible(false);
+        playerTwoRack.setVisible(true);
         mainPane.getChildren().addAll(playerOneRack,playerTwoRack);
         //mainPane.getChildren().add(playerTwoRack);
     }

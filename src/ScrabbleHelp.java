@@ -82,11 +82,9 @@ public class ScrabbleHelp extends SubScene {
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));
-
         transition.setNode(this);
 
         //transition.setToX(-600);
-
         if (hidden) {
             transition.setToY(600);
             hidden = false;

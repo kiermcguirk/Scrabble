@@ -17,7 +17,8 @@ import java.util.Stack;
 
 public class ScrabbleRack extends SubScene {
 
-    final Rotate rotateRack = new Rotate();
+
+    //final Rotate rotateRack = new Rotate();
     final int RACK_X = 925;
     final int RACK_Y = 100;
     private final String STYLE_BUTTON_NORMAL = "-fx-background-color: linear-gradient(#CDC6B0, #CDC6B0); " +
@@ -47,7 +48,7 @@ public class ScrabbleRack extends SubScene {
             createRackSquare(playerframe.player_frame.get(i));
             rackroot.getChildren().add(gameRack.get(i));
         }
-        rackroot.getTransforms().add(rotateRack);
+
         setLayoutX(100);
         setLayoutY(580);
         setEffect(new DropShadow());
@@ -55,7 +56,12 @@ public class ScrabbleRack extends SubScene {
     }
 
     private void addRackSquares(RackTile rack){
-        rack.setLayoutX(getLayoutX() + gameRack.size() * 51);
+         if(gameRack.size() == 0) {
+             rack.setLayoutX(20);
+         }
+         else {
+             rack.setLayoutX(getLayoutX() + gameRack.size() * 51 + 20);
+         }
         rack.setLayoutY(10);
         //rack.setLayoutY(10);
         gameRack.add(rack);
@@ -66,12 +72,10 @@ public class ScrabbleRack extends SubScene {
         RackTile Rack = new RackTile(text);
         Rack.EventListenersInit();
         addRackSquares(Rack);
-
     }
 
-
     private class RackTile extends StackPane{
-        private static final int RACK_TILE_SIZE = 50;
+        private static final int RACK_TILE_SIZE = 42;
         Rectangle border = new Rectangle(RACK_TILE_SIZE,RACK_TILE_SIZE);
         private Tile.letter tileval;
         private ImageView background;
@@ -81,59 +85,59 @@ public class ScrabbleRack extends SubScene {
             setEffect(new DropShadow());
             EventListenersInit();
             switch (tile){
-                case a: background = new ImageView(new Image("Images/Alphabet/A.jpg",50,50,false,true));
+                case a: background = new ImageView(new Image("Images/Alphabet/A.jpg",42,42,false,true));
                     break;
-                case b: background = new ImageView(new Image("Images/Alphabet/B.png",50,50,false,true));
+                case b: background = new ImageView(new Image("Images/Alphabet/B.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case c: background = new ImageView(new Image("Images/Alphabet/C.png",50,50,false,true));
+                case c: background = new ImageView(new Image("Images/Alphabet/C.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case d: background = new ImageView(new Image("Images/Alphabet/D.png",50,50,false,true));
+                case d: background = new ImageView(new Image("Images/Alphabet/D.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case e: background = new ImageView(new Image("Images/Alphabet/E.png",50,50,false,true));
+                case e: background = new ImageView(new Image("Images/Alphabet/E.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case f: background = new ImageView(new Image("Images/Alphabet/F.png",50,50,false,true));
+                case f: background = new ImageView(new Image("Images/Alphabet/F.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case g: background = new ImageView(new Image("Images/Alphabet/G.jpg",50,50,false,true));
+                case g: background = new ImageView(new Image("Images/Alphabet/G.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case h: background = new ImageView(new Image("Images/Alphabet/H.png",50,50,false,true));
+                case h: background = new ImageView(new Image("Images/Alphabet/H.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case i: background =new ImageView(new Image("Images/Alphabet/I.jpg",50,50,false,true));
+                case i: background =new ImageView(new Image("Images/Alphabet/I.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case j: background = new ImageView(new Image("Images/Alphabet/J.png",50,50,false,true));
+                case j: background = new ImageView(new Image("Images/Alphabet/J.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case k: background = new ImageView(new Image("Images/Alphabet/K.jpg",50,50,false,true));
+                case k: background = new ImageView(new Image("Images/Alphabet/K.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case l: background = new ImageView(new Image("Images/Alphabet/L.jpg",50,50,false,true));
+                case l: background = new ImageView(new Image("Images/Alphabet/L.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case m: background = new ImageView(new Image("Images/Alphabet/M.jpg",50,50,false,true));
+                case m: background = new ImageView(new Image("Images/Alphabet/M.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case n: background = new ImageView(new Image("Images/Alphabet/N.png",50,50,false,true));
+                case n: background = new ImageView(new Image("Images/Alphabet/N.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case o: background = new ImageView(new Image("Images/Alphabet/O.jpg",50,50,false,true));
+                case o: background = new ImageView(new Image("Images/Alphabet/O.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case p: background = new ImageView(new Image("Images/Alphabet/P.png",50,50,false,true));
+                case p: background = new ImageView(new Image("Images/Alphabet/P.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case q: background = new ImageView(new Image("Images/Alphabet/Q.jpg",50,50,false,true));
+                case q: background = new ImageView(new Image("Images/Alphabet/Q.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case r: background = new ImageView(new Image("Images/Alphabet/R.png",50,50,false,true));
+                case r: background = new ImageView(new Image("Images/Alphabet/R.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case s: background = new ImageView(new Image("Images/Alphabet/S.jpg",50,50,false,true));
+                case s: background = new ImageView(new Image("Images/Alphabet/S.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case t: background = new ImageView(new Image("Images/Alphabet/T.png",50,50,false,true));
+                case t: background = new ImageView(new Image("Images/Alphabet/T.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case u: background = new ImageView(new Image("Images/Alphabet/U.png",50,50,false,true));
+                case u: background = new ImageView(new Image("Images/Alphabet/U.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case v: background = new ImageView(new Image("Images/Alphabet/V.png",50,50,false,true));
+                case v: background = new ImageView(new Image("Images/Alphabet/V.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case w: background = new ImageView(new Image("Images/Alphabet/W.jpg",50,50,false,true));
+                case w: background = new ImageView(new Image("Images/Alphabet/W.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case x: background = new ImageView(new Image("Images/Alphabet/X.png",50,50,false,true));
+                case x: background = new ImageView(new Image("Images/Alphabet/X.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case y: background = new ImageView(new Image("Images/Alphabet/Y.jpg",50,50,false,true));
+                case y: background = new ImageView(new Image("Images/Alphabet/Y.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case z: background = new ImageView(new Image("Images/Alphabet/Z.jpg",50,50,false,true));
+                case z: background = new ImageView(new Image("Images/Alphabet/Z.jpg",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
-                case blank: background = new ImageView(new Image("Images/Alphabet/blank.png",50,50,false,true));
+                case blank: background = new ImageView(new Image("Images/Alphabet/blank.png",RACK_TILE_SIZE,RACK_TILE_SIZE,false,true));
                     break;
                   }
         getChildren().add(background);
@@ -145,8 +149,8 @@ public class ScrabbleRack extends SubScene {
                 public void handle(MouseEvent mouseEvent) {
                     ScaleTransition enlarge = new ScaleTransition(Duration.seconds(.15));
                     enlarge.setNode(background);
-                    enlarge.setToX(1.5);
-                    enlarge.setToY(1.5);
+                    enlarge.setToX(1.2);
+                    enlarge.setToY(1.2);
                     enlarge.play();
                 }
             });
@@ -162,8 +166,6 @@ public class ScrabbleRack extends SubScene {
                     enlarge.play();
                 }
             });
-
-
         }
     }
 
@@ -177,12 +179,9 @@ public class ScrabbleRack extends SubScene {
         return ft;
     }
 
-    public void offBoardTransition()
+    public TranslateTransition RacKTransition(boolean onboard)
     {
-
-        rotateRack.setPivotX(this.getLayoutX());
-        rotateRack.setPivotY(this.getLayoutY());
-        rotateRack.setAngle(rotateRack.getAngle() - 180);
+        final RotateTransition rotateRack = new RotateTransition(Duration.seconds(3));
 
         /*
         rotateRack.setAxis(Rotate.Y_AXIS);
@@ -192,14 +191,10 @@ public class ScrabbleRack extends SubScene {
          */
         TranslateTransition moveRack = new TranslateTransition();
         moveRack.setNode(this);
-        moveRack.setDuration(Duration.seconds(5));
+        moveRack.setDuration(Duration.seconds(3));
+        if(onboard){moveRack.setToX(-600);}
+        else moveRack.setToX(600);
 
-
-        //return new ParallelTransition(moveRack,rotateRack);
-    }
-
-    public ParallelTransition onBoardTransition()
-    {
-        return null;
+        return moveRack;
     }
 }
