@@ -52,6 +52,8 @@ public class ScrabbleHelp extends SubScene {
         text.setTextAlignment(TextAlignment.CENTER);
 
 
+
+
         text.setText("SCRABBLE RULES: \n\nScrabble is a two-player game and the objective\n when playing is to score more points than your\n" +
                 " opponent does. When you have placed a word\n on the board, points are collected and added to \nyour overall score. The different" +
                 " letters placed \non the board all contain different values and\n the aim is to play the words that will generate you \nthe highest" +
@@ -60,6 +62,8 @@ public class ScrabbleHelp extends SubScene {
                 " placing their\n  word over the star square in the centre of the board.\n\n0 Points - Blank tile.\n\n 1 Point - " +
                 "A, E, I, L, N, O, R, S, T and U \n\n2 Points - D and G.\n\n 3 Points - B, C, M and P.\n\n 4 Points - F, H, V, W and Y.\n\n5 Points - K." +
                 "\n\n8 Points - J and X.\n\n10 Points - Q and Z ");
+
+
 
 
         helproot.getChildren().add(text);
