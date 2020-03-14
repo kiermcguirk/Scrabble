@@ -35,7 +35,7 @@ public class ScrabbleBoard extends SubScene {
 
         AnchorPane boardroot = (AnchorPane) this.getRoot();
         boardroot.setBackground(new Background(background));
-        boardroot.setEffect(new DropShadow());
+        boardroot.setEffect(new DropShadow(10, Color.BLACK));
         BoardOfTiles board = new BoardOfTiles();
 
         int num = 35;
