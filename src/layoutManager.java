@@ -160,7 +160,7 @@ public class layoutManager {
                 FadeTransition fadelogo = new FadeTransition();
                 fadelogo.setNode(ScrabbleLogo);
                 fadelogo.setFromValue(1.0);
-                fadelogo.setToValue(0.1);
+                fadelogo.setToValue(0.0);
                 fadelogo.setDuration(Duration.seconds(5));
                 FadeTransition fadeinrack = playerOneRack.fadeIn();
 
@@ -209,17 +209,19 @@ public class layoutManager {
         endTurnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(fxBoard.board.player_one_turn) {
-                    SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition(true),playerTwoRack.RacKTransition(false));
+
+
+                if (fxBoard.board.player_one_turn) {
+                    SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
                     fxBoard.board.player_one_turn = false;
                     swapracks.play();
-
-                }
-                else{
-                    SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(true),playerTwoRack.RacKTransition(false));
+                } else
+                {
+                    SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
                     fxBoard.board.player_one_turn = true;
                     swapracks.play();
                 }
+
             }
         });
         addButtons(endTurnButton);
@@ -273,9 +275,10 @@ public class layoutManager {
 
     private void addScrabbleRack()
     {
-        playerOneRack = new ScrabbleRack(fxBoard.board.player_one.frame);
-        playerTwoRack = new ScrabbleRack(fxBoard.board.player_two.frame);
-        playerTwoRack.setLayoutX(-600);
+        playerOneRack = new ScrabbleRack(fxBoard.board.player_one.frame,true);
+        playerTwoRack = new ScrabbleRack(fxBoard.board.player_two.frame,false);
+        playerTwoRack.setLayoutX(-500);
+        playerOneRack.setLayoutX(100);
         playerOneRack.setVisible(false);
         playerTwoRack.setVisible(true);
         mainPane.getChildren().addAll(playerOneRack,playerTwoRack);
