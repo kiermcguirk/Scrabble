@@ -181,6 +181,13 @@ public class layoutManager {
     {
         ScrabbleButton quitButton = new ScrabbleButton("Quit");
         quitButton.setEffect(new DropShadow());
+
+        quitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                mainStage.close();
+            }
+        });
         addButtons(quitButton);
     }
 

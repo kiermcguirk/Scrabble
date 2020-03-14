@@ -87,7 +87,7 @@ public class ScrabbleBoard extends SubScene {
             }
             else {
                 border.setFill(Color.SALMON);
-                text.setText("*");
+                text.setText("✭");
             }
 
             border.setStroke(Color.LIGHTGREY);
