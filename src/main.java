@@ -27,10 +27,13 @@ public class main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));; //create icon
+
         stage = ui.lm.getStage();
-        stage.setTitle(" Scrabble Board");
         ui.lm.promptUserBeginGame();
+
+        Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        stage.setTitle(" Scrabble Board");
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
 
 

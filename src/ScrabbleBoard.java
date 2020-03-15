@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class ScrabbleBoard extends SubScene {
 
     private final static String BACKGROUND = "Images/borderbackground4.png";
-    private final static String BLACK_STAR = "Images/Black Star.jpg";
     public Board board = new Board();
 
     public ScrabbleBoard() {

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+
     @FXML
     private Label label;
 
@@ -22,6 +25,9 @@ public class Controller implements Initializable {
     public Button startGame;
     public Button backButton;
     public Button quitButton;
+    public Button singlePlayerButton;
+    public TextField userButton;
+    public Button playGame;
 
     @FXML
     public void getAction(ActionEvent event) throws IOException {
@@ -35,7 +41,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void backEvent(ActionEvent event) throws IOException{
+    public void backEvent(ActionEvent event) throws IOException {
         Parent back = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         Scene backScene = new Scene(back);
 
@@ -50,8 +56,39 @@ public class Controller implements Initializable {
         stage.close();
     }
 
+    @FXML
+    private void singlePlayerEvent(ActionEvent event) throws IOException {
+        Parent single = FXMLLoader.load(getClass().getResource("getUsername.fxml"));
+        Scene singleScene = new Scene(single);
+
+        Stage singleWindow = (Stage) singlePlayerButton.getScene().getWindow();
+        singleWindow.setScene(singleScene);
+        singleWindow.show();
+    }
+
+    @FXML
+    private void multiPlayerEvent(ActionEvent event) {
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    @FXML
+    void setPlayerName(String name){
+        userButton.setText(name);
+    }
+
+    @FXML
+    private void userEvent(ActionEvent event) {
+        UI ui = new UI();
+        ui.lm.player_one.setText(userButton.getText());
+        ui.lm.playerOneLabel.getChildren().addAll(userButton);
+        Stage stage = ui.lm.getStage();
+        Stage closeStage = (Stage) playGame.getScene().getWindow();
+        closeStage.close();
+        stage.show();
     }
 }
