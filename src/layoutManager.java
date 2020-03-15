@@ -343,16 +343,16 @@ public class layoutManager {
 
     void promptUserBeginGame(){
         System.out.println("**WELCOME TO SCRABBLE**" +
-                "\n1. Enter 'QUIT' to quit the game\n" +
-                "2. Enter 'PLAY' to begin the game");
+                "\n1. Enter QUIT to quit the game\n" +
+                "2. Enter PLAY to begin the game");
         boolean validinput = false;
         while(!validinput) {
             String input = getUserInput();
-            if(input.equals("QUIT") || input.equals("Quit") || input.equals("quit")){
+            if(input.equals("QUIT")){
                 System.out.println("**Thank You for Playing Our Game**");
                 exit(0);
             }
-            else if(input.equals("PLAY") || input.equals("Play") || input.equals("play")) validinput = true;
+            else if(input.equals("PLAY")) validinput = true;
             else System.out.println("*You must enter either QUIT or PLAY*");
         }
     }
@@ -360,18 +360,18 @@ public class layoutManager {
     public void promptUser()
     {
         System.out.println("\n**WELCOME TO PLAY MENU**" +
-                "\n1. Enter 'QUIT' to quit the game\n" +
-                "2. Enter 'HELP' to display HELP (again for display to disappear)\n" +
-                "3. Enter 'PASS' to pass your turn\n" +
-                "4. Enter 'EXCHANGE <letters>' to exchange these letters with random ones from the pool\n" +
-                "5. Enter '<gridref><h/v><word>' to place your word e.g 0 0 V HELLO\n" +
-                "6. Enter 'REPLAY' to redisplay this menu");
+                "\n1. Enter QUIT to quit the game\n" +
+                "2. Enter HELP to display HELP (again for display to disappear)\n" +
+                "3. Enter PASS to pass your turn\n" +
+                "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
+                "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
+                "6. Enter REPLAY to redisplay this menu");
         getUserInput();
     }
 
     private String getUserInput(){
         Scanner userinput = new Scanner(System.in);
         String input = userinput.nextLine();
-            return input;
+        return input;
     }
 }
