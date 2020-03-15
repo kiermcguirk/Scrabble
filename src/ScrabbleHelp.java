@@ -90,12 +90,6 @@ public class ScrabbleHelp extends SubScene {
             transition.setToY(-600);
             hidden = true;
         }
-
-
         transition.play();
-
     }
-
-
-
 }

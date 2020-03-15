@@ -27,11 +27,8 @@ public class ScrabbleRack extends SubScene {
 
     private static final String RACK_BACKGROUND = "Images/Rack_Background.jpg";
     ArrayList<RackTile> gameRack = new ArrayList<>();
-
     private boolean onboard = true;
-
     private final String STYLE_RACK_BACKGROUND = "-";
-
 
     public ScrabbleRack(Frame playerframe, Boolean onboard) {
         super(new Pane(), 472, 80);
@@ -41,19 +38,14 @@ public class ScrabbleRack extends SubScene {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, null);
 
         Pane rackroot = (Pane) this.getRoot();
-
         rackroot.setBackground(new Background(background));
-
-
         for (int i = 0; i < playerframe.player_frame.size(); i++) {
             createRackSquare(playerframe.player_frame.get(i));
             rackroot.getChildren().add(gameRack.get(i));
         }
-
         setLayoutX(100);
         setLayoutY(580);
         setEffect(new DropShadow());
-
     }
 
     private void addRackSquares(RackTile rack) {
@@ -66,7 +58,6 @@ public class ScrabbleRack extends SubScene {
         //rack.setLayoutY(10);
         gameRack.add(rack);
     }
-
 
     public void createRackSquare(Tile.letter text) {
         RackTile Rack = new RackTile(text);
@@ -170,8 +161,6 @@ public class ScrabbleRack extends SubScene {
             getChildren().add(background);
         }
 
-
-
         private void EventListenersInit() {
             setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
@@ -183,7 +172,6 @@ public class ScrabbleRack extends SubScene {
                     enlarge.play();
                 }
             });
-
 
             setOnMouseExited(new EventHandler<MouseEvent>() {
                 @Override
@@ -203,7 +191,6 @@ public class ScrabbleRack extends SubScene {
 
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
-
         return ft;
     }
 
@@ -212,7 +199,6 @@ public class ScrabbleRack extends SubScene {
         transition.setDuration(Duration.seconds(1));
         transition.setNode(this);
 
-        //transition.setToX(-600);
         if (onboard) {
             transition.setToX(-600);
             onboard = false;
@@ -220,18 +206,11 @@ public class ScrabbleRack extends SubScene {
             transition.setToX(0);
             onboard = true;
         }
-
         return transition;
     }
     public TranslateTransition RacKTransition() {
         final RotateTransition rotateRack = new RotateTransition(Duration.seconds(3));
 
-        /*
-        rotateRack.setAxis(Rotate.Y_AXIS);
-        rotateRack.setFromAngle(0);
-        rotateRack.setToAngle(360);
-        rotateRack.setInterpolator(Interpolator.LINEAR);
-         */
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(2));
         transition.setNode(this);
@@ -244,9 +223,7 @@ public class ScrabbleRack extends SubScene {
             transition.setToX(-600);
             onboard = false;
         }
-
         return transition;
     }
-
 }
 

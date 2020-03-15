@@ -89,7 +89,6 @@ public class Pool
         for(int i=1; i<=8; i++)
         {
             pool.add(Tile.letter.o);
-
         }
 
 
@@ -175,7 +174,6 @@ public class Pool
         //return the score at found at the given tile_array index
         return score[index];
     }
-
 
     //A8 - Random letter function
     public Tile.letter random_letter() {
