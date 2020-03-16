@@ -61,6 +61,7 @@ public class ScrabbleRack extends SubScene {
 
     public void createRackSquare(Tile.letter text) {
         RackTile Rack = new RackTile(text);
+        Rack.tileval = text;
         Rack.EventListenersInit();
         addRackSquares(Rack);
     }
@@ -224,6 +225,38 @@ public class ScrabbleRack extends SubScene {
             onboard = false;
         }
         return transition;
+    }
+
+    public void hideTiles2(Frame frame)
+    {
+        frame.display_frame();
+        boolean flag = false;
+        for(int i=0; i<gameRack.size(); i++)
+        {
+            for(int j = 0; j<frame.player_frame.size(); j++)
+            {
+                if(gameRack.get(i).tileval == frame.player_frame.get(j))
+                {
+                    flag = true;
+                }
+                if(!flag){gameRack.get(i).setVisible(false);}
+            }
+
+        }
+    }
+
+    public void hideTiles(Tile.letter x)
+    {
+        //Create a variable to store whether or not the letter is found in the array
+        Boolean flag = false;
+        //Iterate through player_frame
+
+        for(int i = 0; i<gameRack.size(); i++)
+        {
+            if(gameRack.get(i).tileval ==x){gameRack.get(i).setVisible(false);}
+            else continue;
+            break;
+        }
     }
 }
 

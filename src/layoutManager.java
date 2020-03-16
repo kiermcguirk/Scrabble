@@ -433,8 +433,7 @@ public class layoutManager {
             System.out.println(in[4]);
 
             String w = "";
-            for(int i=5;i<in.length;i++)
-            {
+            for(int i=5;i<in.length;i++){
                 w += in[i];
             }
             System.out.println(w);
@@ -449,7 +448,6 @@ public class layoutManager {
             {
                 System.out.println("Invalid move");
             }
-
 
         }catch(IndexOutOfBoundsException e) {
             System.out.println("Invalid action");
@@ -470,8 +468,7 @@ public class layoutManager {
         }
     }
 
-    private void placeWord(String input)
-    {
+    private void placeWord(String input) {
         char[] in = input.toCharArray();
         int x1 = in[0] - 48;
         int x2 = in[1] - 48;
@@ -499,7 +496,14 @@ public class layoutManager {
         else
             int_dir = 0;
         fxBoard.board.place_word(wordlist,x,y,int_dir);
-        fxBoard.place_word(wordlist,x,y,int_dir);
+
+        if(fxBoard.board.player_one_turn)
+            fxBoard.place_word(wordlist,x,y,int_dir,playerOneRack);
+        else fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
+
+
+
+
 
     }
 }

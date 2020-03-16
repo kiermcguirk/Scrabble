@@ -147,7 +147,7 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
-    public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
+    public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction, ScrabbleRack rack) {
         //1 is vertical 0 is horizontal
         int counter = 0;
         for(counter = 0; counter < word.size(); counter++)
@@ -157,6 +157,7 @@ public class ScrabbleBoard extends SubScene {
                 if (squareTilesBoard[i][j].empty)
                 {
                     squareTilesBoard[i][j].TileImage.setImage(setImageTo(board.game_board[i][j].tile));
+                    rack.hideTiles(board.game_board[i][j].tile);
                     i++;
                 }
                 else
@@ -169,6 +170,7 @@ public class ScrabbleBoard extends SubScene {
                 if (squareTilesBoard[i][j].empty)
                 {
                     squareTilesBoard[i][j].TileImage.setImage(setImageTo(board.game_board[i][j].tile));
+                    rack.hideTiles(board.game_board[i][j].tile);
                     j++;
                 }
                 else
