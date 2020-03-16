@@ -18,6 +18,8 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.lang.System.exit;
 
@@ -33,6 +35,7 @@ public class layoutManager {
     private ScrabbleRack playerOneRack;
     private ScrabbleRack playerTwoRack;
     private ImageView ScrabbleLogo = new ImageView(LOGO);
+    private boolean end_turn = true;
 
     boolean game_over = false;
     boolean begin_game = false;
@@ -176,6 +179,9 @@ public class layoutManager {
                 playerOneRack.setVisible(true);
                 SequentialTransition sequence = new SequentialTransition(movelayout,fadeinandout);
                 sequence.play();
+
+                promptUser(end_turn);
+
             }
         });
         addButtons(playButton);
@@ -343,35 +349,145 @@ public class layoutManager {
 
     void promptUserBeginGame(){
         System.out.println("**WELCOME TO SCRABBLE**" +
-                "\n1. Enter QUIT to quit the game\n" +
-                "2. Enter PLAY to begin the game");
+                "\n1. Enter 'QUIT' to quit the game\n" +
+                "2. Enter 'PLAY' to begin the game");
         boolean validinput = false;
         while(!validinput) {
             String input = getUserInput();
-            if(input.equals("QUIT")){
+            if(input.equals("QUIT") || input.equals("Quit") || input.equals("quit")){
                 System.out.println("**Thank You for Playing Our Game**");
                 exit(0);
             }
-            else if(input.equals("PLAY")) validinput = true;
+            else if(input.equals("PLAY") || input.equals("Play") || input.equals("play")) validinput = true;
             else System.out.println("*You must enter either QUIT or PLAY*");
         }
     }
 
-    public void promptUser()
-    {
+
+    public void promptUser() {
         System.out.println("\n**WELCOME TO PLAY MENU**" +
-                "\n1. Enter QUIT to quit the game\n" +
-                "2. Enter HELP to display HELP (again for display to disappear)\n" +
-                "3. Enter PASS to pass your turn\n" +
-                "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
-                "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
-                "6. Enter REPLAY to redisplay this menu");
+                "\n1. Enter 'QUIT' to quit the game\n" +
+                "2. Enter 'HELP' to display HELP (again for display to disappear)\n" +
+                "3. Enter 'PASS' to pass your turn\n" +
+                "4. Enter 'EXCHANGE <letters>' to exchange these letters with random ones from the pool\n" +
+                "5. Enter '<gridref><h/v><word>' to place your word e.g 0 0 V HELLO\n" +
+                "6. Enter 'REPLAY' to redisplay this menu");
         getUserInput();
     }
 
-    private String getUserInput(){
+        public void promptUser(boolean displaymenu) {
+        if(!begin_game) begin_game=true;
+        else {
+            if(displaymenu)
+            {
+                System.out.println("\n**WELCOME TO PLAY MENU**" +
+                        "\n1. Enter QUIT to quit the game\n" +
+                        "2. Enter HELP to display HELP (again for display to disappear)\n" +
+                        "3. Enter PASS to pass your turn\n" +
+                        "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
+                        "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
+                        "6. Enter REPLAY to redisplay this menu");
+            }
+            end_turn = userMove(getUserInput());
+        }
+
+    }
+
+        private String getUserInput() {
         Scanner userinput = new Scanner(System.in);
         String input = userinput.nextLine();
         return input;
     }
-}
+
+        private boolean userMove(String input){
+
+        switch (input){
+            case "QUIT":exit(0);
+                return false;
+
+            case "HELP": helpScene.Transition();
+                return false;
+
+            case "PLAY": return true;
+
+            case "PASS": endturn();
+                return true;
+        }
+
+        //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
+       // Pattern pat = Pattern.compile(pattern);
+        String pattern_xy = "([0-1])";
+        String pattern_xy2 = "([0-4])";
+        String pattern_direction_horizontal = "(h)";
+        String pattern_direction_vertical = "(v)";
+        String pattern_word = "([A-Z]+)";
+
+        try{
+            String inputtostring = input.replaceAll(" ","");
+            System.out.println(inputtostring);
+            char[] in = inputtostring.toCharArray();
+
+            Pattern p_xy = Pattern.compile(pattern_xy);
+            Pattern p_xy2 = Pattern.compile(pattern_xy2);
+            Pattern p_direction_horizontal = Pattern.compile((pattern_direction_horizontal));
+            Pattern p_direction_vertical = Pattern.compile(pattern_direction_vertical);
+            Pattern p_word = Pattern.compile(pattern_word);
+
+            Matcher x = p_xy.matcher(Character.toString(in[0]));
+            Matcher x2 = p_xy2.matcher(Character.toString(in[1]));
+
+            Matcher y = p_xy.matcher(Character.toString(in[2]));
+            Matcher y2 = p_xy2.matcher(Character.toString(in[3]));
+
+            Matcher word_direction_vertical = p_direction_vertical.matcher(Character.toString(in[4]));
+            Matcher word_direction_horizontal = p_direction_horizontal.matcher(Character.toString(in[4]));
+
+            System.out.println(in[4]);
+
+            String w = "";
+            for(int i=5;i<in.length;i++)
+            {
+                w += in[i];
+            }
+            System.out.println(w);
+            Matcher word = p_word.matcher(w);
+
+            if(x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches()  || word_direction_horizontal.matches()) && word.matches())
+            {
+                System.out.println("MATCHES");
+            }
+            else
+            {
+                System.out.println("Invalid move");
+            }
+
+
+            /*
+            Matcher word = pat.matcher(inputtostring);
+            if(word.matches())
+            {
+                System.out.println("Yass");
+            }
+
+             */
+
+
+        }catch(IndexOutOfBoundsException e) {
+            System.out.println("Invalid action");
+        }
+
+        return false;
+    }
+
+        private void endturn() {
+        if (fxBoard.board.player_one_turn){
+            SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
+            fxBoard.board.player_one_turn = false;
+            swapracks.play();
+        } else{
+            SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
+            fxBoard.board.player_one_turn = true;
+            swapracks.play();
+        }
+    }
+    }
