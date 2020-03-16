@@ -153,18 +153,6 @@ public class layoutManager {
                 transition.setToY(300);
                 transition.setToX(230);
 
-                /*
-                transition.play();
-                transitionTurnLabel.play();
-                transitionTurnLabel2.play();
-                transitionTurnScore.play();
-                transitionTurnLabel3.play();
-                transitionTurnScore1.play();
-                rotateTransition.play();
-                transitionboard.play();
-                */
-
-
                 FadeTransition fadelogo = new FadeTransition();
                 fadelogo.setNode(ScrabbleLogo);
                 fadelogo.setFromValue(1.0);
@@ -216,6 +204,7 @@ public class layoutManager {
             @Override
             public void handle(ActionEvent actionEvent) {
                 helpScene.Transition();
+                fxBoard.board.player_one.frame.display_frame();
             }
         });
         addButtons(helpButton);
@@ -347,6 +336,7 @@ public class layoutManager {
         mainPane.getChildren().addAll(playerTwoLabel,score2);
     }
 
+
     void promptUserBeginGame(){
         System.out.println("**WELCOME TO SCRABBLE**" +
                 "\n1. Enter 'QUIT' to quit the game\n" +
@@ -392,7 +382,6 @@ public class layoutManager {
         }
 
     }
-
         private String getUserInput() {
         Scanner userinput = new Scanner(System.in);
         String input = userinput.nextLine();
@@ -400,7 +389,6 @@ public class layoutManager {
     }
 
         private boolean userMove(String input){
-
         switch (input){
             case "QUIT":exit(0);
                 return false;
@@ -417,7 +405,7 @@ public class layoutManager {
         //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
        // Pattern pat = Pattern.compile(pattern);
         String pattern_xy = "([0-1])";
-        String pattern_xy2 = "([0-4])";
+        String pattern_xy2 = "([0-9])";
         String pattern_direction_horizontal = "(h)";
         String pattern_direction_vertical = "(v)";
         String pattern_word = "([A-Z]+)";
@@ -455,21 +443,12 @@ public class layoutManager {
             if(x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches()  || word_direction_horizontal.matches()) && word.matches())
             {
                 System.out.println("MATCHES");
+                placeWord(inputtostring);
             }
             else
             {
                 System.out.println("Invalid move");
             }
-
-
-            /*
-            Matcher word = pat.matcher(inputtostring);
-            if(word.matches())
-            {
-                System.out.println("Yass");
-            }
-
-             */
 
 
         }catch(IndexOutOfBoundsException e) {
@@ -490,4 +469,37 @@ public class layoutManager {
             swapracks.play();
         }
     }
+
+    private void placeWord(String input)
+    {
+        char[] in = input.toCharArray();
+        int x1 = in[0] - 48;
+        int x2 = in[1] - 48;
+        int x = 10*x1 + x2;
+
+        int y1 = in[2] - 48;
+        int y2 = in[3] - 48;
+        int y = 10*y1 + y2;
+
+        char direction = in[4];
+
+        String word = "";
+        for(int i=5;i<in.length;i++) word += in[i];
+        word.toUpperCase();
+        ArrayList<Tile.letter> wordlist = new ArrayList<>();
+        for(int i=0; i<word.length(); i++)
+        {
+            char temp = word.charAt(i);
+            int index = temp - 65;
+            wordlist.add(Pool.tile_array[index]);
+        }
+        int int_dir;
+        if(direction == 'h')
+            int_dir = 1;
+        else
+            int_dir = 0;
+        fxBoard.board.place_word(wordlist,x,y,int_dir);
+        fxBoard.place_word(wordlist,x,y,int_dir);
+
     }
+}

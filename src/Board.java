@@ -23,9 +23,6 @@ public class Board {
         board_init(); //Call function to initialize state of board
     }
 
-
-
-
     // board display
     public void display_board(){
         for(int i =0; i < 15; i++){

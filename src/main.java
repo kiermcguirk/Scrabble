@@ -29,7 +29,7 @@ public class main extends Application {
     public void start(Stage stage) throws Exception {
 
         stage = ui.lm.getStage();
-        ui.lm.promptUserBeginGame();
+        //ui.lm.promptUserBeginGame();
 
         Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         stage.setTitle(" Scrabble Board");
