@@ -39,7 +39,7 @@ public class layoutManager {
 
     boolean game_over = false;
     boolean begin_game = false;
-    ScrabbleBoard fxBoard = new ScrabbleBoard();
+    ScrabbleBoard fxBoard;
     Label player_turn = new Label("Welcome!");
     StackPane playerTurnlabel = new StackPane(player_turn);
     Label player_one = new Label("Player One:");
@@ -63,6 +63,7 @@ public class layoutManager {
         mainStage = new Stage();
         mainStage.setScene(mainScene);
         setScrabbleBackground();
+        fxBoard = new ScrabbleBoard();
 
         setButtons();
         addPlayerTurnLabel();
@@ -75,6 +76,11 @@ public class layoutManager {
         addScrabbleLogo();
         addHelpScene();
         addScrabbleRack();
+        fxBoard.board.player_one.frame.display_frame();
+        System.out.println();
+        fxBoard.board.player_two.frame.display_frame();
+        System.out.println();
+        System.out.println(Pool.game_pool.pool.size());
 
     }
 
@@ -216,19 +222,7 @@ public class layoutManager {
         endTurnButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
-
-                if (fxBoard.board.player_one_turn) {
-                    SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
-                    fxBoard.board.player_one_turn = false;
-                    swapracks.play();
-                } else
-                {
-                    SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
-                    fxBoard.board.player_one_turn = true;
-                    swapracks.play();
-                }
-
+                endTurn();
             }
         });
         addButtons(endTurnButton);
@@ -497,13 +491,25 @@ public class layoutManager {
             int_dir = 0;
         fxBoard.board.place_word(wordlist,x,y,int_dir);
 
+
         if(fxBoard.board.player_one_turn)
             fxBoard.place_word(wordlist,x,y,int_dir,playerOneRack);
         else fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
+        endturn();
+        System.out.println(fxBoard.board.player_one_turn);
+    }
 
-
-
-
-
+    private void endTurn()
+    {
+        if (fxBoard.board.player_one_turn) {
+            SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
+            fxBoard.board.player_one_turn = false;
+            swapracks.play();
+        } else
+        {
+            SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
+            fxBoard.board.player_one_turn = true;
+            swapracks.play();
+        }
     }
 }

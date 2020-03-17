@@ -18,7 +18,7 @@ public class main extends Application {
     private static int Y_SQUARE_NUM = 15;
     //public Board board = new Board();
     //public layoutManager lm = new layoutManager();
-    private UI ui = new UI();
+    public static UI ui = new UI();
     public static void main(String[] args)
     {
         launch(args);

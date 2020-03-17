@@ -54,6 +54,7 @@ public class Frame {
     public Frame()
     {
         refill_frame();
+        System.out.println("refilling frame");
         //For testing purposes we are hardcoding the letters in the frame for this assignment
         //test_values();
     }

@@ -83,10 +83,10 @@ public class Controller implements Initializable {
 
     @FXML
     private void userEvent(ActionEvent event) {
-        UI ui = new UI();
-        ui.lm.player_one.setText(userButton.getText());
-        ui.lm.playerOneLabel.getChildren().addAll(userButton);
-        Stage stage = ui.lm.getStage();
+        main.ui = new UI();
+        main.ui.lm.player_one.setText(userButton.getText());
+        main.ui.lm.playerOneLabel.getChildren().addAll(userButton);
+        Stage stage = main.ui.lm.getStage();
         Stage closeStage = (Stage) playGame.getScene().getWindow();
         closeStage.close();
         stage.show();
