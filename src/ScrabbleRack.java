@@ -78,7 +78,7 @@ public class ScrabbleRack extends SubScene {
             EventListenersInit();
             switch (tile) {
                 case a:
-                    background = new ImageView(new Image("Images/Alphabet/A.jpg", 42, 42, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/A.png", 42, 42, false, true));
                     break;
                 case b:
                     background = new ImageView(new Image("Images/Alphabet/B.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -95,9 +95,9 @@ public class ScrabbleRack extends SubScene {
                 case f:
                     background = new ImageView(new Image("Images/Alphabet/F.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
-                case g:
-                    background = new ImageView(new Image("Images/Alphabet/G.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
-                    break;
+               // case g:
+               //     background = new ImageView(new Image("Images/Alphabet/G.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                //   break;
                 case h:
                     background = new ImageView(new Image("Images/Alphabet/H.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
@@ -114,13 +114,13 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/L.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case m:
-                    background = new ImageView(new Image("Images/Alphabet/M.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/M.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case n:
                     background = new ImageView(new Image("Images/Alphabet/N.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case o:
-                    background = new ImageView(new Image("Images/Alphabet/O.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/O.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case p:
                     background = new ImageView(new Image("Images/Alphabet/P.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -132,7 +132,7 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/R.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case s:
-                    background = new ImageView(new Image("Images/Alphabet/S.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/S.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case t:
                     background = new ImageView(new Image("Images/Alphabet/T.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -144,13 +144,13 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/V.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case w:
-                    background = new ImageView(new Image("Images/Alphabet/W.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/W.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case x:
                     background = new ImageView(new Image("Images/Alphabet/X.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case y:
-                    background = new ImageView(new Image("Images/Alphabet/Y.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/Y.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case z:
                     background = new ImageView(new Image("Images/Alphabet/Z.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
