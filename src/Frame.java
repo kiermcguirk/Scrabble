@@ -103,5 +103,15 @@ public class Frame {
         }
     }
 
+    public void SwapTile(Tile.letter tile, Tile.letter tilefrompool)
+    {
+        for(int i =0; i<player_frame.size(); i++) {
+            if (tile == player_frame.get(i)) {
+                player_frame.set(i,tilefrompool);
+                break;
+            }
+        }
+    }
+
 
 }

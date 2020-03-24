@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 class PlayerTest {
 
     public static void main(String[] args) {
@@ -320,5 +320,5 @@ class PlayerTest {
         assertEquals(Aman.player_frame.size(), 6);
     }
 
-
-}
+*/
+//}

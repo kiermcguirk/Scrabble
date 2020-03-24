@@ -289,6 +289,113 @@ public class Board {
         return false;
     }
 
+    public void addScore(String word){
+
+        Tile tile = new Tile();
+
+        ArrayList<Tile.letter> wordlist = new ArrayList<Tile.letter>();
+        for (int i = 0; i < word.length(); i++) {
+
+
+            wordlist.add(tile.getTileFromLetter(word.charAt(i)));
+
+
+            /*switch(word.charAt(i))
+            {
+                case 'A':
+
+                case 'E':
+
+                case 'I':
+
+                case 'L':
+
+                case 'N':
+
+                case 'O':
+
+                case 'R':
+
+                case 'S':
+
+                case 'T':
+
+                case 'U':
+                    score += 1*num;
+                    break;
+
+                case 'B':
+
+                case 'C':
+
+                case 'M':
+
+                case 'P':
+                    score += 3*num;
+                    break;
+
+                case 'D':
+
+                case 'G':
+                    score += 2*num;
+                    break;
+
+                case 'F':
+
+                case 'H':
+
+                case 'V':
+
+                case 'W':
+
+                case 'Y':
+                    score += 4*num;
+                    break;
+
+                case 'J':
+
+                case 'X':
+                    score += 8*num;
+                    break;
+
+                case 'K': score += 5*num;
+                    break;
+
+                case 'Q':
+
+                case 'Z':
+                    score += 10*num;
+                    break;
+
+            }
+
+             */
+        }
+        if (player_one_turn)
+            player_one.increase_score(wordlist);
+        else player_two.increase_score(wordlist);
+
+    }
+
+
+    /*
+    //score for current player
+    private void score(Player player, String word){
+        layoutManager layoutManager = new layoutManager();
+        int score= 0;
+        if (player_one == player){
+            score = getWordScore(word);
+            player_one.player_score += score;
+            layoutManager.player_one.setText(String.valueOf(score));
+        }
+        if (player_two == player){
+            score = getWordScore(word);
+            player_two.player_score += score;
+            layoutManager.player_two.setText(String.valueOf(score));
+        }
+    }
+
+     */
 
 
 

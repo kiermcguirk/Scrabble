@@ -1,5 +1,3 @@
-import com.sun.tools.javac.Main;
-
 import java.util.ArrayList;
 import java.util.Random;
 

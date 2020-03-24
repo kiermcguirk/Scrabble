@@ -1,5 +1,8 @@
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -8,6 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,17 +23,26 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-
+    //UI ui = new UI();
     @FXML
     private Label label;
+
+    @FXML
+    public AnchorPane rootPane;
 
     @FXML
     public Button startGame;
     public Button backButton;
     public Button quitButton;
     public Button singlePlayerButton;
-    public TextField userButton;
+    public Button multiPlayerButton;
+    public TextField userText;
+    public TextField userText2;
     public Button playGame;
+
+    private TextField getUserText() {
+        return userText;
+    }
 
     @FXML
     public void getAction(ActionEvent event) throws IOException {
@@ -66,9 +81,18 @@ public class Controller implements Initializable {
         singleWindow.show();
     }
 
+
     @FXML
-    private void multiPlayerEvent(ActionEvent event) {
+    private void multiPlayerEvent(ActionEvent event) throws IOException {
+        Parent multi = FXMLLoader.load(getClass().getResource("getMultiUser.fxml"));
+        Scene multiScene = new Scene(multi);
+
+        Stage multiWindow = (Stage) multiPlayerButton.getScene().getWindow();
+        multiWindow.setScene(multiScene);
+        multiWindow.show();
     }
+
+
 
 
     @Override
@@ -78,17 +102,32 @@ public class Controller implements Initializable {
 
     @FXML
     void setPlayerName(String name){
-        userButton.setText(name);
+        userText.setText(name);
     }
 
     @FXML
-    private void userEvent(ActionEvent event) {
-        main.ui = new UI();
-        main.ui.lm.player_one.setText(userButton.getText());
-        main.ui.lm.playerOneLabel.getChildren().addAll(userButton);
-        Stage stage = main.ui.lm.getStage();
+    private void userEvent(ActionEvent event) throws IOException {
+        UI ui = new UI();
+        ui.lm.player_one.setText(userText.getText());
+        ui.lm.playerOneLabel.getChildren().addAll(userText);
+        Stage stage = ui.lm.getStage();
         Stage closeStage = (Stage) playGame.getScene().getWindow();
         closeStage.close();
         stage.show();
+    }
+    @FXML void userEvent2(ActionEvent event){
+        layoutManager lm = new layoutManager();
+        lm.player_one.setText(userText.getText());
+        lm.player_two.setText(userText2.getText());
+        lm.playerOneLabel.getChildren().add(userText);
+        lm.playerTwoLabel.getChildren().add(userText2);
+        Stage stage = lm.getStage();
+        Stage closeStage = (Stage) playGame.getScene().getWindow();
+        closeStage.close();
+        stage.show();
+    }
+
+    @FXML
+    private void playGameEvent(ActionEvent event) {
     }
 }

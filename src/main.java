@@ -18,24 +18,26 @@ public class main extends Application {
     private static int Y_SQUARE_NUM = 15;
     //public Board board = new Board();
     //public layoutManager lm = new layoutManager();
-    public static UI ui = new UI();
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
+    //public static UI ui = new UI();
 
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        stage = ui.lm.getStage();
+        //stage = ui.lm.getStage();
         //ui.lm.promptUserBeginGame();
 
         Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.setTitle(" Scrabble Board");
-        stage.setScene(new Scene(root, 600, 400));
         stage.show();
 
 
+    }
+
+    public static void main(String[] args)
+    {
+        launch(args);
     }
 }

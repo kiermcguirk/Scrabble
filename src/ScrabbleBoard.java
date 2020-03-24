@@ -1,30 +1,21 @@
 import javafx.animation.TranslateTransition;
-import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
 import java.util.ArrayList;
+
+
 public class ScrabbleBoard extends SubScene {
+    protected Player player_one = new Player("");
+    protected Player player_two = new Player("");
+    private boolean playGame;
     public SquareTile[][] squareTilesBoard = new SquareTile[15][15];
     private final static String BACKGROUND = "Images/borderbackground4.png";
     public Board board = new Board();
@@ -40,6 +31,7 @@ public class ScrabbleBoard extends SubScene {
         AnchorPane boardroot = (AnchorPane) this.getRoot();
         boardroot.setBackground(new Background(background));
         boardroot.setEffect(new DropShadow(10, Color.BLACK));
+        playGame = false;
         BoardOfTiles board = new BoardOfTiles();
 
         int num = 35;
@@ -57,12 +49,13 @@ public class ScrabbleBoard extends SubScene {
     }
 
     private class SquareTile extends StackPane {
-        
+
         private Rectangle border = new Rectangle(SQUARE_SIZE - 2, SQUARE_SIZE - 2);
         private Text text = new Text();
         private boolean empty = true;
         private Square square;
         private ImageView TileImage = new ImageView((new Image("Images/transparent.png", SQUARE_SIZE, SQUARE_SIZE, false, true)));
+
         public SquareTile(int x, int y, Square.square_type type)
         {
             square = new Square(type);
@@ -101,12 +94,14 @@ public class ScrabbleBoard extends SubScene {
                 text.setStyle("-fx-font: 30 arial;");
             }
 
+
             border.setStroke(Color.LIGHTGREY);
             this.setEffect(new DropShadow());
             getChildren().addAll(border,text,TileImage);
             setTranslateX(x * SQUARE_SIZE);
             setTranslateY(y * SQUARE_SIZE);
         }
+
 
     }
 
@@ -290,4 +285,13 @@ public class ScrabbleBoard extends SubScene {
         }
         return background;
     }
+
+    //Finds out how many points a given word is worth
+
+
+
+
+
+
+
 }

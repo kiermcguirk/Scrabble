@@ -65,15 +65,13 @@ public class ScrabbleRack extends SubScene {
         addRackSquares(Rack);
     }
 
-    private class RackTile extends StackPane {
+    class RackTile extends StackPane {
         private static final int RACK_TILE_SIZE = 42;
         Rectangle border = new Rectangle(RACK_TILE_SIZE, RACK_TILE_SIZE);
         private Tile.letter tileval;
-        private ImageView background;
-        boolean hidden = false;
+        ImageView background;
 
         public RackTile(Tile.letter tile) {
-            //System.out.println(getScaleX() + " " +getHeight());
             setEffect(new DropShadow());
             EventListenersInit();
             switch (tile) {
@@ -161,6 +159,95 @@ public class ScrabbleRack extends SubScene {
             }
             getChildren().add(background);
         }
+        private Image setImageTo(Tile.letter tile)
+        {
+
+            Image background = null;
+            switch (tile) {
+                case a:
+                    background = new Image("Images/Alphabet/A.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case b:
+                    background = new Image("Images/Alphabet/B.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case c:
+                    background = new Image("Images/Alphabet/C.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case d:
+                    background = new Image("Images/Alphabet/D.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case e:
+                    background = new Image("Images/Alphabet/E.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case f:
+                    background = new Image("Images/Alphabet/F.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case g:
+                    background = new Image("Images/Alphabet/G.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case h:
+                    background = new Image("Images/Alphabet/H.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case i:
+                    background = new Image("Images/Alphabet/I.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case j:
+                    background = new Image("Images/Alphabet/J.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case k:
+                    background = new Image("Images/Alphabet/K.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case l:
+                    background = new Image("Images/Alphabet/L.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case m:
+                    background = new Image("Images/Alphabet/M.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case n:
+                    background = new Image("Images/Alphabet/N.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case o:
+                    background = new Image("Images/Alphabet/O.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case p:
+                    background = new Image("Images/Alphabet/P.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case q:
+                    background = new Image("Images/Alphabet/Q.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case r:
+                    background = new Image("Images/Alphabet/R.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case s:
+                    background = new Image("Images/Alphabet/S.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case t:
+                    background = new Image("Images/Alphabet/T.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case u:
+                    background = new Image("Images/Alphabet/U.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case v:
+                    background = new Image("Images/Alphabet/V.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case w:
+                    background = new Image("Images/Alphabet/W.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case x:
+                    background = new Image("Images/Alphabet/X.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case y:
+                    background = new Image("Images/Alphabet/Y.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case z:
+                    background = new Image("Images/Alphabet/Z.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+                case blank:
+                    background = new Image("Images/Alphabet/blank.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    break;
+            }
+            return background;
+        }
 
         private void EventListenersInit() {
             setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -182,6 +269,16 @@ public class ScrabbleRack extends SubScene {
                     enlarge.setToX(1);
                     enlarge.setToY(1);
                     enlarge.play();
+                }
+            });
+        }
+
+        private void RemoveTileFromRack(){
+            setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    event.consume();
+                    hideTiles(tileval);
                 }
             });
         }
@@ -264,6 +361,28 @@ public class ScrabbleRack extends SubScene {
             }
             else continue;
             break;
+        }
+    }
+
+    public Tile.letter SwapTile(Tile.letter tile, Tile.letter tilefrompool)
+    {
+        Tile.letter temp = null;
+        for(int i =0; i<gameRack.size(); i++) {
+            if (tile == gameRack.get(i).tileval) {
+                temp = gameRack.get(i).tileval;
+                gameRack.get(i).tileval = tilefrompool;
+                break;
+            }
+        }
+        displayRack();
+        return temp;
+    }
+
+    public void displayRack()
+    {
+        for(int i = 0; i< gameRack.size(); i++)
+        {
+            gameRack.get(i).background.setImage(gameRack.get(i).setImageTo(gameRack.get(i).tileval));
         }
     }
 }
