@@ -14,12 +14,10 @@ import java.awt.*;
 
 public class ScrabbleHelp extends SubScene {
     private final static String BACKGROUND = "Images/borderbackground.png";
-    public Board board = new Board();
 
     private boolean hidden = true;
 
     private final String HELP_TEXT = "-fx-text-fill: purple;" + "-fx-font-family: \"Arial\"; -fx-text-fill: linear-gradient(black, #303108); -fx-font-size: 30px; -fx-padding: 6px 9px ";
-
 
     public ScrabbleHelp() {
         super(new StackPane(), 400, 550);
@@ -33,18 +31,12 @@ public class ScrabbleHelp extends SubScene {
         setFill(Color.WHITE);
         //Rectangle rec = new Rectangle(50,50);
         StackPane helproot = (StackPane) this.getRoot();
-       
 
         helproot.setBackground(new Background(background));
         helproot.setEffect(new DropShadow());
 
-
-
-
         text.setFill(Color.PURPLE);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-
-
 
         text.setX(10);
         text.setY(50);

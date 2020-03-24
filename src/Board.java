@@ -23,6 +23,19 @@ public class Board {
         board_init(); //Call function to initialize state of board
     }
 
+
+    public static void main(String[] args) {
+        Board x = new Board();
+        ArrayList<Tile.letter> test = new ArrayList<Tile.letter>();
+        test.add(Tile.letter.a);
+        test.add(Tile.letter.p);
+        test.add(Tile.letter.p);
+        test.add(Tile.letter.l);
+        test.add(Tile.letter.e);
+
+        x.place_word(test,7,7,0);
+        x.display_board();
+    }
     // board display
     public void display_board(){
         for(int i =0; i < 15; i++){
@@ -89,18 +102,28 @@ public class Board {
     }
 
     //Function that checks if the first move has a tile placed on the middle square or not
-    public boolean first_word(Square fw)
+    public boolean first_word(ArrayList<Tile.letter> word,int i, int j, int direction)
     {
-        if(fw.type == Square.square_type.middle && first_word == false) //If the square is the middle square, and the first move hasn't occured yet
+        if(first_word == true)return true;
+
+
+        for(int counter = 0; counter <word.size(); counter++)
         {
-            first_word = true; //Set first word to true
-            return true; //Return true
+            if(i == 7 && j ==7) //If the square is the middle square, and the first move hasn't occured yet
+            {
+                first_word = true; //Set first word to true
+                return true; //Return true
+            }
+            else if(direction == 0) {i++;}
+            else if(direction == 1){j++;}
+            else
+            {
+                System.out.println("Invalid Move: For the first word, you must begin on the middle square");
+                return false;
+            }
         }
-        else if(first_word == true) {return true;}
-        else {
-            System.out.println("Invalid Move: For the first word, you must begin on the middle square");
-            return false;
-        }
+        return false;
+
     }
 
     //Function that checks to see whether index is in range (return true)
@@ -145,7 +168,7 @@ public class Board {
             return true;
         }
         else{
-            System.out.println("Invalid Move: you do not possess the tile to place it here");
+            System.out.println("Invalid Move: you do not possess the tile "+ q + " to place it here");
             return false;}
     }
 
@@ -161,42 +184,52 @@ public class Board {
     }
 
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
+        System.out.println("je suis here begin");
         //1 is vertical 0 is horizontal
         boolean invalid_move = false;
         int counter = 0;
         boolean skip_letter = false;
         boolean wait = false;
+        int tempi = i;
+        int tempj = j;
+
+        first_word(word,i,j,direction);
+
         for(counter = 0; counter < word.size(); counter++)
         {
             if(direction == 1)
             {
                 //Loop through the type of square is not an empty tile
-                while(game_board[i][j].tile != Tile.letter.empty) {
-                    if(first_word){break;}
+                int counter2 = word.size();
+                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=0) {
+
+                    if(!first_word){break;}
                     else if(in_word(word.get(counter), game_board[i][j].tile)){
                         i++;
                     }
+                    counter2--;
                 }
-                if(valid_move(word.get(counter),i + counter, j)){continue;}
+                if(valid_move(word.get(counter),i /*+ counter*/, j)){continue;}
                 else{invalid_move = true;
                     break;}
             }
             else if(direction == 0)
             {
-
-                while(game_board[i][j].tile != Tile.letter.empty)
+                int counter2 = word.size();
+                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=0)
                 {
-                    if(first_word){break;}
-                    else if(in_word(word.get(counter), game_board[i][j].tile)){
 
+                    if(!first_word){break;}
+                    else if(in_word(word.get(counter), game_board[i][j].tile)){
                         j++;}
+                    counter2--;
                 }
                 if(valid_move(word.get(counter), i,j+counter)){continue;}
                 else{invalid_move = true;
                     break;}
             }
         }
-        if(invalid_move) System.out.println("Please try another move");
+        if(invalid_move) throw new IllegalArgumentException();//System.out.println("Please try another move");
         else
         {
             for(counter = 0; counter < word.size(); counter++)
@@ -204,34 +237,34 @@ public class Board {
                 int temp =0;
                 if(direction == 1)
                 {
-                    if (game_board[i][j].tile == Tile.letter.empty){
+                    if (game_board[tempi][tempj].tile == Tile.letter.empty){
                         if (player_one_turn) {
-                            game_board[i][j].tile = word.get(counter);
+                            game_board[tempi][tempj].tile = word.get(counter);
                             this.player_one.frame.remove_letter(word.get(counter));
-                            //player_one_turn = false; for testing purposes will be returned next assignment
-                            i++;
+                            tempi++;
                         }
                         else{ this.player_two.frame.remove_letter(word.get(counter));
-                            game_board[i][j].tile = word.get(counter);
-                            player_one_turn = true;}
+                            game_board[tempi][tempj].tile = word.get(counter);
+                            tempi++;
+                        }
                     }
-                    else{i++;}
+                    else{tempi++;}
                 }
                 else
                 {
-                    if(game_board[i][j].tile == Tile.letter.empty) {
+                    if(game_board[tempi][tempj].tile == Tile.letter.empty) {
 
                         if (player_one_turn) {
-                            game_board[i][j].tile = word.get(counter);
+                            game_board[tempi][tempj].tile = word.get(counter);
                             this.player_one.frame.remove_letter(word.get(counter));
-                            //player_one_turn = false; for testing purposes will be returned next assignment
-                            j++;
+                            tempj++;
                         }
                         else{ this.player_two.frame.remove_letter(word.get(counter));
-                            game_board[i][j].tile = word.get(counter);
-                            player_one_turn = true;}
+                            game_board[tempi][tempj].tile = word.get(counter);
+                            tempj++;
+                        }
                     }
-                    else{j++;}
+                    else{tempj++; }
                 }
             }
         }
@@ -247,10 +280,10 @@ public class Board {
     public boolean valid_move(Tile.letter x, int i, int j) {
         //If it's player one's turn and their move is valid (check each move function)
         if (player_one_turn) {
-            if (in_rack(player_one.frame, x) && connected_word(i,j) && first_word(game_board[i][j]) && out_of_bounds(i, j) && conflicting_word(x,i, j)) {
+            if (in_rack(player_one.frame, x) && connected_word(i,j) && out_of_bounds(i, j) && conflicting_word(x,i, j)) {
                 return true; //Return true
             }
-        } else if (in_rack(player_two.frame, x) && connected_word(i, j) && first_word(game_board[i][j]) && out_of_bounds(i, j) && conflicting_word(x, i, j)) {
+        } else if (in_rack(player_two.frame, x) && connected_word(i, j) && out_of_bounds(i, j) && conflicting_word(x, i, j)) {
             return true;
         }
         return false;

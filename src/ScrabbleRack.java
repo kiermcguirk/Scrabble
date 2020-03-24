@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class ScrabbleRack extends SubScene {
 
-
     //final Rotate rotateRack = new Rotate();
     final int RACK_X = 925;
     final int RACK_Y = 100;
@@ -71,6 +70,7 @@ public class ScrabbleRack extends SubScene {
         Rectangle border = new Rectangle(RACK_TILE_SIZE, RACK_TILE_SIZE);
         private Tile.letter tileval;
         private ImageView background;
+        boolean hidden = false;
 
         public RackTile(Tile.letter tile) {
             //System.out.println(getScaleX() + " " +getHeight());
@@ -95,9 +95,9 @@ public class ScrabbleRack extends SubScene {
                 case f:
                     background = new ImageView(new Image("Images/Alphabet/F.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
-               // case g:
-               //     background = new ImageView(new Image("Images/Alphabet/G.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
-                //   break;
+                case g:
+                    background = new ImageView(new Image("Images/Alphabet/G.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    break;
                 case h:
                     background = new ImageView(new Image("Images/Alphabet/H.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
@@ -114,7 +114,7 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/L.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case m:
-                    background = new ImageView(new Image("Images/Alphabet/M.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/M.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case n:
                     background = new ImageView(new Image("Images/Alphabet/N.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -132,7 +132,7 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/R.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case s:
-                    background = new ImageView(new Image("Images/Alphabet/S.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/S.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case t:
                     background = new ImageView(new Image("Images/Alphabet/T.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -150,7 +150,7 @@ public class ScrabbleRack extends SubScene {
                     background = new ImageView(new Image("Images/Alphabet/X.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case y:
-                    background = new ImageView(new Image("Images/Alphabet/Y.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
+                    background = new ImageView(new Image("Images/Alphabet/Y.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
                     break;
                 case z:
                     background = new ImageView(new Image("Images/Alphabet/Z.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true));
@@ -253,7 +253,15 @@ public class ScrabbleRack extends SubScene {
 
         for(int i = 0; i<gameRack.size(); i++)
         {
-            if(gameRack.get(i).tileval ==x){gameRack.get(i).setVisible(false);}
+            if(gameRack.get(i).tileval ==x)
+            {
+                if(!gameRack.get(i).isVisible())
+                {
+                    continue;
+                }
+                gameRack.get(i).setVisible(false);
+
+            }
             else continue;
             break;
         }

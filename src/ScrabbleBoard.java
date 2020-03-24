@@ -147,6 +147,20 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
+
+    public void displayTiles(Board b)
+    {
+        for(int i=0; i< 15; i++)
+        {
+            for(int j=0; j<15; j++)
+            {
+                squareTilesBoard[i][j].TileImage.setImage(setImageTo((b.game_board[i][j].tile)));
+            }
+        }
+    }
+
+
+
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction, ScrabbleRack rack) {
         //1 is vertical 0 is horizontal
         int counter = 0;
@@ -190,11 +204,10 @@ public class ScrabbleBoard extends SubScene {
 
     private Image setImageTo(Tile.letter tile)
     {
-        System.out.println("here");
         Image background = null;
         switch (tile) {
             case a:
-                background = new Image("Images/Alphabet/A.jpg", 35, 35, false, true);
+                background = new Image("Images/Alphabet/A.png", 35, 35, false, true);
                 break;
             case b:
                 background = new Image("Images/Alphabet/B.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
@@ -236,7 +249,7 @@ public class ScrabbleBoard extends SubScene {
                 background = new Image("Images/Alphabet/N.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
                 break;
             case o:
-                background = new Image("Images/Alphabet/O.jpg", SQUARE_SIZE, SQUARE_SIZE, false, true);
+                background = new Image("Images/Alphabet/O.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
                 break;
             case p:
                 background = new Image("Images/Alphabet/P.png", SQUARE_SIZE, SQUARE_SIZE, false, true);

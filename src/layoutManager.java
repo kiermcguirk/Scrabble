@@ -104,7 +104,7 @@ public class layoutManager {
                 TranslateTransition transitionTurnScore = new TranslateTransition();
                 TranslateTransition transitionTurnLabel3 = new TranslateTransition();
                 TranslateTransition transitionTurnScore1 = new TranslateTransition();
-
+                System.out.println("Currently " + fxBoard.board.player_one_turn);
                 //Transition Player Turn
                 player_turn.setText("Player 1's Turn");
                 transitionTurnLabel.setDuration(Duration.seconds(2));
@@ -373,6 +373,8 @@ public class layoutManager {
                         "6. Enter REPLAY to redisplay this menu");
             }
             end_turn = userMove(getUserInput());
+            if(end_turn) endturn();
+            else promptUser(true);
         }
 
     }
@@ -433,17 +435,20 @@ public class layoutManager {
             System.out.println(w);
             Matcher word = p_word.matcher(w);
 
+
+
             if(x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches()  || word_direction_horizontal.matches()) && word.matches())
             {
                 System.out.println("MATCHES");
                 placeWord(inputtostring);
+                return true;
             }
             else
             {
                 System.out.println("Invalid move");
             }
 
-        }catch(IndexOutOfBoundsException e) {
+        }catch(Exception e) {
             System.out.println("Invalid action");
         }
 
@@ -460,9 +465,12 @@ public class layoutManager {
             fxBoard.board.player_one_turn = true;
             swapracks.play();
         }
+            System.out.println("Player One's Frame:");
+            fxBoard.board.player_one.frame.display_frame();
     }
 
-    private void placeWord(String input) {
+    private void placeWord(String input)  {
+        System.out.println("je suis here");
         char[] in = input.toCharArray();
         int x1 = in[0] - 48;
         int x2 = in[1] - 48;
@@ -489,14 +497,29 @@ public class layoutManager {
             int_dir = 1;
         else
             int_dir = 0;
+        for(int i = 0; i< wordlist.size(); i++)
+        {
+            System.out.print(wordlist.get(i));
+        }
+        System.out.println("je suis here2");
+
         fxBoard.board.place_word(wordlist,x,y,int_dir);
 
+        if(fxBoard.board.player_one_turn) {
 
-        if(fxBoard.board.player_one_turn)
-            fxBoard.place_word(wordlist,x,y,int_dir,playerOneRack);
-        else fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
-        endturn();
-        System.out.println(fxBoard.board.player_one_turn);
+            System.out.println("Player one's turn");
+            fxBoard.place_word(wordlist, x, y, int_dir, playerOneRack);
+
+            //fxBoard.displayTiles(fxBoard.board);
+            fxBoard.board.display_board();
+        }
+        else{
+            System.out.println("Player two's turn");
+
+            fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
+            fxBoard.displayTiles(fxBoard.board);
+
+        }
     }
 
     private void endTurn()
