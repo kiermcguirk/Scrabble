@@ -287,6 +287,7 @@ public class ScrabbleRack extends SubScene {
             });
         }
 
+
         //Function for removing a tile from a rack
         private void RemoveTileFromRack(){
             setOnMouseClicked(new EventHandler<MouseEvent>() {

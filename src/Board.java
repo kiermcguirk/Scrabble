@@ -308,6 +308,7 @@ public class Board {
         Tile tile = new Tile();
 
 
+
         //Check if word is on triple or double word score
         int scoremult = 1;
         int wordscore = 0;

@@ -119,6 +119,7 @@ public class ScrabbleBoard extends SubScene {
 
     }
 
+
     //class for BoardOfTiles
     private class BoardOfTiles extends StackPane
     {

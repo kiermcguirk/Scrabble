@@ -70,6 +70,7 @@ public class ScrabbleHelp extends SubScene {
     }
 
 
+
     //Transition set to when help button is pressed
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();

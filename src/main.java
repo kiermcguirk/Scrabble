@@ -18,6 +18,7 @@ public class main extends Application {
         stage.show();
     }
 
+
     //Launching the game
     public static void main(String[] args)
     {

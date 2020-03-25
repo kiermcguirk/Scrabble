@@ -76,4 +76,6 @@ public class Square extends StackPane {
             default: return 1;
         }
     }
+
 }
+
