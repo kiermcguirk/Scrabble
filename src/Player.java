@@ -32,8 +32,11 @@ public class Player {
 
 
     //A3 - Allows a player�s score to be increased
-    public void increase_score(ArrayList<Tile.letter> score_list)
+    public void increase_score( /*ArrayList<Tile.letter> score_list*/ int score)
     {
+        this.player_score += score;
+
+        /*
         Pool find_tile_value = new Pool();
         int score = 0;
         for (Tile.letter x : score_list )
@@ -41,6 +44,8 @@ public class Player {
             score += find_tile_value.queried_tile(x);
         }
         this.player_score += score;
+
+         */
     }
 
 

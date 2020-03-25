@@ -382,7 +382,16 @@ public class ScrabbleRack extends SubScene {
     {
         for(int i = 0; i< gameRack.size(); i++)
         {
+
+        }
+    }
+
+    public void displayRack2(Frame playerframe)
+    {
+        for(int i = 0; i< gameRack.size(); i++)
+        {   gameRack.get(i).tileval = playerframe.player_frame.get(i);
             gameRack.get(i).background.setImage(gameRack.get(i).setImageTo(gameRack.get(i).tileval));
+            gameRack.get(i).setVisible(true);
         }
     }
 }

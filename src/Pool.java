@@ -7,7 +7,7 @@ public class Pool
     public static int[] score = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10,0};
     public static Tile.letter[] tile_array = new Tile.letter[] {Tile.letter.a, Tile.letter.b,
             Tile.letter.c, Tile.letter.d, Tile.letter.e, Tile.letter.f, Tile.letter.g, Tile.letter.h,
-            Tile.letter.i, Tile.letter.j, Tile.letter.k, Tile.letter.l, Tile.letter.m, Tile.letter.m,
+            Tile.letter.i, Tile.letter.j, Tile.letter.k, Tile.letter.l, Tile.letter.m, Tile.letter.n,
             Tile.letter.o, Tile.letter.p, Tile.letter.q, Tile.letter.r, Tile.letter.s, Tile.letter.t,
             Tile.letter.u, Tile.letter.v, Tile.letter.w, Tile.letter.x, Tile.letter.y, Tile.letter.z,
             Tile.letter.blank};
