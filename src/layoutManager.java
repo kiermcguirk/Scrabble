@@ -350,6 +350,18 @@ public class layoutManager {
         }
     }
 
+
+    public void promptUser() {
+        System.out.println("\n**WELCOME TO PLAY MENU**" +
+                "\n1. Enter 'QUIT' to quit the game\n" +
+                "2. Enter 'HELP' to display HELP (again for display to disappear)\n" +
+                "3. Enter 'PASS' to pass your turn\n" +
+                "4. Enter 'EXCHANGE <letters>' to exchange these letters with random ones from the pool\n" +
+                "5. Enter '<gridref><h/v><word>' to place your word e.g 0 0 V HELLO\n" +
+                "6. Enter 'REPLAY' to redisplay this menu");
+        getUserInput();
+    }
+
         public void promptUser(boolean displaymenu) {
         if(!begin_game) begin_game=true;
         else {
@@ -364,7 +376,7 @@ public class layoutManager {
                         "6. Enter REPLAY to redisplay this menu");
             }
             end_turn = userMove(getUserInput());
-            if(end_turn) endTurn();
+            if(end_turn) endturn();
             else promptUser(false);
         }
 
@@ -390,12 +402,11 @@ public class layoutManager {
                     return true;
 
                 case "PASS":
-                    endTurn();
+                    endturn();
                     return true;
             }
 
             //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
-            // Pattern pat = Pattern.compile(pattern);
             // Pattern pat = Pattern.compile(pattern);
             String pattern_xy = "([0-1])";
             String pattern_xy2 = "([0-9])";
@@ -461,15 +472,11 @@ public class layoutManager {
                     }
                     System.out.println(w);
                     Matcher word = p_word.matcher(w);
-                    String indexi = Character.toString(in[0]) + Character.toString(in[1]);
-                    String indexj = Character.toString(in[2]) + Character.toString(in[3]);
-                    int i = Integer.parseInt(indexi);
-                    int j = Integer.parseInt(indexj);
 
                     if (x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches() || word_direction_horizontal.matches()) && word.matches()) {
                         System.out.println("MATCHES");
                         placeWord(inputtostring);
-                        fxBoard.board.addScore(w,i,j,in[4]);
+                        fxBoard.board.addScore(w);
                         System.out.println("score is "+fxBoard.board.player_one.getScore());
                         setScoreLabels();
                     } else {
@@ -482,6 +489,19 @@ public class layoutManager {
             return false;
     }
 
+        private void endturn() {
+        if (fxBoard.board.player_one_turn){
+            SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
+            fxBoard.board.player_one_turn = false;
+            swapracks.play();
+        } else{
+            SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
+            fxBoard.board.player_one_turn = true;
+            swapracks.play();
+        }
+            System.out.println("Player One's Frame:");
+            fxBoard.board.player_one.frame.display_frame();
+    }
 
     private void placeWord(String input)  {
         System.out.println("je suis here");
@@ -517,14 +537,13 @@ public class layoutManager {
         }
 
 
-
         fxBoard.board.place_word(wordlist,x,y,int_dir);
 
         if(fxBoard.board.player_one_turn) {
 
             fxBoard.place_word(wordlist, x, y, int_dir, playerOneRack);
 
-
+            //fxBoard.displayTiles(fxBoard.board);
             fxBoard.board.display_board();
         }
         else{
@@ -556,18 +575,14 @@ public class layoutManager {
         if (fxBoard.board.player_one_turn) {
             changePlayerLabel(true);
             SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
-            addTileFrameRack();
-            swapracks.play();
             fxBoard.board.player_one_turn = false;
-
+            swapracks.play();
         } else
         {
             changePlayerLabel(false);
             SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
-            addTileFrameRack();
-            swapracks.play();
             fxBoard.board.player_one_turn = true;
-
+            swapracks.play();
         }
     }
 
@@ -589,17 +604,5 @@ public class layoutManager {
     {
         score1.setText(Integer.toString(fxBoard.board.player_one.getScore()));
         score2.setText(Integer.toString(fxBoard.board.player_two.getScore()));
-    }
-
-    private void addTileFrameRack()
-    {
-        if(fxBoard.board.player_one_turn)
-        {
-            if(fxBoard.board.player_one.frame.player_frame.size() != 7)
-            {
-                fxBoard.board.player_one.frame.refill_frame();
-                playerOneRack.displayRack2(fxBoard.board.player_one.frame);
-            }
-        }
     }
 }

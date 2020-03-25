@@ -30,6 +30,7 @@ public class Controller implements Initializable {
     @FXML
     public AnchorPane rootPane;
 
+    //Initialising
     @FXML
     public Button startGame;
     public Button backButton;
@@ -40,12 +41,14 @@ public class Controller implements Initializable {
     public TextField userText2;
     public Button playGame;
 
+    //Receiving text from the user
     private TextField getUserText() {
         return userText;
     }
 
     @FXML
     public void getAction(ActionEvent event) throws IOException {
+        //receiving characteristics from this file
         Parent gameMode = FXMLLoader.load(getClass().getResource("getContents.fxml"));
         Scene gameScene = new Scene(gameMode);
 
@@ -55,6 +58,7 @@ public class Controller implements Initializable {
         window.show();
     }
 
+    //Dealing with the back event
     @FXML
     public void backEvent(ActionEvent event) throws IOException {
         Parent back = FXMLLoader.load(getClass().getResource("homePage.fxml"));
@@ -65,12 +69,15 @@ public class Controller implements Initializable {
         backWindow.show();
     }
 
+    //When the quit button is hit
     @FXML
     public void quitEvent(ActionEvent event) throws IOException{
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
     }
 
+
+    //Single user playing scrabble
     @FXML
     private void singlePlayerEvent(ActionEvent event) throws IOException {
         Parent single = FXMLLoader.load(getClass().getResource("getUsername.fxml"));
@@ -82,6 +89,7 @@ public class Controller implements Initializable {
     }
 
 
+    //Multiple users playing scrabble
     @FXML
     private void multiPlayerEvent(ActionEvent event) throws IOException {
         Parent multi = FXMLLoader.load(getClass().getResource("getMultiUser.fxml"));
@@ -101,7 +109,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void setPlayerName(String name){
+    void setPlayerName(String name)//Setting the players names
+    {
         userText.setText(name);
     }
 
@@ -115,6 +124,8 @@ public class Controller implements Initializable {
         closeStage.close();
         stage.show();
     }
+
+
     @FXML void userEvent2(ActionEvent event){
         layoutManager lm = new layoutManager();
         lm.player_one.setText(userText.getText());

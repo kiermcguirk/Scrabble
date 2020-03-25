@@ -13,7 +13,8 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class main extends Application {
+public class main extends Application
+{
     private static int X_SQUARE_NUM = 15;
     private static int Y_SQUARE_NUM = 15;
     //public Board board = new Board();
@@ -22,7 +23,8 @@ public class main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception//Starting the scrabble game
+    {
 
         //stage = ui.lm.getStage();
         //ui.lm.promptUserBeginGame();
@@ -36,6 +38,7 @@ public class main extends Application {
 
     }
 
+    //Launching the game
     public static void main(String[] args)
     {
         launch(args);

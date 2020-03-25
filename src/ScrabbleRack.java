@@ -29,6 +29,7 @@ public class ScrabbleRack extends SubScene {
     private boolean onboard = true;
     private final String STYLE_RACK_BACKGROUND = "-";
 
+    //Setting the characteristics for the rack
     public ScrabbleRack(Frame playerframe, Boolean onboard) {
         super(new Pane(), 472, 80);
 
@@ -47,6 +48,7 @@ public class ScrabbleRack extends SubScene {
         setEffect(new DropShadow());
     }
 
+    //Layout of the rack
     private void addRackSquares(RackTile rack) {
         if (gameRack.size() == 0) {
             rack.setLayoutX(20);
@@ -58,6 +60,7 @@ public class ScrabbleRack extends SubScene {
         gameRack.add(rack);
     }
 
+    //Function to make rack square
     public void createRackSquare(Tile.letter text) {
         RackTile Rack = new RackTile(text);
         Rack.tileval = text;
@@ -65,12 +68,14 @@ public class ScrabbleRack extends SubScene {
         addRackSquares(Rack);
     }
 
+    //Setting the scrabble tile characteristics
     class RackTile extends StackPane {
         private static final int RACK_TILE_SIZE = 42;
         Rectangle border = new Rectangle(RACK_TILE_SIZE, RACK_TILE_SIZE);
         private Tile.letter tileval;
         ImageView background;
 
+        //The different cases for each letter tile
         public RackTile(Tile.letter tile) {
             setEffect(new DropShadow());
             EventListenersInit();
@@ -159,6 +164,8 @@ public class ScrabbleRack extends SubScene {
             }
             getChildren().add(background);
         }
+
+        //Setting the image to each tile
         private Image setImageTo(Tile.letter tile)
         {
 
@@ -249,6 +256,7 @@ public class ScrabbleRack extends SubScene {
             return background;
         }
 
+        //Setting prefixes of elements
         private void EventListenersInit() {
             setOnMouseEntered(new EventHandler<MouseEvent>() {
                 @Override
@@ -273,6 +281,7 @@ public class ScrabbleRack extends SubScene {
             });
         }
 
+        //Function for removing a tile from a rack
         private void RemoveTileFromRack(){
             setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -284,6 +293,7 @@ public class ScrabbleRack extends SubScene {
         }
     }
 
+    //Function for fade in transition of rack
     public FadeTransition fadeIn() {
         FadeTransition ft = new FadeTransition(Duration.seconds(5), this);
 
@@ -292,6 +302,7 @@ public class ScrabbleRack extends SubScene {
         return ft;
     }
 
+    //Setting another transition for the rack
     public TranslateTransition RacKTransition2() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));
@@ -306,6 +317,8 @@ public class ScrabbleRack extends SubScene {
         }
         return transition;
     }
+
+    //Transition for the rack
     public TranslateTransition RacKTransition() {
         final RotateTransition rotateRack = new RotateTransition(Duration.seconds(3));
 
@@ -364,6 +377,7 @@ public class ScrabbleRack extends SubScene {
         }
     }
 
+    //Function for swapping tiles
     public Tile.letter SwapTile(Tile.letter tile, Tile.letter tilefrompool)
     {
         Tile.letter temp = null;
@@ -378,6 +392,7 @@ public class ScrabbleRack extends SubScene {
         return temp;
     }
 
+    //Displaying the rack
     public void displayRack()
     {
         for(int i = 0; i< gameRack.size(); i++)

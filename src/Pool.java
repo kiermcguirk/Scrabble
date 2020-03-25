@@ -124,6 +124,7 @@ public class Pool
         }
     }
 
+    //Function when removing from the pool
     public void remove_from_pool(Tile.letter x)
     {
         //Create a variable to store whether or not the letter is found in the array

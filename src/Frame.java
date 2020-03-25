@@ -58,6 +58,8 @@ public class Frame {
         //For testing purposes we are hardcoding the letters in the frame for this assignment
         //test_values();
     }
+
+    //Testing with the word "apple"
     public void test_values()
     {
         player_frame.clear();
@@ -103,6 +105,7 @@ public class Frame {
         }
     }
 
+    //Function to swap tiles
     public void SwapTile(Tile.letter tile, Tile.letter tilefrompool)
     {
         for(int i =0; i<player_frame.size(); i++) {

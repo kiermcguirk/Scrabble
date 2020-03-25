@@ -17,8 +17,10 @@ public class ScrabbleHelp extends SubScene {
 
     private boolean hidden = true;
 
+    //Characteristics of text in "Help"
     private final String HELP_TEXT = "-fx-text-fill: purple;" + "-fx-font-family: \"Arial\"; -fx-text-fill: linear-gradient(black, #303108); -fx-font-size: 30px; -fx-padding: 6px 9px ";
 
+    //Setting prefixes for the pane
     public ScrabbleHelp() {
         super(new StackPane(), 400, 550);
         prefHeight(400);
@@ -43,6 +45,7 @@ public class ScrabbleHelp extends SubScene {
 
         text.setTextAlignment(TextAlignment.CENTER);
 
+        //The text inside the "Help" pane once button is pressed
         text.setText("SCRABBLE RULES: \n\nScrabble is a two-player game and the objective\n when playing is to score more points than your\n" +
                 " opponent does. When you have placed a word\n on the board, points are collected and added to \nyour overall score. The different" +
                 " letters placed \non the board all contain different values and\n the aim is to play the words that will generate you \nthe highest" +
@@ -59,6 +62,7 @@ public class ScrabbleHelp extends SubScene {
     }
 
 
+    //Transition set to when help button is pressed
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));

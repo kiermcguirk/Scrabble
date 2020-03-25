@@ -16,12 +16,16 @@ public class ScrabbleBoard extends SubScene {
     protected Player player_one = new Player("");
     protected Player player_two = new Player("");
     private boolean playGame;
-    public SquareTile[][] squareTilesBoard = new SquareTile[15][15];
+
+    public SquareTile[][] squareTilesBoard = new SquareTile[15][15];//Setting up the 15x15 board
     private final static String BACKGROUND = "Images/borderbackground4.png";
     public Board board = new Board();
     private static final int SQUARE_SIZE = 35;
-    public ScrabbleBoard() {
-        super(new AnchorPane(), 600, 600);
+
+    //Designating characteristics to the board
+    public ScrabbleBoard()
+    {
+        super(new AnchorPane(), 600, 600);//Setting height and width
         prefHeight(600);
         prefWidth(600);
 
@@ -34,6 +38,7 @@ public class ScrabbleBoard extends SubScene {
         playGame = false;
         BoardOfTiles board = new BoardOfTiles();
 
+        //Setting the squares on the board at their assigned height/width
         int num = 35;
         for(int i=0; i<15; i++)
         {
@@ -48,6 +53,7 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
+    //To set squares to their correct properties
     private class SquareTile extends StackPane {
 
         private Rectangle border = new Rectangle(SQUARE_SIZE - 2, SQUARE_SIZE - 2);
@@ -60,41 +66,47 @@ public class ScrabbleBoard extends SubScene {
         {
             square = new Square(type);
 
+            //Normal tiles
             if(type == Square.square_type.normal)
             {
                 border.setFill(Color.rgb(220,216,170));
                 text.setText("");
                 text.setStyle("-fx-font: 9 arial;");
             }
+            //Double letter tiles with different colours
             else if(type == Square.square_type.dub_l)
             {
                 border.setFill(Color.LIGHTBLUE);
                 text.setText("Double\nLetter\nScore");
                 text.setStyle("-fx-font: 9 arial;");
             }
+            //Triple Letter tile
             else if(type == Square.square_type.trip_l)
             {
                 border.setFill(Color.TURQUOISE);
                 text.setText("Triple\nLetter\nScore");
                 text.setStyle("-fx-font: 9 arial;");
             }
+            //Double Word tile
             else if(type == Square.square_type.dub_w){
                 border.setFill(Color.SALMON);
                 text.setText("Double\nWord\nScore");
                 text.setStyle("-fx-font: 9 arial;");
             }
+            //Triple Word tile
             else if(type == Square.square_type.trip_w){
                 border.setFill(Color.DARKORANGE);
                 text.setText("Triple \nWord\nScore");
                 text.setStyle("-fx-font: 9 arial;");
             }
-            else {
+            else //The left over square is centre square
+                {
                 border.setFill(Color.SALMON);
                 text.setText("✭");
                 text.setStyle("-fx-font: 30 arial;");
             }
 
-
+            //Properties
             border.setStroke(Color.LIGHTGREY);
             this.setEffect(new DropShadow());
             getChildren().addAll(border,text,TileImage);
@@ -105,6 +117,7 @@ public class ScrabbleBoard extends SubScene {
 
     }
 
+    //class for BoardOfTiles
     private class BoardOfTiles extends StackPane
     {
         public BoardOfTiles()
@@ -143,6 +156,7 @@ public class ScrabbleBoard extends SubScene {
     }
 
 
+    //Displaying tiles
     public void displayTiles(Board b)
     {
         for(int i=0; i< 15; i++)
@@ -155,12 +169,13 @@ public class ScrabbleBoard extends SubScene {
     }
 
 
-
+    //Function to place word on the board
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction, ScrabbleRack rack) {
         //1 is vertical 0 is horizontal
         int counter = 0;
         for(counter = 0; counter < word.size(); counter++)
         {
+            //Placing the word vertically on the board
             if(direction == 1)
             {
                 if (squareTilesBoard[i][j].empty)
@@ -174,6 +189,7 @@ public class ScrabbleBoard extends SubScene {
                     continue;
                 }
             }
+            //Placing a word horizontally on the board
             else if(direction == 0)
             {
                 if (squareTilesBoard[i][j].empty)
@@ -190,13 +206,14 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
-
+    //Setting transition for the board
     public void Transition() {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.4));
         transition.setNode(this);
     }
 
+    //Setting each tile to its designated ;etter
     private Image setImageTo(Tile.letter tile)
     {
         Image background = null;
@@ -283,10 +300,11 @@ public class ScrabbleBoard extends SubScene {
                 background = new Image("Images/Alphabet/blank.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
                 break;
         }
+        //The natural background for everything else
         return background;
     }
 
-    //Finds out how many points a given word is worth
+
 
 
 
