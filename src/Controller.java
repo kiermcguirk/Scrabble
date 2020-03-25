@@ -1,4 +1,8 @@
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -8,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    //UI ui = new UI();
     @FXML
     private Label label;
 
@@ -121,11 +129,5 @@ public class Controller implements Initializable {
 
     @FXML
     private void playGameEvent(ActionEvent event) {
-        layoutManager lm = new layoutManager();
-        Stage stage = lm.getStage();
-        Stage closeStage = (Stage) playGame.getScene().getWindow();
-        closeStage.close();
-        stage.show();
-
     }
 }
