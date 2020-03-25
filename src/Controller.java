@@ -102,7 +102,7 @@ public class Controller implements Initializable {
 
 
 
-
+    //General initialisation
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

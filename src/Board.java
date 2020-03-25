@@ -17,6 +17,7 @@ public class Board {
     boolean valid_move; //Variable which stores whether not a given move is valid or not
     boolean first_word = false; //Variable which stores whether or not the first move had a tile placed on the middle square.
     boolean letter_in_rack;
+    boolean isFirstMove = true;
 
     public Board()
     {
@@ -24,6 +25,7 @@ public class Board {
     }
 
 
+    //Testing with word "apple" by placing on the board horizontally
     public static void main(String[] args) {
         Board x = new Board();
         ArrayList<Tile.letter> test = new ArrayList<Tile.letter>();
@@ -36,6 +38,7 @@ public class Board {
         x.place_word(test,7,7,0);
         x.display_board();
     }
+
     // board display
     public void display_board(){
         for(int i =0; i < 15; i++){
@@ -54,7 +57,7 @@ public class Board {
         System.out.println("    0    1    2    3    4    5    6    7    8    9   10   11   12   13   14          \n");
     }
 
-
+    //prints line on the board
     public void printLine(){
         System.out.println(" -----------------------------------------------------------------------------");
     }
@@ -104,6 +107,7 @@ public class Board {
     //Function that checks if the first move has a tile placed on the middle square or not
     public boolean first_word(ArrayList<Tile.letter> word,int i, int j, int direction)
     {
+
         if(first_word == true)return true;
 
 
@@ -139,11 +143,15 @@ public class Board {
     //Function that checks if a word connects with any other letters on the board (if the first move is passed)
     public boolean connected_word(int i, int j)
     {
-        if(first_word == false)
+
+        if(isFirstMove == false)
         {
             //Check if there are any tiles adjacent to the position indicated by the indexes i,j (either vertically or horizontally)
-            if (game_board[i - 1][j] != null || game_board[i][j - 1] != null || game_board[i + 1][j] != null || game_board[i][j + 1] != null)
+            if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile !=Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty)
             {
+                System.out.println("i is " + i );
+                System.out.println("j is "  + j);
+                System.out.println("passed connected word");
                 return true;
             }
             else
@@ -183,8 +191,8 @@ public class Board {
         else return true;
     }
 
+    //Function when placing a word on the board
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
-        System.out.println("je suis here begin");
         //1 is vertical 0 is horizontal
         boolean invalid_move = false;
         int counter = 0;
@@ -268,6 +276,10 @@ public class Board {
                 }
             }
         }
+        if(isFirstMove)
+        {
+            isFirstMove = false;
+        }
     }
 
     //Check if 2 words have common letter
@@ -276,7 +288,7 @@ public class Board {
         return from_board == from_word;
     }
 
-
+    //Ensuring validity of a move
     public boolean valid_move(Tile.letter x, int i, int j) {
         //If it's player one's turn and their move is valid (check each move function)
         if (player_one_turn) {
@@ -289,95 +301,41 @@ public class Board {
         return false;
     }
 
-    public void addScore(String word){
+    //Adding score
+    public void addScore(String word, int i, int j, char direction){
 
         Tile tile = new Tile();
 
+
+        //Check if word is on triple or double word score
+        int scoremult = 1;
+        int wordscore = 0;
         ArrayList<Tile.letter> wordlist = new ArrayList<Tile.letter>();
-        for (int i = 0; i < word.length(); i++) {
+        for (int counter = 0; counter < word.length(); counter++) {
 
-
-            wordlist.add(tile.getTileFromLetter(word.charAt(i)));
-
-
-            /*switch(word.charAt(i))
-            {
-                case 'A':
-
-                case 'E':
-
-                case 'I':
-
-                case 'L':
-
-                case 'N':
-
-                case 'O':
-
-                case 'R':
-
-                case 'S':
-
-                case 'T':
-
-                case 'U':
-                    score += 1*num;
-                    break;
-
-                case 'B':
-
-                case 'C':
-
-                case 'M':
-
-                case 'P':
-                    score += 3*num;
-                    break;
-
-                case 'D':
-
-                case 'G':
-                    score += 2*num;
-                    break;
-
-                case 'F':
-
-                case 'H':
-
-                case 'V':
-
-                case 'W':
-
-                case 'Y':
-                    score += 4*num;
-                    break;
-
-                case 'J':
-
-                case 'X':
-                    score += 8*num;
-                    break;
-
-                case 'K': score += 5*num;
-                    break;
-
-                case 'Q':
-
-                case 'Z':
-                    score += 10*num;
-                    break;
-
+            if(game_board[i][j].type == Square.square_type.dub_w || game_board[i][j].type == Square.square_type.trip_w){
+                scoremult = game_board[i][j].getWordMultiple();
             }
+            wordscore += getScore(game_board[i][j]);
+            game_board[i][j].type = Square.square_type.normal;
+            if(direction == 'h') i++;
+            else j++;
 
-             */
+            wordlist.add(tile.getTileFromLetter(word.charAt(counter))); //Add word to word list (convert string to tile) for scoring
         }
         if (player_one_turn)
-            player_one.increase_score(wordlist);
-        else player_two.increase_score(wordlist);
+            player_one.increase_score(wordscore * scoremult);
+        else player_two.increase_score(wordscore * scoremult);
 
     }
 
-
+    //Function to get the score
+    private int getScore(Square square)
+    {
+        Pool find_tile_value = new Pool();
+        int score = find_tile_value.queried_tile(square.tile);
+        return score * square.getScoreMultiple();
+    }
     /*
     //score for current player
     private void score(Player player, String word){

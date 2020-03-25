@@ -44,6 +44,7 @@ public class ScrabbleButton extends Button {
     }
 
 
+
     //Function of style of released button
     private void setButtonReleasedStyle()
     {

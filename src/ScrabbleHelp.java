@@ -1,4 +1,6 @@
 import javafx.animation.TranslateTransition;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -6,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.layout.StackPane;
 
@@ -15,10 +18,12 @@ import java.awt.*;
 public class ScrabbleHelp extends SubScene {
     private final static String BACKGROUND = "Images/borderbackground.png";
 
+
     private boolean hidden = true;
 
     //Characteristics of text in "Help"
     private final String HELP_TEXT = "-fx-text-fill: purple;" + "-fx-font-family: \"Arial\"; -fx-text-fill: linear-gradient(black, #303108); -fx-font-size: 30px; -fx-padding: 6px 9px ";
+
 
     //Setting prefixes for the pane
     public ScrabbleHelp() {
@@ -35,7 +40,7 @@ public class ScrabbleHelp extends SubScene {
         StackPane helproot = (StackPane) this.getRoot();
 
         helproot.setBackground(new Background(background));
-        helproot.setEffect(new DropShadow());
+        //helproot.setEffect(new DropShadow());
 
         text.setFill(Color.PURPLE);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
@@ -44,6 +49,8 @@ public class ScrabbleHelp extends SubScene {
         text.setY(50);
 
         text.setTextAlignment(TextAlignment.CENTER);
+
+
 
         //The text inside the "Help" pane once button is pressed
         text.setText("SCRABBLE RULES: \n\nScrabble is a two-player game and the objective\n when playing is to score more points than your\n" +
@@ -59,6 +66,8 @@ public class ScrabbleHelp extends SubScene {
 
         setLayoutX(300);
         setLayoutY(-600);
+
+
     }
 
 

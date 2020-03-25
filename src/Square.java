@@ -50,6 +50,7 @@ public class Square extends StackPane {
         }
     }
 
+    //Scores based on different square types
     public int getScoreMultiple()
     {
         switch (this.type)
@@ -64,6 +65,7 @@ public class Square extends StackPane {
         }
     }
 
+    //Word based on square types
     public int getWordMultiple()
     {
         switch (this.type)

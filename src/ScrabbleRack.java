@@ -3,6 +3,8 @@ import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -12,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class ScrabbleRack extends SubScene {
     //final Rotate rotateRack = new Rotate();
     final int RACK_X = 925;
     final int RACK_Y = 100;
+
     private final String STYLE_BUTTON_NORMAL = "-fx-background-color: linear-gradient(#CDC6B0, #CDC6B0); " +
             "-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color:  linear-gradient(#988454, #988454);";
 
@@ -29,7 +33,8 @@ public class ScrabbleRack extends SubScene {
     private boolean onboard = true;
     private final String STYLE_RACK_BACKGROUND = "-";
 
-    //Setting the characteristics for the rack
+
+        //Setting the characteristics for the rack
     public ScrabbleRack(Frame playerframe, Boolean onboard) {
         super(new Pane(), 472, 80);
 

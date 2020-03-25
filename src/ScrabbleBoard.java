@@ -53,6 +53,7 @@ public class ScrabbleBoard extends SubScene {
         }
     }
 
+
     //To set squares to their correct properties
     private class SquareTile extends StackPane {
 

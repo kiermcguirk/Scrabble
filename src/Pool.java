@@ -170,6 +170,7 @@ public class Pool
                 index++;
             }
         }
+
         //return the score at found at the given tile_array index
         return score[index];
     }

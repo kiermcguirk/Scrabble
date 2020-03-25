@@ -86,6 +86,7 @@ public class layoutManager {
 
     }
 
+    //Function to add buttons
     private void addButtons(ScrabbleButton button) {
         button.setLayoutX(GAME_BUTTON_X);
         button.setLayoutY(GAME_BUTTON_Y + gameButtons.size() * 100);
@@ -93,9 +94,11 @@ public class layoutManager {
         mainPane.getChildren().add(button);
     }
 
+    //Adding the play Button
     private void addPlayButton(){
         ScrabbleButton playButton = new ScrabbleButton("Play");
 
+        //Transitions for the buttons
         playButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -169,7 +172,7 @@ public class layoutManager {
                 FadeTransition fadeinrack = playerOneRack.fadeIn();
 
                 ParallelTransition movelayout = new ParallelTransition(transition,transitionboard,rotateTransition,transitionTurnLabel
-                ,transitionTurnLabel2,transitionTurnLabel3,transitionTurnScore,transitionTurnScore1);
+                        ,transitionTurnLabel2,transitionTurnLabel3,transitionTurnScore,transitionTurnScore1);
                 ParallelTransition fadeinandout = new ParallelTransition(fadeinrack,fadelogo);
                 playerOneRack.setOpacity(0.0);
                 playerOneRack.setVisible(true);
@@ -184,6 +187,8 @@ public class layoutManager {
 
     }
 
+
+    //Function to add the quit button
     private void addQuitButton()
     {
         ScrabbleButton quitButton = new ScrabbleButton("Quit");
@@ -199,13 +204,13 @@ public class layoutManager {
     }
     ScrabbleRack.RackTile rackTile;
 
-    private void addPassButton()
+    private void addPassButton()//Button for passing
     {
         ScrabbleButton swapButton = new ScrabbleButton("Swap");
         addButtons(swapButton);
     }
 
-    private void addHelpButton()
+    private void addHelpButton()//Help function button
     {
         ScrabbleButton helpButton = new ScrabbleButton("Help");
 
@@ -219,6 +224,7 @@ public class layoutManager {
         addButtons(helpButton);
     }
 
+    //Button when you're finished your turn
     private void addEndTurnButton()
     {
         ScrabbleButton endTurnButton = new ScrabbleButton("End Turn");
@@ -231,6 +237,7 @@ public class layoutManager {
         addButtons(endTurnButton);
     }
 
+    //Different types of buttons
     private void setButtons() {
         addPlayButton();
         addQuitButton();
@@ -239,6 +246,7 @@ public class layoutManager {
         addEndTurnButton();
     }
 
+    //Function for creating a button
     public void createButton(String text){
         ScrabbleButton button  = new ScrabbleButton(text);
         mainPane.getChildren().add(button);
@@ -253,6 +261,7 @@ public class layoutManager {
         return mainPane;
     }
 
+    //Setting the background to the specified image
     public void setScrabbleBackground()
     {
         Image scrabbleBackgroundImage = new Image("Images/background.jpg",1024, 819,false,true);
@@ -262,6 +271,7 @@ public class layoutManager {
         mainPane.setBackground(new Background(scrabbleBackground));
     }
 
+    //The addition of the Scrabble logo
     private void addScrabbleLogo()
     {
         ScrabbleLogo.setLayoutX(0);
@@ -271,12 +281,13 @@ public class layoutManager {
         mainPane.getChildren().add(ScrabbleLogo);
     }
 
-    private void addHelpScene()
+    private void addHelpScene()//Adding Help Scene
     {
         helpScene = new ScrabbleHelp();
         mainPane.getChildren().add(helpScene);
     }
 
+    //Adding the scrabble rack to the board
     private void addScrabbleRack()
     {
         playerOneRack = new ScrabbleRack(fxBoard.board.player_one.frame,true);
@@ -288,7 +299,10 @@ public class layoutManager {
         mainPane.getChildren().addAll(playerOneRack,playerTwoRack);
         //mainPane.getChildren().add(playerTwoRack);
     }
-    private void addPlayerTurnLabel() {
+
+    //Showing the player whose turn it is
+    private void addPlayerTurnLabel()
+    {
 
         player_turn.setFont(new Font("Verdana", 16));
         playerTurnlabel.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
@@ -299,6 +313,7 @@ public class layoutManager {
         mainPane.getChildren().add(playerTurnlabel);
     }
 
+    //Showing the score for player one
     public void player1ScoreLabel(){
         player_one.setFont(new Font("Verdana", 16));
 
@@ -316,7 +331,9 @@ public class layoutManager {
         mainPane.getChildren().addAll(playerOneLabel,score1);
     }
 
-    public void player2ScoreLabel(){
+    //Showing the score for player two
+    public void player2ScoreLabel()
+    {
         player_two.setFont(new Font("Verdana", 16));
 
         playerTwoLabel.setStyle("-fx-background-color: #D8BFD8; " + "-fx-background-insets: 10; " + "-fx-background-radius: 10; " + "-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
@@ -334,6 +351,7 @@ public class layoutManager {
     }
 
 
+    //Introduction to the game and prompting user to begin
     void promptUserBeginGame(){
         System.out.println("**WELCOME TO SCRABBLE**" +
                 "\n1. Enter 'QUIT' to quit the game\n" +
@@ -350,19 +368,8 @@ public class layoutManager {
         }
     }
 
-
-    public void promptUser() {
-        System.out.println("\n**WELCOME TO PLAY MENU**" +
-                "\n1. Enter 'QUIT' to quit the game\n" +
-                "2. Enter 'HELP' to display HELP (again for display to disappear)\n" +
-                "3. Enter 'PASS' to pass your turn\n" +
-                "4. Enter 'EXCHANGE <letters>' to exchange these letters with random ones from the pool\n" +
-                "5. Enter '<gridref><h/v><word>' to place your word e.g 0 0 V HELLO\n" +
-                "6. Enter 'REPLAY' to redisplay this menu");
-        getUserInput();
-    }
-
-        public void promptUser(boolean displaymenu) {
+    //Prompting user to play the game
+    public void promptUser(boolean displaymenu) {
         if(!begin_game) begin_game=true;
         else {
             if(displaymenu)
@@ -376,133 +383,130 @@ public class layoutManager {
                         "6. Enter REPLAY to redisplay this menu");
             }
             end_turn = userMove(getUserInput());
-            if(end_turn) endturn();
+            if(end_turn) endTurn();
             else promptUser(false);
         }
 
     }
-        private String getUserInput() {
+
+    private String getUserInput() //Receiving user input
+    {
         Scanner userinput = new Scanner(System.in);
         String input = userinput.nextLine();
         return input;
     }
 
-        private boolean userMove(String input) {
-            boolean exchange = false;
-            switch (input) {
-                case "QUIT":
-                    exit(0);
-                    return false;
+    //Different cases when a player takes their turn
+    private boolean userMove(String input)
+    {
+        boolean exchange = false;
+        switch (input) {
+            case "QUIT":
+                exit(0);
+                return false;
 
-                case "HELP":
-                    helpScene.Transition();
-                    return false;
+            case "HELP":
+                helpScene.Transition();
+                return false;
 
-                case "PLAY":
-                    return true;
-
-                case "PASS":
-                    endturn();
-                    return true;
-            }
-
-            //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
-            // Pattern pat = Pattern.compile(pattern);
-            String pattern_xy = "([0-1])";
-            String pattern_xy2 = "([0-9])";
-            String pattern_direction_horizontal = "(h)";
-            String pattern_direction_vertical = "(v)";
-            String pattern_word = "([A-Z]+)";
-
-
-            try {
-                String[] in = input.split(" ");
-                String pattern = "([A-Z]+)";
-
-
-                if (!(in[0].equals("EXCHANGE")) || in.length > 2) {
-                    throw new IllegalArgumentException();
-                }
-
-                Pattern pat = Pattern.compile(pattern);
-                Matcher matchexchange = pat.matcher(in[1]);
-                String letterstoexchange = in[1];
-                System.out.println(letterstoexchange);
-
-                if (matchexchange.matches()) {
-                    for (int i = 0; i < in[1].length(); i++) {
-                        ExchangeTile(getletter.getTileFromLetter(in[1].charAt(i)));
-                    }
-                }
+            case "PLAY":
                 return true;
 
-
-            } catch (Exception e) {}
-
-            //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
-            // Pattern pat = Pattern.compile(pattern);
-
-
-
-                try {
-                    String inputtostring = input.replaceAll(" ", "");
-                    System.out.println(inputtostring);
-                    char[] in = inputtostring.toCharArray();
-
-                    Pattern p_xy = Pattern.compile(pattern_xy);
-                    Pattern p_xy2 = Pattern.compile(pattern_xy2);
-                    Pattern p_direction_horizontal = Pattern.compile((pattern_direction_horizontal));
-                    Pattern p_direction_vertical = Pattern.compile(pattern_direction_vertical);
-                    Pattern p_word = Pattern.compile(pattern_word);
-
-                    Matcher x = p_xy.matcher(Character.toString(in[0]));
-                    Matcher x2 = p_xy2.matcher(Character.toString(in[1]));
-
-                    Matcher y = p_xy.matcher(Character.toString(in[2]));
-                    Matcher y2 = p_xy2.matcher(Character.toString(in[3]));
-
-                    Matcher word_direction_vertical = p_direction_vertical.matcher(Character.toString(in[4]));
-                    Matcher word_direction_horizontal = p_direction_horizontal.matcher(Character.toString(in[4]));
-
-                    System.out.println(in[4]);
-
-                    String w = "";
-                    for (int i = 5; i < in.length; i++) {
-                        w += in[i];
-                    }
-                    System.out.println(w);
-                    Matcher word = p_word.matcher(w);
-
-                    if (x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches() || word_direction_horizontal.matches()) && word.matches()) {
-                        System.out.println("MATCHES");
-                        placeWord(inputtostring);
-                        fxBoard.board.addScore(w);
-                        System.out.println("score is "+fxBoard.board.player_one.getScore());
-                        setScoreLabels();
-                    } else {
-                        System.out.println("Invalid move");
-                    }
-                    return true;
-                } catch (Exception e2) {
-                    System.out.println("Please try another move");
-                }
-            return false;
-    }
-
-        private void endturn() {
-        if (fxBoard.board.player_one_turn){
-            SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
-            fxBoard.board.player_one_turn = false;
-            swapracks.play();
-        } else{
-            SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
-            fxBoard.board.player_one_turn = true;
-            swapracks.play();
+            case "PASS":
+                endTurn();
+                return true;
         }
-            System.out.println("Player One's Frame:");
-            fxBoard.board.player_one.frame.display_frame();
+
+        //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
+        // Pattern pat = Pattern.compile(pattern);
+        // Pattern pat = Pattern.compile(pattern);
+        String pattern_xy = "([0-1])";
+        String pattern_xy2 = "([0-9])";
+        String pattern_direction_horizontal = "(h)";
+        String pattern_direction_vertical = "(v)";
+        String pattern_word = "([A-Z]+)";
+
+
+        try {
+            String[] in = input.split(" ");
+            String pattern = "([A-Z]+)";
+
+
+            if (!(in[0].equals("EXCHANGE")) || in.length > 2) {
+                throw new IllegalArgumentException();
+            }
+
+            Pattern pat = Pattern.compile(pattern);
+            Matcher matchexchange = pat.matcher(in[1]);
+            String letterstoexchange = in[1];
+            System.out.println(letterstoexchange);
+
+            if (matchexchange.matches()) {
+                for (int i = 0; i < in[1].length(); i++) {
+                    ExchangeTile(getletter.getTileFromLetter(in[1].charAt(i)));
+                }
+            }
+            return true;
+
+
+        } catch (Exception e) {}
+
+        //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
+        // Pattern pat = Pattern.compile(pattern);
+
+
+
+        try {
+            String inputtostring = input.replaceAll(" ", "");
+            System.out.println(inputtostring);
+            char[] in = inputtostring.toCharArray();
+
+            Pattern p_xy = Pattern.compile(pattern_xy);
+            Pattern p_xy2 = Pattern.compile(pattern_xy2);
+            Pattern p_direction_horizontal = Pattern.compile((pattern_direction_horizontal));
+            Pattern p_direction_vertical = Pattern.compile(pattern_direction_vertical);
+            Pattern p_word = Pattern.compile(pattern_word);
+
+            Matcher x = p_xy.matcher(Character.toString(in[0]));
+            Matcher x2 = p_xy2.matcher(Character.toString(in[1]));
+
+            Matcher y = p_xy.matcher(Character.toString(in[2]));
+            Matcher y2 = p_xy2.matcher(Character.toString(in[3]));
+
+            Matcher word_direction_vertical = p_direction_vertical.matcher(Character.toString(in[4]));
+            Matcher word_direction_horizontal = p_direction_horizontal.matcher(Character.toString(in[4]));
+
+            System.out.println(in[4]);
+
+            String w = "";
+            for (int i = 5; i < in.length; i++) {
+                w += in[i];
+            }
+            System.out.println(w);
+            Matcher word = p_word.matcher(w);
+            String indexi = Character.toString(in[0]) + Character.toString(in[1]);
+            String indexj = Character.toString(in[2]) + Character.toString(in[3]);
+            int i = Integer.parseInt(indexi);
+            int j = Integer.parseInt(indexj);
+
+            if (x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches() || word_direction_horizontal.matches()) && word.matches()) {
+                System.out.println("MATCHES");
+                placeWord(inputtostring);
+                fxBoard.board.addScore(w,i,j,in[4]);
+                System.out.println("score is "+fxBoard.board.player_one.getScore());
+                setScoreLabels();
+            } else {
+                System.out.println("Invalid move");
+            }
+            return true;
+        } catch (Exception e2) {
+            System.out.println("Please try another move");
+        }
+        return false;
     }
 
+
+    //Function when placing a word on the board
     private void placeWord(String input)  {
         System.out.println("je suis here");
         char[] in = input.toCharArray();
@@ -537,13 +541,14 @@ public class layoutManager {
         }
 
 
+
         fxBoard.board.place_word(wordlist,x,y,int_dir);
 
         if(fxBoard.board.player_one_turn) {
 
             fxBoard.place_word(wordlist, x, y, int_dir, playerOneRack);
 
-            //fxBoard.displayTiles(fxBoard.board);
+
             fxBoard.board.display_board();
         }
         else{
@@ -555,6 +560,7 @@ public class layoutManager {
         }
     }
 
+    //Determining who is called whether it is a single player or multiplayer
     private void changePlayerLabel(boolean player_one_turn)
     {
         if(player_one_turn)
@@ -570,22 +576,28 @@ public class layoutManager {
         }
     }
 
+    //Function for when a turn is finished
     private void endTurn()
     {
         if (fxBoard.board.player_one_turn) {
             changePlayerLabel(true);
             SequentialTransition swapracks = new SequentialTransition(playerOneRack.RacKTransition2(), playerTwoRack.RacKTransition());
-            fxBoard.board.player_one_turn = false;
+            addTileFrameRack();
             swapracks.play();
+            fxBoard.board.player_one_turn = false;
+
         } else
         {
             changePlayerLabel(false);
             SequentialTransition swapracks = new SequentialTransition(playerTwoRack.RacKTransition(),playerOneRack.RacKTransition2());
-            fxBoard.board.player_one_turn = true;
+            addTileFrameRack();
             swapracks.play();
+            fxBoard.board.player_one_turn = true;
+
         }
     }
 
+    //Function for when you are exchanging a tile
     private void ExchangeTile(Tile.letter tile)
     {
         Tile.letter tilefrompool = Pool.game_pool.draw();
@@ -600,9 +612,23 @@ public class layoutManager {
         }
     }
 
+    //Showing score
     private void setScoreLabels()
     {
         score1.setText(Integer.toString(fxBoard.board.player_one.getScore()));
         score2.setText(Integer.toString(fxBoard.board.player_two.getScore()));
+    }
+
+    //Function to add tiles to a rack
+    private void addTileFrameRack()
+    {
+        if(fxBoard.board.player_one_turn)
+        {
+            if(fxBoard.board.player_one.frame.player_frame.size() != 7)
+            {
+                fxBoard.board.player_one.frame.refill_frame();
+                playerOneRack.displayRack2(fxBoard.board.player_one.frame);
+            }
+        }
     }
 }

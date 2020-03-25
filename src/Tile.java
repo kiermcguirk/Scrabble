@@ -5,6 +5,7 @@ public class Tile {
 
     public letter getTileFromLetter(char s)
     {
+        //switch cases for the letters
         switch (s)
         {
             case 'A':

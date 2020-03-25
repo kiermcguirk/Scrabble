@@ -9,6 +9,7 @@ public class main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        //Inheriting characteristics from homePage
         Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -16,6 +17,7 @@ public class main extends Application {
         stage.show();
     }
 
+    //Launching the game
     public static void main(String[] args)
     {
         launch(args);
