@@ -31,6 +31,7 @@ public class Player {
     }
 
 
+
     //A3 - Allows a player�s score to be increased
     public void increase_score( /*ArrayList<Tile.letter> score_list*/ int score)
     {

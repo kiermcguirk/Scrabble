@@ -288,6 +288,7 @@ public class Board {
         return from_board == from_word;
     }
 
+
     //Ensuring validity of a move
     public boolean valid_move(Tile.letter x, int i, int j) {
         //If it's player one's turn and their move is valid (check each move function)

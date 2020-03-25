@@ -51,7 +51,6 @@ public class ScrabbleHelp extends SubScene {
         text.setTextAlignment(TextAlignment.CENTER);
 
 
-
         //The text inside the "Help" pane once button is pressed
         text.setText("SCRABBLE RULES: \n\nScrabble is a two-player game and the objective\n when playing is to score more points than your\n" +
                 " opponent does. When you have placed a word\n on the board, points are collected and added to \nyour overall score. The different" +

@@ -65,6 +65,7 @@ public class Square extends StackPane {
         }
     }
 
+
     //Word based on square types
     public int getWordMultiple()
     {

@@ -65,6 +65,7 @@ public class ScrabbleRack extends SubScene {
         gameRack.add(rack);
     }
 
+
     //Function to make rack square
     public void createRackSquare(Tile.letter text) {
         RackTile Rack = new RackTile(text);

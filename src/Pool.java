@@ -175,6 +175,7 @@ public class Pool
         return score[index];
     }
 
+
     //A8 - Random letter function
     public Tile.letter random_letter() {
         int randomIndex = (int) (Math.random() * pool.size());

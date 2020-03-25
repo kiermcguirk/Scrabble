@@ -619,6 +619,7 @@ public class layoutManager {
         score2.setText(Integer.toString(fxBoard.board.player_two.getScore()));
     }
 
+
     //Function to add tiles to a rack
     private void addTileFrameRack()
     {

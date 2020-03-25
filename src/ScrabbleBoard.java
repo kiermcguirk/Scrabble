@@ -67,6 +67,7 @@ public class ScrabbleBoard extends SubScene {
         {
             square = new Square(type);
 
+
             //Normal tiles
             if(type == Square.square_type.normal)
             {

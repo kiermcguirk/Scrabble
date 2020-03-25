@@ -61,6 +61,7 @@ public class ScrabbleButton extends Button {
         DropShadow clickColor = new DropShadow();
         clickColor.setColor(Color.DARKBLUE);
 
+
         setOnMousePressed(new EventHandler<MouseEvent>(){
     @Override
         public void handle(MouseEvent event){
