@@ -50,7 +50,7 @@ public class layoutManager {
     Tile getletter = new Tile();
 
 
-    Label player_two = new Label("Player Two:");
+    Label player_two = new Label("Robocop");
     StackPane playerTwoLabel = new StackPane(player_two);
 
     ArrayList<ScrabbleButton> gameButtons = new ArrayList<>();
@@ -108,7 +108,7 @@ public class layoutManager {
                 TranslateTransition transitionTurnScore1 = new TranslateTransition();
                 System.out.println("Currently " + fxBoard.board.player_one_turn);
                 //Transition Player Turn
-                player_turn.setText("Player 1's Turn");
+                player_turn.setText(player_one.getText() + "'s turn");
                 transitionTurnLabel.setDuration(Duration.seconds(2));
                 transitionboard.setDuration(Duration.seconds(2));
                 transitionboard.setNode(fxBoard);
@@ -547,7 +547,7 @@ public class layoutManager {
             fxBoard.board.display_board();
         }
         else{
-            System.out.println("Player two's turn");
+            System.out.println(player_two.getText() + "'s turn");
 
             fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
             fxBoard.displayTiles(fxBoard.board);
