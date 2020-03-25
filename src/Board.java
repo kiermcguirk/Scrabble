@@ -36,6 +36,8 @@ public class Board {
         test.add(Tile.letter.e);
 
         x.place_word(test,7,7,0);
+
+
         x.display_board();
     }
 
@@ -135,6 +137,7 @@ public class Board {
     {
         if(i > 14 || i<0 || j>14 || j<0)
         {
+            System.out.println("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 0 and 14");
             throw new IndexOutOfBoundsException("Invalid Move: That placement is out with the bounds of the board. \nPlease choose a position between 1 and 15");
         }
         else return true;
@@ -200,39 +203,58 @@ public class Board {
         boolean wait = false;
         int tempi = i;
         int tempj = j;
-
+        int counter2= word.size();
         first_word(word,i,j,direction);
+        int skipcounter = 0;
+        if(!isFirstMove)
+        System.out.println("here");
 
         for(counter = 0; counter < word.size(); counter++)
         {
+            if(counter2 <= 1 )break;
             if(direction == 1)
             {
                 //Loop through the type of square is not an empty tile
-                int counter2 = word.size();
-                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=0) {
-
+                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=1)
+                {
                     if(!first_word){break;}
-                    else if(in_word(word.get(counter), game_board[i][j].tile)){
-                        i++;
+                    else if(in_word(word.get(counter + skipcounter), game_board[i][j].tile)){
+                        if(i < tempi + word.size()-1){i++;
+                            //skipcounter++;
+                            counter++;}
+                        skip_letter = true;
                     }
                     counter2--;
                 }
-                if(valid_move(word.get(counter),i /*+ counter*/, j)){continue;}
+                if(in_word(word.get(counter), game_board[i][j].tile)){
+                    i++;
+                    continue;}
+                else if(valid_move(word.get(counter), i,j)){
+                    if(!skip_letter) i++;
+                    continue;}
                 else{invalid_move = true;
                     break;}
             }
             else if(direction == 0)
             {
-                int counter2 = word.size();
-                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=0)
-                {
 
+                while(game_board[i][j].tile != Tile.letter.empty && counter2 !=1)
+                {
                     if(!first_word){break;}
-                    else if(in_word(word.get(counter), game_board[i][j].tile)){
-                        j++;}
+                    else if(in_word(word.get(counter + skipcounter), game_board[i][j].tile)){
+                        if(j < tempj + word.size()-1){j++;
+                        //skipcounter++;
+                        counter++;}
+                        skip_letter = true;
+                    }
                     counter2--;
                 }
-                if(valid_move(word.get(counter), i,j+counter)){continue;}
+                if(in_word(word.get(counter), game_board[i][j].tile)){
+                    j++;
+                    continue;}
+                else if(valid_move(word.get(counter), i,j)){
+                    if(!skip_letter) j++;
+                    continue;}
                 else{invalid_move = true;
                     break;}
             }

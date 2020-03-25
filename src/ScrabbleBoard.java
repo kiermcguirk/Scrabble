@@ -288,7 +288,7 @@ public class ScrabbleBoard extends SubScene {
                 background = new Image("Images/Alphabet/V.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
                 break;
             case w:
-                background = new Image("Images/Alphabet/W.jpg", SQUARE_SIZE, SQUARE_SIZE, false, true);
+                background = new Image("Images/Alphabet/W.png", SQUARE_SIZE, SQUARE_SIZE, false, true);
                 break;
             case x:
                 background = new Image("Images/Alphabet/X.png", SQUARE_SIZE, SQUARE_SIZE, false, true);

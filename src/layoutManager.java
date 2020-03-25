@@ -69,12 +69,13 @@ public class layoutManager {
 
         setButtons();
         addPlayerTurnLabel();
-        player1ScoreLabel();
-        player2ScoreLabel();
+
 
         fxBoard.setLayoutX(200);
         fxBoard.setLayoutY(75);
         mainPane.getChildren().add(fxBoard);
+        player1ScoreLabel();
+        player2ScoreLabel();
         addScrabbleLogo();
         addHelpScene();
         addScrabbleRack();

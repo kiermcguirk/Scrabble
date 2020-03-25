@@ -244,7 +244,7 @@ public class ScrabbleRack extends SubScene {
                     background = new Image("Images/Alphabet/V.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
                     break;
                 case w:
-                    background = new Image("Images/Alphabet/W.jpg", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
+                    background = new Image("Images/Alphabet/W.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
                     break;
                 case x:
                     background = new Image("Images/Alphabet/X.png", RACK_TILE_SIZE, RACK_TILE_SIZE, false, true);
