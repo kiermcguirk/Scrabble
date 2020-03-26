@@ -121,6 +121,7 @@ class PlayerTest {
             Jennifer.frame.remove_letter(Tile.letter.a);
             actual7 = Jennifer.frame.player_frame.size();
         }
+        //asdf
 
         System.out.println("--New letters in frame: ");
         Jennifer.frame.display_frame();
