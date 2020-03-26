@@ -58,7 +58,7 @@ Java Threads: ( => current thread )
   0x000000001a152000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=32592, stack(0x000000001a810000,0x000000001a910000)]
   0x000000001a140800 JavaThread "Finalizer" daemon [_thread_blocked, id=12736, stack(0x000000001a620000,0x000000001a720000)]
   0x000000001835d000 JavaThread "Reference Handler" daemon [_thread_blocked, id=8940, stack(0x000000001a520000,0x000000001a620000)]
-  0x00000000032e4000 JavaThread "main" [_thread_blocked, id=9252, stack(0x0000000003050000,0x0000000003150000)]
+  0x00000000032e4000 JavaThread "Scrabble" [_thread_blocked, id=9252, stack(0x0000000003050000,0x0000000003150000)]
 
 Other Threads:
   0x0000000018359000 VMThread [stack: 0x000000001a020000,0x000000001a120000] [id=12856]
@@ -312,7 +312,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.2\lib\idea_rt.jar=62270:C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.2\bin -Dfile.encoding=UTF-8 
-java_command: main
+java_command: Scrabble
 java_class_path (initial): C:\Program Files\Java\jdk1.8.0_221\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_221\jre\lib\rt.jar;C:\Users\Kier\Documents\SE2\Scrabbled Eggs\out\production\Scrabbled Eggs;C:\Users\Kier\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Kier\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Kier\.m2\repository\org\junit\jupiter\junit-jupiter\5.4.2\junit-jupiter-5.4.2.jar;C:\Users\Kier\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.4.2\junit-jupiter-api-5.4.2.jar;C:\Users\Kier\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\Kier\.m2\repository\org\opentest4j\opentest4j\1.1.1\opentest4j-1.1.1.jar;C:\Users\Kier\.m2\repository\org\junit\platform\junit-platform-commo
 Launcher Type: SUN_STANDARD
 
