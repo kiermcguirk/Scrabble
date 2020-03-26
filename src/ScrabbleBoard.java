@@ -306,13 +306,4 @@ public class ScrabbleBoard extends SubScene {
         //The natural background for everything else
         return background;
     }
-
-
-
-
-
-
-
-
-
 }

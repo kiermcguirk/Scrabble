@@ -404,7 +404,7 @@ public class ScrabbleRack extends SubScene {
     {
         for(int i = 0; i< gameRack.size(); i++)
         {
-
+            gameRack.get(i).background.setImage(gameRack.get(i).setImageTo(gameRack.get(i).tileval));
         }
     }
 

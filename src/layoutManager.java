@@ -57,8 +57,10 @@ public class layoutManager {
     private int P1_Score = 10;
     private int P2_Score = 20;
 
-
+    //Constructor
     public layoutManager() {
+
+        //Get and set elements
         gameButtons = new ArrayList<ScrabbleButton>();
         mainPane = new AnchorPane();
         mainScene = new Scene(mainPane,1024,650);
@@ -79,11 +81,11 @@ public class layoutManager {
         addScrabbleLogo();
         addHelpScene();
         addScrabbleRack();
-        fxBoard.board.player_one.frame.display_frame();
-        System.out.println();
-        fxBoard.board.player_two.frame.display_frame();
-        System.out.println();
-        System.out.println(Pool.game_pool.pool.size());
+        //fxBoard.board.player_one.frame.display_frame();
+        //System.out.println();
+        //.board.player_two.frame.display_frame();
+       // System.out.println();
+       // System.out.println(Pool.game_pool.pool.size());
 
     }
 
@@ -110,7 +112,7 @@ public class layoutManager {
                 TranslateTransition transitionTurnScore = new TranslateTransition();
                 TranslateTransition transitionTurnLabel3 = new TranslateTransition();
                 TranslateTransition transitionTurnScore1 = new TranslateTransition();
-                System.out.println("Currently " + fxBoard.board.player_one_turn);
+                //System.out.println("Currently " + fxBoard.board.player_one_turn);
                 //Transition Player Turn
                 player_turn.setText(player_one.getText() + "'s turn");
                 transitionTurnLabel.setDuration(Duration.seconds(2));
@@ -352,22 +354,6 @@ public class layoutManager {
     }
 
 
-    //Introduction to the game and prompting user to begin
-    void promptUserBeginGame(){
-        System.out.println("**WELCOME TO SCRABBLE**" +
-                "\n1. Enter 'QUIT' to quit the game\n" +
-                "2. Enter 'PLAY' to begin the game");
-        boolean validinput = false;
-        while(!validinput) {
-            String input = getUserInput();
-            if(input.equals("QUIT") || input.equals("Quit") || input.equals("quit")){
-                System.out.println("**Thank You for Playing Our Game**");
-                exit(0);
-            }
-            else if(input.equals("PLAY") || input.equals("Play") || input.equals("play")) validinput = true;
-            else System.out.println("*You must enter either QUIT or PLAY*");
-        }
-    }
 
     //Prompting user to play the game
     public void promptUser(boolean displaymenu) {
@@ -380,8 +366,7 @@ public class layoutManager {
                         "2. Enter HELP to display HELP (again for display to disappear)\n" +
                         "3. Enter PASS to pass your turn\n" +
                         "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
-                        "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
-                        "6. Enter REPLAY to redisplay this menu");
+                        "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n");
             }
             end_turn = userMove(getUserInput());
             if(end_turn) endTurn();
@@ -414,7 +399,6 @@ public class layoutManager {
                 return true;
 
             case "PASS":
-                endTurn();
                 return true;
         }
 
@@ -428,6 +412,7 @@ public class layoutManager {
         String pattern_word = "([A-Z]+)";
 
 
+        //Try to exchange tile
         try {
             String[] in = input.split(" ");
             String pattern = "([A-Z]+)";
@@ -456,10 +441,10 @@ public class layoutManager {
         // Pattern pat = Pattern.compile(pattern);
 
 
-
+        //Try to place word
         try {
             String inputtostring = input.replaceAll(" ", "");
-            System.out.println(inputtostring);
+           // System.out.println(inputtostring);
             char[] in = inputtostring.toCharArray();
 
             Pattern p_xy = Pattern.compile(pattern_xy);
@@ -477,13 +462,13 @@ public class layoutManager {
             Matcher word_direction_vertical = p_direction_vertical.matcher(Character.toString(in[4]));
             Matcher word_direction_horizontal = p_direction_horizontal.matcher(Character.toString(in[4]));
 
-            System.out.println(in[4]);
+           //System.out.println(in[4]);
 
             String w = "";
             for (int i = 5; i < in.length; i++) {
                 w += in[i];
             }
-            System.out.println(w);
+           // System.out.println(w);
             Matcher word = p_word.matcher(w);
             String indexi = Character.toString(in[0]) + Character.toString(in[1]);
             String indexj = Character.toString(in[2]) + Character.toString(in[3]);
@@ -491,10 +476,10 @@ public class layoutManager {
             int j = Integer.parseInt(indexj);
 
             if (x.matches() && x2.matches() && y.matches() && y2.matches() && (word_direction_vertical.matches() || word_direction_horizontal.matches()) && word.matches()) {
-                System.out.println("MATCHES");
+               // System.out.println("MATCHES");
                 placeWord(inputtostring);
                 fxBoard.board.addScore(w,i,j,in[4]);
-                System.out.println("score is "+fxBoard.board.player_one.getScore());
+               // System.out.println("score is "+fxBoard.board.player_one.getScore());
                 setScoreLabels();
             } else {
                 System.out.println("Invalid move");
@@ -509,7 +494,7 @@ public class layoutManager {
 
     //Function when placing a word on the board
     private void placeWord(String input)  {
-        System.out.println("je suis here");
+       // System.out.println("je suis here");
         char[] in = input.toCharArray();
         int x1 = in[0] - 48;
         int x2 = in[1] - 48;
@@ -538,7 +523,7 @@ public class layoutManager {
             int_dir = 0;
         for(int i = 0; i< wordlist.size(); i++)
         {
-            System.out.print(wordlist.get(i));
+          //  System.out.print(wordlist.get(i));
         }
 
 
@@ -550,10 +535,10 @@ public class layoutManager {
             fxBoard.place_word(wordlist, x, y, int_dir, playerOneRack);
 
 
-            fxBoard.board.display_board();
+            //fxBoard.board.display_board();
         }
         else{
-            System.out.println(player_two.getText() + "'s turn");
+          //  System.out.println(player_two.getText() + "'s turn");
 
             fxBoard.place_word(wordlist,x,y,int_dir,playerTwoRack);
             fxBoard.displayTiles(fxBoard.board);
@@ -606,10 +591,12 @@ public class layoutManager {
         {
             Pool.game_pool.pool.add(playerOneRack.SwapTile(tile,tilefrompool));
             fxBoard.board.player_one.frame.SwapTile(tile,tilefrompool);
+            playerOneRack.displayRack();
         }
         else{
             Pool.game_pool.pool.add(playerTwoRack.SwapTile(tile,tilefrompool));
             fxBoard.board.player_two.frame.SwapTile(tile,tilefrompool);
+            playerTwoRack.displayRack();
         }
     }
 
