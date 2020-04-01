@@ -114,6 +114,7 @@ public class Controller implements Initializable {
         userText.setText(name);
     }
 
+
     @FXML
     private void userEvent(ActionEvent event) throws IOException {
         UI ui = new UI();
@@ -124,7 +125,6 @@ public class Controller implements Initializable {
         closeStage.close();
         stage.show();
     }
-
 
     @FXML void userEvent2(ActionEvent event){
         layoutManager lm = new layoutManager();
@@ -137,8 +137,6 @@ public class Controller implements Initializable {
         closeStage.close();
         stage.show();
     }
-
-
 
     @FXML
     private void playGameEvent(ActionEvent event) {

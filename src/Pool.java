@@ -3,6 +3,8 @@ import java.util.Random;
 
 public class Pool
 {
+
+
     //A1 - Stores the values of each tile
     public static int[] score = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10,0};
     public static Tile.letter[] tile_array = new Tile.letter[] {Tile.letter.a, Tile.letter.b,
@@ -181,6 +183,8 @@ public class Pool
         int randomIndex = (int) (Math.random() * pool.size());
         return pool.get(randomIndex);
     }
+
+
 }
 
 
