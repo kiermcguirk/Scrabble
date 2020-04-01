@@ -186,6 +186,10 @@ public class layoutManager {
 
                 promptUser(end_turn);
 
+
+
+
+
             }
         });
         addButtons(playButton);
@@ -371,7 +375,8 @@ public class layoutManager {
                         "2. Enter HELP to display HELP (again for display to disappear)\n" +
                         "3. Enter PASS to pass your turn\n" +
                         "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
-                        "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n");
+                        "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
+                        "6. Enter NAME to set your name\n");
             }
             end_turn = userMove(getUserInput());
             if(end_turn) endTurn();
@@ -405,7 +410,12 @@ public class layoutManager {
 
             case "PASS":
                 return true;
+
+            case "NAME":
+                setPlayerName();
+                return false;
         }
+
 
         //String pattern = "([0-1])([0-4])([0-1])([0-4])(H|V)([A-Z]+)";
         // Pattern pat = Pattern.compile(pattern);
@@ -624,6 +634,57 @@ public class layoutManager {
                 playerOneRack.displayRack2(fxBoard.board.player_one.frame);
             }
         }
+    }
+
+    private void setPlayerName() {
+
+        //String input = "";
+
+        //Ask player to enter name
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("What would you like your name to be? ");
+
+        String input = myObj.nextLine();
+
+        //System.out.println("Your new name is: " + input);
+        //Make sure name doesn't contain numbers
+        //name length less than 12
+        //no spaces
+        if ((Pattern.compile("[0-9]").matcher(input).find())  ||  (input.length() > 11)  ||  (input.contains(" "))) {
+
+            System.out.println("Invalid Name! Please have no spaces or numbers and have your name fewer than 12 letters!");
+            setPlayerName();
+        }
+        else {
+
+            //I am mega sucky ducky
+            //if player one's turn
+            if (fxBoard.board.player_one_turn) {
+                //set player one's name to input
+               // System.out.println("player 1 start");
+
+                fxBoard.board.player_one.setName(input);
+                System.out.println(fxBoard.board.player_one.getName());
+                //System.out.println("player 1 finish");
+            }
+            else {
+                System.out.println("player 2 start");
+                //otherwise, set player two's name
+                fxBoard.board.player_two.setName(input);
+                System.out.println("player 2 finish");
+            }
+
+            setNameLabels();
+
+
+        }
+    }
+
+    private void setNameLabels()
+    {
+        player_one.setText("yer da punts cooncil");
+
+
     }
 
 }
