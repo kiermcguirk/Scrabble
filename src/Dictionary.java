@@ -14,9 +14,8 @@ public class Dictionary {
         word = word.toLowerCase();
         try{
             BufferedReader read = new BufferedReader(new FileReader(DICTIONARY_PATH));
-            while(read.readLine() != null)
+            while((wff = read.readLine()) != null)
             {
-                wff = read.readLine();
                 if(word.equals(wff)) return true;
             }
         } catch (FileNotFoundException e) {
@@ -32,7 +31,7 @@ public class Dictionary {
     public static void main(String[]args)
     {
       Dictionary dictionary = new Dictionary();
-      System.out.println("Expected true: " + dictionary.checkDictionary("hello"));
+      System.out.println("Expected true: " + dictionary.checkDictionary("aahs"));
       System.out.println("Expected false: " + dictionary.checkDictionary("asdlfkjasdflkj"));
     }
 }
