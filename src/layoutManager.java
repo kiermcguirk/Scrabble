@@ -17,7 +17,9 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -223,6 +225,9 @@ public class layoutManager {
                 helpScene.Transition();
                 fxBoard.board.player_one.frame.display_frame();
             }
+            Stack<Integer> askflj = new Stack<>();
+            LinkedList asdf = new LinkedList(askflj);
+
         });
         addButtons(helpButton);
     }
