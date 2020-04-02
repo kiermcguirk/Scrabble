@@ -256,7 +256,19 @@ public class layoutManager {
         addQuitButton();
         addPassButton();
         addHelpButton();
+        addChallengeButton();
         addEndTurnButton();
+    }
+
+    private void addChallengeButton() {
+        ScrabbleButton challengeButton = new ScrabbleButton("Challenge");
+        challengeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //do something
+            }
+        });
+        addButtons(challengeButton);
     }
 
     //Function for creating a button
