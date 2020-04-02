@@ -24,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 public class layoutManager {
 
@@ -638,53 +639,52 @@ public class layoutManager {
 
     private void setPlayerName() {
 
-        //String input = "";
-
         //Ask player to enter name
         Scanner myObj = new Scanner(System.in);
-        System.out.println("What would you like your name to be? ");
 
+        System.out.println("Enter Player name ");
         String input = myObj.nextLine();
+
 
         //System.out.println("Your new name is: " + input);
         //Make sure name doesn't contain numbers
         //name length less than 12
         //no spaces
-        if ((Pattern.compile("[0-9]").matcher(input).find())  ||  (input.length() > 11)  ||  (input.contains(" "))) {
+        if ((Pattern.compile("[0-9]").matcher(input).find())  ||  (input.length() > 11)  ||  (input.contains(" "))){
 
             System.out.println("Invalid Name! Please have no spaces or numbers and have your name fewer than 12 letters!");
             setPlayerName();
         }
         else {
 
-            //I am mega sucky ducky
             //if player one's turn
             if (fxBoard.board.player_one_turn) {
                 //set player one's name to input
-               // System.out.println("player 1 start");
 
-                fxBoard.board.player_one.setName(input);
+                player_one.setText(input);
+                //fxBoard.board.player_one.setName(input);
                 System.out.println(fxBoard.board.player_one.getName());
-                //System.out.println("player 1 finish");
             }
             else {
-                System.out.println("player 2 start");
                 //otherwise, set player two's name
-                fxBoard.board.player_two.setName(input);
-                System.out.println("player 2 finish");
+                player_two.setText(input);
+                //fxBoard.board.player_two.setName(player2);
+                System.out.println(fxBoard.board.player_two.getName());
+
             }
-
-            setNameLabels();
-
-
+            setNameLabels(true);
         }
     }
 
-    private void setNameLabels()
-    {
-        player_one.setText("yer da punts cooncil");
-
-
+    private void setNameLabels(boolean player_name){
+        if(player_name){
+            if(!singleplayer)
+                player_two.setText(player_two.getText());
+            else
+                player_turn.setText("RoboCops's Turn");
+        }
+        else{
+            player_one.setText(player_one.getText());
+        }
     }
-
 }

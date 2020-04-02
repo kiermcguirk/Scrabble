@@ -101,7 +101,6 @@ public class Controller implements Initializable {
     }
 
 
-
     //General initialisation
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -119,7 +118,7 @@ public class Controller implements Initializable {
     private void userEvent(ActionEvent event) throws IOException {
         UI ui = new UI();
         ui.lm.player_one.setText(userText.getText());
-        ui.lm.playerOneLabel.getChildren().addAll(userText);
+        //ui.lm.playerOneLabel.getChildren().addAll(userText);
         Stage stage = ui.lm.getStage();
         Stage closeStage = (Stage) playGame.getScene().getWindow();
         closeStage.close();
@@ -130,8 +129,8 @@ public class Controller implements Initializable {
         layoutManager lm = new layoutManager();
         lm.player_one.setText(userText.getText());
         lm.player_two.setText(userText2.getText());
-        lm.playerOneLabel.getChildren().add(userText);
-        lm.playerTwoLabel.getChildren().add(userText2);
+        //lm.playerOneLabel.getChildren().add(userText);
+        //lm.playerTwoLabel.getChildren().add(userText2);
         Stage stage = lm.getStage();
         Stage closeStage = (Stage) playGame.getScene().getWindow();
         closeStage.close();
