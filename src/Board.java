@@ -360,7 +360,18 @@ public class Board {
         if (player_one_turn)
             player_one.increase_score(wordscore * scoremult);
         else player_two.increase_score(wordscore * scoremult);
+    }
 
+    public void addScore(ArrayList<Tile.letter> word)
+    {
+        int wordscore = 0;
+        for (Tile.letter tile: word) {
+            wordscore += getScore(tile);
+        }
+
+        if (player_one_turn)
+            player_one.increase_score(wordscore);
+        else player_two.increase_score(wordscore);
     }
 
     //Function to get the score
@@ -369,6 +380,12 @@ public class Board {
         Pool find_tile_value = new Pool();
         int score = find_tile_value.queried_tile(square.tile);
         return score * square.getScoreMultiple();
+    }
+    private int getScore(Tile.letter tile)
+    {
+        Pool find_tile_value = new Pool();
+        int score = find_tile_value.queried_tile(tile);
+        return score;
     }
     /*
     //score for current player
@@ -464,12 +481,13 @@ public class Board {
         else
         {
             newWord.add(game_board[i][j].tile);
+
             if(direction == 1)
                 addLetter(i, j + 1, direction, newWord);
             else
                 addLetter(i + 1, j, direction, newWord);
         }
-
+        addScore(newWord);
         return newWord;
     }
 

@@ -712,10 +712,10 @@ public class layoutManager {
     {
 
         if(fxBoard.board.player_one_turn) {
-            if (fxBoard.board.player_one.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+            if (fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
         }
         else {
-            if (fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+            if (fxBoard.board.player_one.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
         }
 
         String word ="";
@@ -739,7 +739,7 @@ public class layoutManager {
             }
             else
             {
-                if(fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+
                 fxBoard.board.player_one.setPrevScore();
                 fxBoard.board.player_one.frame.revertRack();
                 fxBoard.board.revertPlacedWord();
