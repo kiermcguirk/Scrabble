@@ -655,6 +655,14 @@ public class layoutManager {
                 playerOneRack.displayRack(fxBoard.board.player_one.frame);
             }
         }
+        else
+        {
+            if(fxBoard.board.player_two.frame.player_frame.size() != 7)
+            {
+                fxBoard.board.player_two.frame.refill_frame();
+                playerTwoRack.displayRack(fxBoard.board.player_two.frame);
+            }
+        }
     }
 
     private void setPlayerName() {

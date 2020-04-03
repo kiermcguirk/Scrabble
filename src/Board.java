@@ -279,14 +279,13 @@ public class Board {
                         else {
                             this.player_two.frame.remove_letter(word.get(counter));
                         }
-                        game_board[tempi][tempj].tile = word.get(counter);
                         adjacentWord(word.get(counter),tempi,tempj,direction);
+                        game_board[tempi][tempj].tile = word.get(counter);
                         prevSquare.add(game_board[tempi][tempj].type);
                         addPreviousWord(tempi,tempj);
                         tempi++;
                     }
                     else{
-                        adjacentWord(word.get(counter),tempi,tempj,direction);
                         tempi++;}
                 }
                 else
@@ -299,14 +298,14 @@ public class Board {
                         else{
                             this.player_two.frame.remove_letter(word.get(counter));
                         }
-                        game_board[tempi][tempj].tile = word.get(counter);
                         adjacentWord(word.get(counter),tempi,tempj,direction);
+                        game_board[tempi][tempj].tile = word.get(counter);
                         prevSquare.add(game_board[tempi][tempj].type);
                         addPreviousWord(tempi,tempj);
                         tempj++;
                     }
                     else{
-                        adjacentWord(word.get(counter),tempi,tempj,direction);
+
                         tempj++; }
                 }
             }
@@ -444,9 +443,12 @@ public class Board {
         ArrayList<Tile.letter> adjWord = new ArrayList<>();
         if(direction == 1)
         {
+
             //If there is an adjacent word
-            if(game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty)
+            if( game_board[i][j].tile != Tile.letter.empty && (game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty) && !(game_board[i][j + 1].tile != Tile.letter.empty && game_board[i][j -1].tile != Tile.letter.empty))
             {
+
+
                 while(game_board[tempI][tempJ - 1].tile != Tile.letter.empty && tempJ >= 0) //Watch out for if it goes off the board
                 {
                     //Find head of word
@@ -459,7 +461,7 @@ public class Board {
         }
         else
         {
-            if(game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty)
+            if(game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
             {
                 while(game_board[tempI - 1][tempJ].tile != Tile.letter.empty && tempI >= 0) //Watch out for if it goes off the board
                 {
