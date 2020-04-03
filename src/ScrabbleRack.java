@@ -27,7 +27,6 @@ public class ScrabbleRack extends SubScene {
 
     private final String STYLE_BUTTON_NORMAL = "-fx-background-color: linear-gradient(#CDC6B0, #CDC6B0); " +
             "-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color:  linear-gradient(#988454, #988454);";
-
     private static final String RACK_BACKGROUND = "Images/Rack_Background.jpg";
     ArrayList<RackTile> gameRack = new ArrayList<>();
     private boolean onboard = true;
@@ -408,10 +407,11 @@ public class ScrabbleRack extends SubScene {
         }
     }
 
-    public void displayRack2(Frame playerframe)
+    public void displayRack(Frame playerframe)
     {
         for(int i = 0; i< gameRack.size(); i++)
-        {   gameRack.get(i).tileval = playerframe.player_frame.get(i);
+        {
+            gameRack.get(i).tileval = playerframe.player_frame.get(i);
             gameRack.get(i).background.setImage(gameRack.get(i).setImageTo(gameRack.get(i).tileval));
             gameRack.get(i).setVisible(true);
         }

@@ -10,7 +10,6 @@ import java.awt.*;
 public class Board {
     //Store square for the board
     public  Square[][] game_board = new Square[15][15];
-
     protected Player player_one = new Player("");
     protected Player player_two = new Player("");
     protected boolean player_one_turn = true;
@@ -18,12 +17,15 @@ public class Board {
     boolean first_word = false; //Variable which stores whether or not the first move had a tile placed on the middle square.
     boolean letter_in_rack;
     boolean isFirstMove = true;
+    public ArrayList<Integer> prevI = new ArrayList<>();
+    public ArrayList<Integer> prevJ = new ArrayList<>();
+    public ArrayList<Tile.letter> prevWord = new ArrayList<>();
+    public ArrayList<Square.square_type> prevSquare = new ArrayList<>();
 
     public Board()
     {
         board_init(); //Call function to initialize state of board
     }
-
 
     //Testing with word "apple" by placing on the board horizontally
     public static void main(String[] args) {
@@ -122,13 +124,10 @@ public class Board {
             }
             else if(direction == 0) {i++;}
             else if(direction == 1){j++;}
-            else
-            {
-                System.out.println("Invalid Move: For the first word, you must begin on the middle square");
-                return false;
-            }
         }
-        return false;
+        System.out.println("You must place your word on the middle tile for the first word");
+        throw new IllegalArgumentException("Must place first word on middle tile");
+
 
     }
 
@@ -152,9 +151,6 @@ public class Board {
             //Check if there are any tiles adjacent to the position indicated by the indexes i,j (either vertically or horizontally)
             if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile !=Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty)
             {
-                System.out.println("i is " + i );
-                System.out.println("j is "  + j);
-                System.out.println("passed connected word");
                 return true;
             }
             else
@@ -196,6 +192,8 @@ public class Board {
 
     //Function when placing a word on the board
     public void place_word(ArrayList<Tile.letter> word, int i, int j, int direction) {
+
+        addPreviousRack();
         //1 is vertical 0 is horizontal
         boolean invalid_move = false;
         int counter = 0;
@@ -208,6 +206,14 @@ public class Board {
         int skipcounter = 0;
         if(!isFirstMove)
         System.out.println("here");
+        prevWord = word;
+        prevJ.clear();
+        prevI.clear();
+        if(word.size() < 2){
+            System.out.println("Cannot place a word of size one");
+            throw new IllegalArgumentException();
+        }
+
 
         for(counter = 0; counter < word.size(); counter++)
         {
@@ -237,7 +243,6 @@ public class Board {
             }
             else if(direction == 0)
             {
-
                 while(game_board[i][j].tile != Tile.letter.empty && counter2 !=1)
                 {
                     if(!first_word){break;}
@@ -269,32 +274,40 @@ public class Board {
                 {
                     if (game_board[tempi][tempj].tile == Tile.letter.empty){
                         if (player_one_turn) {
-                            game_board[tempi][tempj].tile = word.get(counter);
                             this.player_one.frame.remove_letter(word.get(counter));
-                            tempi++;
                         }
-                        else{ this.player_two.frame.remove_letter(word.get(counter));
-                            game_board[tempi][tempj].tile = word.get(counter);
-                            tempi++;
+                        else {
+                            this.player_two.frame.remove_letter(word.get(counter));
                         }
+                        game_board[tempi][tempj].tile = word.get(counter);
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
+                        prevSquare.add(game_board[tempi][tempj].type);
+                        addPreviousWord(tempi,tempj);
+                        tempi++;
                     }
-                    else{tempi++;}
+                    else{
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
+                        tempi++;}
                 }
                 else
                 {
                     if(game_board[tempi][tempj].tile == Tile.letter.empty) {
 
                         if (player_one_turn) {
-                            game_board[tempi][tempj].tile = word.get(counter);
                             this.player_one.frame.remove_letter(word.get(counter));
-                            tempj++;
                         }
-                        else{ this.player_two.frame.remove_letter(word.get(counter));
-                            game_board[tempi][tempj].tile = word.get(counter);
-                            tempj++;
+                        else{
+                            this.player_two.frame.remove_letter(word.get(counter));
                         }
+                        game_board[tempi][tempj].tile = word.get(counter);
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
+                        prevSquare.add(game_board[tempi][tempj].type);
+                        addPreviousWord(tempi,tempj);
+                        tempj++;
                     }
-                    else{tempj++; }
+                    else{
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
+                        tempj++; }
                 }
             }
         }
@@ -326,10 +339,7 @@ public class Board {
 
     //Adding score
     public void addScore(String word, int i, int j, char direction){
-
         Tile tile = new Tile();
-
-
 
         //Check if word is on triple or double word score
         int scoremult = 1;
@@ -378,6 +388,92 @@ public class Board {
     }
 
      */
+    private void addPreviousWord(int i, int j)
+    {
+        prevI.add(i);
+        prevJ.add(j);
+    }
+
+    private void addPreviousRack()
+    {
+        if(player_one_turn)
+            for (Tile.letter tile :player_one.frame.player_frame)
+            {
+                player_one.frame.prevRack.add(tile);
+            }
+
+        else
+            for (Tile.letter tile :player_two.frame.player_frame)
+            {
+                player_two.frame.prevRack.add(tile);
+            }
+
+    }
+
+    public void revertPlacedWord()
+    {
+        for(int i=0; i<prevWord.size();i++)
+        {
+            game_board[prevI.get(i)][prevJ.get(i)].type = prevSquare.get(i);
+            game_board[prevI.get(i)][prevJ.get(i)].tile = Tile.letter.empty;
+        }
+    }
+
+    public void adjacentWord(Tile.letter letter, int i, int j, int direction)
+    {
+        int tempI = i;
+        int tempJ = j;
+
+        ArrayList<Tile.letter> adjWord = new ArrayList<>();
+        if(direction == 1)
+        {
+            //If there is an adjacent word
+            if(game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty)
+            {
+                while(game_board[tempI][tempJ - 1].tile != Tile.letter.empty && tempJ >= 0) //Watch out for if it goes off the board
+                {
+                    //Find head of word
+                    tempJ--;
+                }
+                //add new word
+                addLetter(tempI, tempJ,direction, adjWord);
+                //System.out.println(adjWord);
+            }
+        }
+        else
+        {
+            if(game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty)
+            {
+                while(game_board[tempI - 1][tempJ].tile != Tile.letter.empty && tempI >= 0) //Watch out for if it goes off the board
+                {
+                    //Find head of word
+                    tempI--;
+                }
+                addLetter(tempI, tempJ,direction, adjWord);
+
+            }
+        }
+    }
+
+    private ArrayList<Tile.letter> addLetter(int i, int j, int direction, ArrayList<Tile.letter> newWord)
+    {
+        if(game_board[i][j].tile == Tile.letter.empty || i > 14  && j >14)
+        {
+            return newWord;
+        }
+        else
+        {
+            newWord.add(game_board[i][j].tile);
+            if(direction == 1)
+                addLetter(i, j + 1, direction, newWord);
+            else
+                addLetter(i + 1, j, direction, newWord);
+        }
+
+        return newWord;
+    }
+
+
 
 
 

@@ -5,6 +5,7 @@ public class Frame {
     //A1 - Stores the letters that each player has in their frame
     //Protected ArrayList of type letter
     protected ArrayList<Tile.letter> player_frame = new ArrayList<Tile.letter>();
+    public ArrayList<Tile.letter> prevRack = new ArrayList<>();
 
     //A2 - Allows letters to be removed from a frame
     public void remove_letter(Tile.letter x)
@@ -115,6 +116,25 @@ public class Frame {
                 player_frame.set(i,tilefrompool);
                 break;
             }
+        }
+    }
+
+    public void revertRack()
+    {
+        boolean found = false;
+        for(int i =0; i<prevRack.size(); i++)
+        {
+            for(int j = 0; j<player_frame.size(); j++)
+            {
+                if(prevRack.get(i) == player_frame.get(j)) found = true;
+            }
+            if(!found)
+                Pool.game_pool.pool.add(prevRack.get(i));
+        }
+        player_frame.clear();
+
+        for (Tile.letter tile: prevRack) {
+            player_frame.add(tile);
         }
     }
 

@@ -5,6 +5,7 @@ public class Player {
     //Instance variables
     protected String player_name;
     protected int player_score;
+    protected int prevScore;
 
     //A5 - Allows access to a players frame (tiles)
     protected Frame frame = new Frame();
@@ -35,6 +36,7 @@ public class Player {
     //A3 - Allows a player�s score to be increased
     public void increase_score( /*ArrayList<Tile.letter> score_list*/ int score)
     {
+        prevScore = player_score;
         this.player_score += score;
 
         /*
@@ -64,5 +66,12 @@ public class Player {
     public void display_name()
     {
         System.out.println(player_name);
+    }
+
+
+    //Set previous score
+    public void setPrevScore()
+    {
+        player_score = prevScore;
     }
 }

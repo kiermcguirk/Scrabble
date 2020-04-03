@@ -51,7 +51,7 @@ public class layoutManager {
     Label score1 = new Label();
     Label score2 = new Label();
     Tile getletter = new Tile();
-
+    Dictionary dictionary = new Dictionary();
 
     Label player_two = new Label("Robocop");
     StackPane playerTwoLabel = new StackPane(player_two);
@@ -265,7 +265,11 @@ public class layoutManager {
         challengeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //do something
+                try{
+                challenge();} catch (Exception e) {
+                    System.out.println("You can't challenge a word when one hasn't been placed");
+                }
+
             }
         });
         addButtons(challengeButton);
@@ -389,7 +393,8 @@ public class layoutManager {
                         "3. Enter PASS to pass your turn\n" +
                         "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
                         "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
-                        "6. Enter NAME to set your name\n");
+                        "6. Enter NAME to set your name\n" +
+                        "7. Enter CHALLENGE to challenge your opponents previous word\n");
             }
             end_turn = userMove(getUserInput());
             if(end_turn) endTurn();
@@ -424,9 +429,12 @@ public class layoutManager {
             case "PASS":
                 return true;
 
-            case "NAME":
-                setPlayerName();
-                return false;
+            case "CHALLENGE":
+                try{
+                    challenge();} catch (Exception e) {
+                    System.out.println("You can't challenge a word when one hasn't been placed");
+                }
+                return true;
         }
 
 
@@ -644,7 +652,7 @@ public class layoutManager {
             if(fxBoard.board.player_one.frame.player_frame.size() != 7)
             {
                 fxBoard.board.player_one.frame.refill_frame();
-                playerOneRack.displayRack2(fxBoard.board.player_one.frame);
+                playerOneRack.displayRack(fxBoard.board.player_one.frame);
             }
         }
     }
@@ -697,6 +705,51 @@ public class layoutManager {
         }
         else{
             player_one.setText(player_one.getText());
+        }
+    }
+
+    private void challenge()
+    {
+
+        if(fxBoard.board.player_one_turn) {
+            if (fxBoard.board.player_one.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+        }
+        else {
+            if (fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+        }
+
+        String word ="";
+        Tile getString = new Tile();
+        for (Tile.letter x: fxBoard.board.prevWord ) {
+            word += getString.getLetterFromTile(x);
+        }
+
+        if(dictionary.checkDictionary(word))
+        {
+            System.out.println("This word is a valid word, your turn has now been passed");
+            endTurn();
+        }
+        else
+        {
+            if(fxBoard.board.player_one_turn)
+            {
+                fxBoard.board.player_two.setPrevScore();
+                fxBoard.board.player_one.frame.revertRack();
+                fxBoard.board.revertPlacedWord();
+            }
+            else
+            {
+                if(fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
+                fxBoard.board.player_one.setPrevScore();
+                fxBoard.board.player_one.frame.revertRack();
+                fxBoard.board.revertPlacedWord();
+            }
+            setScoreLabels();
+            fxBoard.displayTiles(fxBoard.board);
+            playerOneRack.displayRack(fxBoard.board.player_one.frame);
+            playerTwoRack.displayRack(fxBoard.board.player_two.frame);
+
+
         }
     }
 }

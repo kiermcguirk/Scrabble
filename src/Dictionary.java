@@ -8,10 +8,10 @@ public class Dictionary {
     public static final String DICTIONARY_PATH = "src\\dictionary.txt"; //File path
 
     //Function to check to see if the inputted word is found it the dictionary
-    private boolean checkDictionary(String word)
-    {
+    public boolean checkDictionary(String word) {
         String wff = ""; //word from file
         word = word.toLowerCase();
+        System.out.println(word);
         try{
             BufferedReader read = new BufferedReader(new FileReader(DICTIONARY_PATH));
             while((wff = read.readLine()) != null)
@@ -34,4 +34,6 @@ public class Dictionary {
       System.out.println("Expected true: " + dictionary.checkDictionary("aahs"));
       System.out.println("Expected false: " + dictionary.checkDictionary("asdlfkjasdflkj"));
     }
+
+
 }
