@@ -213,7 +213,7 @@ public class Board {
         first_word(word,i,j,direction);
         int skipcounter = 0;
         if(!isFirstMove)
-        System.out.println("here");
+
         prevWord = word;
         prevPlacedTiles.clear();
         prevSquare.clear();

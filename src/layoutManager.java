@@ -649,7 +649,7 @@ public class layoutManager {
     {
         if(fxBoard.board.player_one_turn)
         {
-            if(fxBoard.board.player_one.frame.player_frame.size() != 7)
+            if(fxBoard.board.player_one.frame.player_frame.size() < 7)
             {
                 fxBoard.board.player_one.frame.refill_frame();
                 playerOneRack.displayRack(fxBoard.board.player_one.frame);
@@ -657,7 +657,7 @@ public class layoutManager {
         }
         else
         {
-            if(fxBoard.board.player_two.frame.player_frame.size() != 7)
+            if(fxBoard.board.player_two.frame.player_frame.size() < 7)
             {
                 fxBoard.board.player_two.frame.refill_frame();
                 playerTwoRack.displayRack(fxBoard.board.player_two.frame);
@@ -718,7 +718,6 @@ public class layoutManager {
 
     private void challenge()
     {
-
         if(fxBoard.board.player_one_turn) {
             if (fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
         }
