@@ -134,7 +134,7 @@ public class Controller implements Initializable {
         //lm.playerOneLabel.getChildren().add(userText);
         //lm.playerTwoLabel.getChildren().add(userText2);
         Stage stage = lm.getStage();
-        Stage closeStage = (Stage) playGame.getScene().getWindow();
+        Stage closeStage = (Stage) playGame2.getScene().getWindow();
         closeStage.close();
         stage.show();
     }
