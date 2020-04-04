@@ -40,6 +40,7 @@ public class Controller implements Initializable {
     public TextField userText;
     public TextField userText2;
     public Button playGame;
+    public Button playGame2;
 
     //Receiving text from the user
     private TextField getUserText() {
@@ -51,6 +52,7 @@ public class Controller implements Initializable {
         //receiving characteristics from this file
         Parent gameMode = FXMLLoader.load(getClass().getResource("getContents.fxml"));
         Scene gameScene = new Scene(gameMode);
+        startGame.getStyleClass().add("startGame");
 
         //Get stage info
         Stage window = (Stage) startGame.getScene().getWindow();
@@ -138,6 +140,22 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void playGameEvent(ActionEvent event) {
+    private void backEvents(ActionEvent event) throws IOException {
+        Parent back = FXMLLoader.load(getClass().getResource("getContents.fxml"));
+        Scene backScene = new Scene(back);
+
+        Stage backWindow = (Stage) playGame.getScene().getWindow();
+        backWindow.setScene(backScene);
+        backWindow.show();
+    }
+
+    @FXML
+    private void backEventm(ActionEvent event) throws IOException {
+        Parent back = FXMLLoader.load(getClass().getResource("getContents.fxml"));
+        Scene backScene = new Scene(back);
+
+        Stage backWindow = (Stage) playGame2.getScene().getWindow();
+        backWindow.setScene(backScene);
+        backWindow.show();
     }
 }

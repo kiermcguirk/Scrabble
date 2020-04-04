@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
    <children>
+      <ImageView fitHeight="407.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/wooden.jpg" />
+         </image></ImageView>
       <Button fx:id="singlePlayerButton" layoutX="210.0" layoutY="58.0" mnemonicParsing="false" onAction="#singlePlayerEvent" prefHeight="110.0" prefWidth="180.0" style="-fx-background-radius: 10;" text="Single Player" />
       <Button fx:id="multiPlayerButton" layoutX="210.0" layoutY="200.0" mnemonicParsing="false" onAction="#multiPlayerEvent" prefHeight="110.0" prefWidth="180.0" style="-fx-background-radius: 10;" text="Multi Player" />
       <Button fx:id="backButton" layoutX="210.0" layoutY="340.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="36.0" prefWidth="71.0" style="-fx-background-radius: 10;" text="Back" />

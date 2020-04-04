@@ -1,0 +1,132 @@
+#startGame{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#startGame:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#startGame:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#singlePlayerButton{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#singlePlayerButton:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#singlePlayerButton:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#multiPlayerButton{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#multiPlayerButton:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#multiPlayerButton:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#backButton{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#backButton:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#backButton:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#quitButton{
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#quitButton:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#quitButton:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#playGame{
+    -fx-padding: 4 10 10 10;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#playGame:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#playGame:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#playGame2{
+    -fx-padding: 4 10 10 10;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #87CEFA 0%, #00BFFF 100%), #1E90FF, #ADD8E6, radial-gradient(center 50% 50%, radius 100%, #ADD8E6, #87CEFA);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.1em;
+    -fx-cursor: hand;
+}
+
+#playGame2:hover {
+    -fx-background-color:#1E90FF, #ADD8E6;
+}
+#playGame2:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}

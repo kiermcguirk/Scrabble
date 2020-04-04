@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
    <children>
-      <TextField fx:id="userText" alignment="CENTER" layoutX="88.0" layoutY="100.0" onAction="#userEvent" prefHeight="50.0" prefWidth="190.0" style="-fx-background-color: #D8BFD8; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);">
+      <ImageView fitHeight="266.0" fitWidth="459.0" layoutY="-66.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/wooden.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="userText" alignment="CENTER" layoutX="87.0" layoutY="92.0" onAction="#userEvent" prefHeight="50.0" prefWidth="190.0" style="-fx-background-color: #D8BFD8; -fx-background-insets: 10; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, black, 0, 0, 0, 0);">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -18,11 +28,11 @@
          <font>
             <Font name="Verdana" size="16.0" />
          </font></TextField>
-      <Label layoutX="88.0" layoutY="55.0" prefHeight="25.0" prefWidth="125.0" text="Enter your name:">
+      <Label layoutX="106.0" layoutY="66.0" prefHeight="14.0" prefWidth="152.0" text="Enter your name:">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="playGame" layoutX="147.0" layoutY="150.0" mnemonicParsing="false" onAction="#playGameEvent" text="Play Game" />
+      <Button fx:id="playGame" layoutX="127.0" layoutY="150.0" mnemonicParsing="false" onAction="#backEvents" prefHeight="36.0" prefWidth="110.0" stylesheets="@styles.css" text="Back" />
    </children>
 </AnchorPane>
