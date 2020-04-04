@@ -13,8 +13,6 @@ import java.util.ArrayList;
 
 
 public class ScrabbleBoard extends SubScene {
-    protected Player player_one = new Player("");
-    protected Player player_two = new Player("");
     private boolean playGame;
 
     public SquareTile[][] squareTilesBoard = new SquareTile[15][15];//Setting up the 15x15 board

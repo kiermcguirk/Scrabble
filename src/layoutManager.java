@@ -354,7 +354,7 @@ public class layoutManager {
         score1.setFont(new Font("Verdana", 13));
         score1.setLayoutX(125);
         score1.setLayoutY(-7);
-        score1.setText(Integer.toString(fxBoard.player_one.getScore()));
+        score1.setText(Integer.toString(fxBoard.board.player_one.getScore()));
         score1.setPadding(new Insets(25, 30, 50, 25));
 
         mainPane.getChildren().addAll(playerOneLabel,score1);

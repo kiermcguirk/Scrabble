@@ -50,6 +50,7 @@ public class Frame {
         {
             player_frame.add(Pool.game_pool.draw());
         }
+        System.out.println(Pool.game_pool.display_num());
     }
 
     public Frame()
