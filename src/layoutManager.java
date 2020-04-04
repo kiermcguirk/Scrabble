@@ -757,6 +757,8 @@ public class layoutManager {
             playerOneRack.displayRack(fxBoard.board.player_one.frame);
             playerTwoRack.displayRack(fxBoard.board.player_two.frame);
 
+            fxBoard.board.isFirstMove = fxBoard.board.isFirstMove();
+
 
         }
     }

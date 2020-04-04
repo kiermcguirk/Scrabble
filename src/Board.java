@@ -26,7 +26,7 @@ public class Board {
     {
         board_init(); //Call function to initialize state of board
     }
-
+    public ArrayList<Tile.letter> prevPlacedTiles = new ArrayList<>();
     //Testing with word "apple" by placing on the board horizontally
     public static void main(String[] args) {
         Board x = new Board();
@@ -215,6 +215,8 @@ public class Board {
         if(!isFirstMove)
         System.out.println("here");
         prevWord = word;
+        prevPlacedTiles.clear();
+        prevSquare.clear();
         prevJ.clear();
         prevI.clear();
         if(!connected_word(word,i,j,direction)){throw new IllegalArgumentException();}
@@ -292,6 +294,7 @@ public class Board {
                         adjacentWord(word.get(counter),tempi,tempj,direction);
                         game_board[tempi][tempj].tile = word.get(counter);
                         prevSquare.add(game_board[tempi][tempj].type);
+                        prevPlacedTiles.add(word.get(counter));
                         addPreviousWord(tempi,tempj);
                         tempi++;
                     }
@@ -311,6 +314,8 @@ public class Board {
                         adjacentWord(word.get(counter),tempi,tempj,direction);
                         game_board[tempi][tempj].tile = word.get(counter);
                         prevSquare.add(game_board[tempi][tempj].type);
+                        prevPlacedTiles.add(word.get(counter));
+
                         addPreviousWord(tempi,tempj);
                         tempj++;
                     }
@@ -439,10 +444,11 @@ public class Board {
 
     public void revertPlacedWord()
     {
-        for(int i=0; i<prevWord.size();i++)
+        for(int i=0; i<prevPlacedTiles.size();i++)
         {
-            game_board[prevI.get(i)][prevJ.get(i)].type = prevSquare.get(i);
-            game_board[prevI.get(i)][prevJ.get(i)].tile = Tile.letter.empty;
+                game_board[prevI.get(i)][prevJ.get(i)].type = prevSquare.get(i);
+                game_board[prevI.get(i)][prevJ.get(i)].tile = Tile.letter.empty;
+
         }
     }
 
@@ -509,8 +515,19 @@ public class Board {
     }
 
 
-
-
-
+    public boolean isFirstMove()
+    {
+        for(int i= 0; i<15; i++)
+        {
+            for(int j = 0; j<15; j++)
+            {
+                if(game_board[i][j].tile != Tile.letter.empty)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }
