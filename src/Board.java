@@ -153,7 +153,7 @@ public class Board {
         {
             for(int index = 0; index< word.size(); index++) {
                 //Check if there are any tiles adjacent to the position indicated by the indexes i,j (either vertically or horizontally)
-                if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile != Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty) {
+                if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile != Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j].tile != Tile.letter.empty) {
                     connected_word_flag = true;
                     return true;
                 }
