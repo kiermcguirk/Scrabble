@@ -37,7 +37,7 @@ public class Board {
         test.add(Tile.letter.l);
         test.add(Tile.letter.e);
 
-        x.place_word(test,7,7,0);
+        x.place_word(test,14,0,0);
 
 
         x.display_board();
@@ -147,7 +147,7 @@ public class Board {
     {
         if(connected_word_flag)
         {
-            return true;
+            return true; //If at least one is connected don't check the rest
         }
         if(isFirstMove == false)
         {
@@ -274,7 +274,7 @@ public class Board {
         int tempi = i;
         int tempj = j;
         int counter2= word.size();
-        first_word(word,i,j,direction);
+        //first_word(word,i,j,direction);
         int skipcounter = 0;
 
         prevWord = word;
@@ -354,8 +354,8 @@ public class Board {
                         else {
                             this.player_two.frame.remove_letter(word.get(counter));
                         }
-                        adjacentWord(word.get(counter),tempi,tempj,direction);
                         game_board[tempi][tempj].tile = word.get(counter);
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
                         prevSquare.add(game_board[tempi][tempj].type);
                         prevPlacedTiles.add(word.get(counter));
                         addPreviousWord(tempi,tempj);
@@ -374,8 +374,8 @@ public class Board {
                         else{
                             this.player_two.frame.remove_letter(word.get(counter));
                         }
-                        adjacentWord(word.get(counter),tempi,tempj,direction);
                         game_board[tempi][tempj].tile = word.get(counter);
+                        adjacentWord(word.get(counter),tempi,tempj,direction);
                         prevSquare.add(game_board[tempi][tempj].type);
                         prevPlacedTiles.add(word.get(counter));
 
@@ -405,7 +405,6 @@ public class Board {
     public boolean valid_move(Tile.letter x, int i, int j) {
         //If it's player one's turn and their move is valid (check each move function)
         if (player_one_turn) {
-
             if (in_rack(player_one.frame, x)  && out_of_bounds(i, j) && conflicting_word(x,i, j)) {
                 return true; //Return true
             }
@@ -442,6 +441,10 @@ public class Board {
 
     public void addScore(ArrayList<Tile.letter> word)
     {
+        if(word.size() <=1)
+        {
+            return;
+        }
         int wordscore = 0;
         for (Tile.letter tile: word) {
             wordscore += getScore(tile);
@@ -530,25 +533,25 @@ public class Board {
         if(direction == 1)
         {
 
-            //If there is an adjacent word07
-            if( /*game_board[i][j].tile != Tile.letter.empty &&*/ ((game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty) && (!(game_board[i][j + 1].tile != Tile.letter.empty && game_board[i][j -1].tile != Tile.letter.empty))))
-            {
-
-
-                while(game_board[tempI][tempJ - 1].tile != Tile.letter.empty && tempJ >= 0) //Watch out for if it goes off the board
-                {
-                    //Find head of word
-                    tempJ--;
-                }
-                //add new word
-                addLetter(tempI, tempJ,direction, adjWord);
-                //System.out.println(adjWord);
+            if(j == 14 ) {
+                if (game_board[i][j - 1].tile != Tile.letter.empty)
+                    found = true;
             }
+            else if( ((game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty) && (!(game_board[i][j + 1].tile != Tile.letter.empty && game_board[i][j -1].tile != Tile.letter.empty))))
+                found = true;
+            while(found && game_board[tempI][tempJ - 1].tile != Tile.letter.empty && tempJ >= 0) //Watch out for if it goes off the board
+            {
+                //Find head of word
+                tempJ--;
+            }
+            //add new word
+            if (found)addLetter(tempI, tempJ,direction, adjWord);
+            //System.out.println(adjWord);
         }
         else
         {
             if(i == 14) {
-                if ((game_board[i - 1][j].tile != Tile.letter.empty) && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
+                if ((game_board[i - 1][j].tile != Tile.letter.empty))
                 found = true;
             }
 
@@ -563,6 +566,7 @@ public class Board {
             addLetter(tempI, tempJ,direction, adjWord);
         }
         addScore(adjWord);
+        System.out.println(adjWord);
     }
 
     private ArrayList<Tile.letter> addLetter(int i, int j, int direction, ArrayList<Tile.letter> newWord)
@@ -574,7 +578,6 @@ public class Board {
         else
         {
             newWord.add(game_board[i][j].tile);
-
             if(direction == 1)
                 addLetter(i, j + 1, direction, newWord);
             else
