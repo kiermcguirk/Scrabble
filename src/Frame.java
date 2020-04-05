@@ -128,9 +128,12 @@ public class Frame {
             for(int j = 0; j<player_frame.size(); j++)
             {
                 if(prevRack.get(i) == player_frame.get(j)) found = true;
+                break;
             }
             if(!found)
                 Pool.game_pool.pool.add(prevRack.get(i));
+
+            found = false;
         }
         player_frame.clear();
 

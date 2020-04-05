@@ -277,7 +277,6 @@ public class Board {
         int counter2= word.size();
         first_word(word,i,j,direction);
         int skipcounter = 0;
-        if(!isFirstMove)
 
         prevWord = word;
         prevPlacedTiles.clear();
@@ -493,17 +492,20 @@ public class Board {
 
     private void addPreviousRack()
     {
-        if(player_one_turn)
-            for (Tile.letter tile :player_one.frame.player_frame)
-            {
+        if(player_one_turn) {
+
+            player_one.frame.prevRack.clear();
+            for (Tile.letter tile : player_one.frame.player_frame) {
                 player_one.frame.prevRack.add(tile);
             }
+        }
 
-        else
-            for (Tile.letter tile :player_two.frame.player_frame)
-            {
+        else {
+            player_two.frame.prevRack.clear();
+            for (Tile.letter tile : player_two.frame.player_frame) {
                 player_two.frame.prevRack.add(tile);
             }
+        }
 
     }
 

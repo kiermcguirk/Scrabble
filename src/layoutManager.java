@@ -741,7 +741,7 @@ public class layoutManager {
             if(fxBoard.board.player_one_turn)
             {
                 fxBoard.board.player_two.setPrevScore();
-                fxBoard.board.player_one.frame.revertRack();
+                fxBoard.board.player_two.frame.revertRack();
                 fxBoard.board.revertPlacedWord();
             }
             else
