@@ -152,8 +152,73 @@ public class Board {
         if(isFirstMove == false)
         {
             for(int index = 0; index< word.size(); index++) {
-                //Check if there are any tiles adjacent to the position indicated by the indexes i,j (either vertically or horizontally)
-                if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile != Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j].tile != Tile.letter.empty) {
+
+                if(i == 0 && j ==0) //Top left
+                {
+                    if(game_board[i][j+1].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+                else if(i == 14 && j==0) // Top right
+                {
+                    if(game_board[i][j+1].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+
+                else if(i == 0 && j==14) //Bottom left
+                {
+                    if(game_board[i][j-1].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+                else if(i == 14 && j == 14) //Bottom right
+                {
+                    if(game_board[i-1][j].tile != Tile.letter.empty || game_board[i][j-1].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+               else if(i == 0) //If on left file and not a corner
+                {
+                    if(game_board[i][j-1].tile != Tile.letter.empty || game_board[i][j+1].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+               else if(j == 0) //if on top row and not a corner
+                {
+                    if(game_board[i][j+1].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+               else if(j== 14) //if on bottom row
+                {
+                    if(game_board[i][j-1].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+                else if(i== 14) //if on right file
+                {
+                    if(game_board[i][j-1].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty || game_board[i][j+1].tile != Tile.letter.empty )
+                    {
+                        connected_word_flag = true;
+                        return true;
+                    }
+                }
+                else if (game_board[i - 1][j].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty || game_board[i + 1][j].tile != Tile.letter.empty || game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j].tile != Tile.letter.empty) { //anywhere else on the board
                     connected_word_flag = true;
                     return true;
                 }
