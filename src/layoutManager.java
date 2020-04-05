@@ -434,7 +434,7 @@ public class layoutManager {
                     challenge();} catch (Exception e) {
                     System.out.println("You can't challenge a word when one hasn't been placed");
                 }
-                return true;
+                return false;
         }
 
 
