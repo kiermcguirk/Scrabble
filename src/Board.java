@@ -532,10 +532,14 @@ public class Board {
 
     public void adjacentWord(Tile.letter letter, int i, int j, int direction)
     {
+
+
+        //If first word, don't check
         if(isFirstMove){
             return;
         }
 
+        //Check to see if there is an adjacent word
         int tempI = i;
         int tempJ = j;
         boolean found = false;
@@ -543,6 +547,7 @@ public class Board {
         if(direction == 1)
         {
 
+            //Perimeter of board (avoiding index out of bounds)
             if(j == 14 ) {
                 if (game_board[i][j - 1].tile != Tile.letter.empty)
                     found = true;
@@ -561,7 +566,6 @@ public class Board {
             }
             //add new word
             if (found)addLetter(tempI, tempJ,direction, adjWord);
-            //System.out.println(adjWord);
         }
         else
         {
@@ -584,20 +588,22 @@ public class Board {
             }
             addLetter(tempI, tempJ,direction, adjWord);
         }
-        addScore(adjWord);
-        System.out.println(adjWord);
+        addScore(adjWord); //Add the score of the adjacent word
+
     }
 
     private ArrayList<Tile.letter> addLetter(int i, int j, int direction, ArrayList<Tile.letter> newWord)
     {
+        //Base cases - if the end of the word is reached or if edge of the board is reached
         if(game_board[i][j].tile == Tile.letter.empty || i == 14 || j == 14)
         {
             return newWord;
         }
         else
         {
+            //add the current letter
             newWord.add(game_board[i][j].tile);
-            if(direction == 1)
+            if(direction == 1) //Call recursively
                 addLetter(i, j + 1, direction, newWord);
             else
                 addLetter(i + 1, j, direction, newWord);
@@ -609,6 +615,7 @@ public class Board {
 
     public boolean isFirstMove()
     {
+        //Check through board to see if a tile has been placed
         for(int i= 0; i<15; i++)
         {
             for(int j = 0; j<15; j++)

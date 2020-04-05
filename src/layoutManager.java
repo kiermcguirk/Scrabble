@@ -718,6 +718,7 @@ public class layoutManager {
 
     private void challenge()
     {
+        //If the previous racks are empty throw error
         if(fxBoard.board.player_one_turn) {
             if (fxBoard.board.player_two.frame.prevRack.isEmpty()) throw new IllegalArgumentException();
         }
@@ -731,6 +732,8 @@ public class layoutManager {
             word += getString.getLetterFromTile(x);
         }
 
+
+        //Check dictionary for word, if its found end the players turn
         if(dictionary.checkDictionary(word))
         {
             System.out.println("This word is a valid word, your turn has now been passed");
@@ -738,6 +741,7 @@ public class layoutManager {
         }
         else
         {
+            //If not foudn revert board and rack and score
             if(fxBoard.board.player_one_turn)
             {
                 fxBoard.board.player_two.setPrevScore();
@@ -746,11 +750,12 @@ public class layoutManager {
             }
             else
             {
-
+                //Likewise for player kone
                 fxBoard.board.player_one.setPrevScore();
                 fxBoard.board.player_one.frame.revertRack();
                 fxBoard.board.revertPlacedWord();
             }
+            //Set changes to baord (display racks and set labels)
             setScoreLabels();
             fxBoard.displayTiles(fxBoard.board);
             playerOneRack.displayRack(fxBoard.board.player_one.frame);

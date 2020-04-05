@@ -10,20 +10,20 @@ public class Dictionary {
     //Function to check to see if the inputted word is found it the dictionary
     public boolean checkDictionary(String word) {
         String wff = ""; //word from file
-        word = word.toLowerCase();
-        System.out.println(word);
+        word = word.toLowerCase(); //Set word to lowercase
+
         try{
-            BufferedReader read = new BufferedReader(new FileReader(DICTIONARY_PATH));
+            BufferedReader read = new BufferedReader(new FileReader(DICTIONARY_PATH)); //Linearly find word in txt file
             while((wff = read.readLine()) != null)
             {
-                if(word.equals(wff)) return true;
+                if(word.equals(wff)) return true; //Return true if found
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return false; // Return false if not found
     }
 
 
