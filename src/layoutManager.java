@@ -46,7 +46,7 @@ public class layoutManager {
     private boolean singleplayer = false;
     Label player_turn = new Label("Welcome!");
     StackPane playerTurnlabel = new StackPane(player_turn);
-    public static Label player_one = new Label("Player One:");
+    Label player_one = new Label("Player One:");
     StackPane playerOneLabel = new StackPane(player_one);
     Label score1 = new Label();
     Label score2 = new Label();
@@ -74,8 +74,6 @@ public class layoutManager {
 
         setButtons();
         addPlayerTurnLabel();
-
-        System.out.println(Pool.game_pool.display_num());
 
 
         fxBoard.setLayoutX(200);
@@ -395,7 +393,7 @@ public class layoutManager {
                         "3. Enter PASS to pass your turn\n" +
                         "4. Enter EXCHANGE <letters> to exchange these letters with random ones from the pool\n" +
                         "5. Enter <gridref><h/v><word> to place your word e.g 0 0 V HELLO\n" +
-                        "6. Enter NAME to set your name, then press PASS after entering name\n" +
+                        "6. Enter NAME to set your name\n" +
                         "7. Enter CHALLENGE to challenge your opponents previous word\n");
             }
             end_turn = userMove(getUserInput());
@@ -431,17 +429,12 @@ public class layoutManager {
             case "PASS":
                 return true;
 
-            case "NAME":
-                setPlayerName();
-                return false;
-
             case "CHALLENGE":
                 try{
                     challenge();} catch (Exception e) {
                     System.out.println("You can't challenge a word when one hasn't been placed");
                 }
                 return true;
-
         }
 
 

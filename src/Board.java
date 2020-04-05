@@ -526,6 +526,7 @@ public class Board {
         if(isFirstMove){
             return;
         }
+
         int tempI = i;
         int tempJ = j;
         boolean found = false;
@@ -571,7 +572,7 @@ public class Board {
 
     private ArrayList<Tile.letter> addLetter(int i, int j, int direction, ArrayList<Tile.letter> newWord)
     {
-        if(game_board[i][j].tile == Tile.letter.empty || i > 14  && j >14)
+        if(game_board[i][j].tile == Tile.letter.empty || i == 14 || j == 14)
         {
             return newWord;
         }
