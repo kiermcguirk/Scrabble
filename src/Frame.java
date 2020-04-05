@@ -66,12 +66,12 @@ public class Frame {
     {
         player_frame.clear();
         player_frame.add(Tile.letter.a);
-        player_frame.add(Tile.letter.p);
-        player_frame.add(Tile.letter.p);
-        player_frame.add(Tile.letter.l);
-        player_frame.add(Tile.letter.e);
-        player_frame.add(Tile.letter.blank);
-        player_frame.add(Tile.letter.blank);
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.a);
+        player_frame.add(Tile.letter.a);
     }
 
 

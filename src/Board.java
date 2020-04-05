@@ -36,8 +36,17 @@ public class Board {
         test.add(Tile.letter.p);
         test.add(Tile.letter.l);
         test.add(Tile.letter.e);
+        ArrayList<Tile.letter> test2 = new ArrayList<Tile.letter>();
+        test2.add(Tile.letter.a);
+        test2.add(Tile.letter.a);
+        test2.add(Tile.letter.a);
 
-        x.place_word(test,14,0,0);
+
+
+
+        x.place_word(test,7,0,0);
+        x.place_word(test2,6,0,1);
+
 
 
         x.display_board();
@@ -538,6 +547,11 @@ public class Board {
                 if (game_board[i][j - 1].tile != Tile.letter.empty)
                     found = true;
             }
+            else if(j ==0 )
+            {
+                if(game_board[i][j+1].tile != Tile.letter.empty)
+                    found = true;
+            }
             else if( ((game_board[i][j + 1].tile != Tile.letter.empty || game_board[i][j - 1].tile != Tile.letter.empty) && (!(game_board[i][j + 1].tile != Tile.letter.empty && game_board[i][j -1].tile != Tile.letter.empty))))
                 found = true;
             while(found && game_board[tempI][tempJ - 1].tile != Tile.letter.empty && tempJ >= 0) //Watch out for if it goes off the board
@@ -555,7 +569,11 @@ public class Board {
                 if ((game_board[i - 1][j].tile != Tile.letter.empty))
                 found = true;
             }
-
+            else if(i == 0)
+            {
+                if(game_board[i+1][j].tile != Tile.letter.empty)
+                    found = true;
+            }
             else if( (game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty) && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
                 found = true;
 
