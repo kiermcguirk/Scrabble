@@ -283,7 +283,7 @@ public class Board {
         int tempi = i;
         int tempj = j;
         int counter2= word.size();
-        //first_word(word,i,j,direction);
+        first_word(word,i,j,direction);
         int skipcounter = 0;
 
         prevWord = word;
