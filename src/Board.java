@@ -169,7 +169,6 @@ public class Board {
                         return true;
                     }
                 }
-
                 else if(i == 0 && j==14) //Bottom left
                 {
                     if(game_board[i][j-1].tile != Tile.letter.empty || game_board[i+1][j].tile != Tile.letter.empty )
@@ -526,7 +525,7 @@ public class Board {
         }
         int tempI = i;
         int tempJ = j;
-
+        boolean found = false;
         ArrayList<Tile.letter> adjWord = new ArrayList<>();
         if(direction == 1)
         {
@@ -548,16 +547,20 @@ public class Board {
         }
         else
         {
-            if( (game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty) && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
-            {
-                while(game_board[tempI - 1][tempJ].tile != Tile.letter.empty && tempI >= 0) //Watch out for if it goes off the board
-                {
-                    //Find head of word
-                    tempI--;
-                }
-                addLetter(tempI, tempJ,direction, adjWord);
-
+            if(i == 14) {
+                if ((game_board[i - 1][j].tile != Tile.letter.empty) && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
+                found = true;
             }
+
+            else if( (game_board[i + 1][j].tile != Tile.letter.empty || game_board[i-1][j].tile != Tile.letter.empty) && !(game_board[i + 1][j].tile != Tile.letter.empty && game_board[i - 1][j].tile != Tile.letter.empty))
+                found = true;
+
+            while(found && game_board[tempI - 1][tempJ].tile != Tile.letter.empty && tempI >= 0) //Watch out for if it goes off the board
+            {
+                //Find head of word
+                tempI--;
+            }
+            addLetter(tempI, tempJ,direction, adjWord);
         }
         addScore(adjWord);
     }
