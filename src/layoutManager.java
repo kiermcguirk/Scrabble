@@ -84,6 +84,8 @@ public class layoutManager {
         addScrabbleLogo();
         addHelpScene();
         addScrabbleRack();
+
+        System.out.println(Pool.game_pool.display_num());
         //fxBoard.board.player_one.frame.display_frame();
         //System.out.println();
         //.board.player_two.frame.display_frame();
@@ -429,6 +431,10 @@ public class layoutManager {
             case "PASS":
                 return true;
 
+            case "NAME":
+                setPlayerName();
+                return false;
+
             case "CHALLENGE":
                 try{
                     challenge();} catch (Exception e) {
@@ -762,7 +768,7 @@ public class layoutManager {
             playerTwoRack.displayRack(fxBoard.board.player_two.frame);
 
             fxBoard.board.isFirstMove = fxBoard.board.isFirstMove();
-
+            //im mega mega big sad - Kier
 
         }
     }
